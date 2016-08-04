@@ -22,40 +22,102 @@
             margin-right: auto;
             margin-left: auto;
         }
+
+        .center {
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .task{
+            margin: 15px auto 15px auto;
+            box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+            width: 90%;
+        }
+
+        .task-content{
+            text-align:center;
+        }
     </style>
 
 </head>
 <body dir="rtl">
 
-    <div id="entire-page" class="prot" style="width: 90%">
-        <!-- Navigation bar, like tabs-->
-        <nav>
-            <table class="nav-table cf">
-                <tr>
-                    <td>
-                        <a href="#">סטטיסטיקה</a>
-                    </td>
-                    <td class="selected">
-                        <a href="#">מטלות</a>
-                    </td>
-                    <td>
-                        <a href="#">סיכום</a>
-                    </td>
-                    <td>
-                        <a href="#">חתימה</a>
-                    </td>
-                    <td>
-                        <a href="#">חמש</a>
-                    </td>
-                </tr>
-            </table>
-        </nav>
+    <div id="entire-page" class="prot" style="width: 90%; ">
+        <table class="center" width="100%" >
+            <tr id="header" style="height: 15vh;">
+                <td colspan="3">
+                    <!-- Navigation bar, like tabs-->
+                    <nav>
+                        <table class="nav-table cf">
+                            <tr>
+                                <td>
+                                    <a href="#">סטטיסטיקה</a>
+                                </td>
+                                <td class="selected">
+                                    <a href="#">מטלות</a>
+                                </td>
+                                <td>
+                                    <a href="#">סיכום</a>
+                                </td>
+                                <td>
+                                    <a href="#">חתימה</a>
+                                </td>
+                                <td>
+                                    <a href="#">חמש</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </nav>
 
-        <!-- Bread-crums menu-->
-        <ul id="breadcrumbs-four">
-            <li><a href="">מפקום</a></li>
-            <li class="selected"><a href="">כללי</a></li>
-        </ul>
+                    <!-- Bread-crums menu-->
+                    <ul id="breadcrumbs-four">
+                        <li><a href="">מפקום</a></li>
+                        <li class="selected"><a href="">כללי</a></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr id="page-body" >
+                <td colspan="3" style="overflow-y: hidden">
+                    <!-- Table adjust to content, restrict through divs! -->
+                    <div id="tab-content" class="prot" 
+                         style="width:90%; height: 75vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
+                        
+
+                        <!-- Tab Content-->
+                        <table class="task">
+                            <tr class="task-content">
+                                <td colspan="2">
+                                    (1) פה יופיע טקסט לדוגמא
+                                </td>
+                            </tr>
+                            <tr class="task-buttons">
+                                <td style="text-align:right"></td>
+                                <td style="text-align:left"></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </td>
+            </tr>
+            <tr id="footer" style="height: 5vh;">
+                <td id="footer-right" style="text-align:right">
+                   <b>טאבלט:</b>
+                     555
+                </td>
+                <td id="footer-center"style="text-align:center">
+                    <b>טופס:</b>
+                     000
+                </td>
+                <td id="footer-left" style="text-align:left">
+                    <b>גרסא:</b>
+                     555
+                </td>
+            </tr>
+        </table>
+
+
+       
+
     </div>
   
 </body>
