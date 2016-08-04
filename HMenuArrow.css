@@ -24,6 +24,8 @@ nav {
     margin: 0px;
     border-spacing: 0px;
     width: 100%;
+
+    font-size: 3em;
 }
 
 table.nav-table tr {
@@ -34,7 +36,6 @@ table.nav-table tr {
 
 table.nav-table td {
   text-align: center;
-  
   padding: 0px;
 }
 
