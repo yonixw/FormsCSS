@@ -3,10 +3,12 @@
 <head>
     <meta charset=utf-8 />
     <title>Forms main page</title>
-    <link rel="stylesheet" type="text/css" href="fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
     
-    <link rel="stylesheet" type="text/css" href="HMenuArrow.css" />
-    <link rel="stylesheet" type="text/css" href="bread-crumbs.css" />
+    <link rel="stylesheet" type="text/css" href="./css/HMenuArrow.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bread-crumbs.css" />
+
+    <link rel="stylesheet" type="text/css" href="./css/tristate.css" />
     
     <style type="text/css">
         body {
@@ -36,10 +38,19 @@
 
         .task-content{
             text-align:center;
+            font-size: 1.5em;
             background-color: #99d6ff;
         }
     </style>
 
+    <script type="text/javascript" language="javascript" src="./js/jquery-3.1.0.min.js" ></script>
+
+    <script>
+        function OnTriClick(elm) {
+            $(elm).find(">:first-child").removeClass("unchecked");
+            $(elm).find(">:first-child").addClass("checked");
+        }
+    </script>
 </head>
 <body dir="rtl">
 
@@ -89,6 +100,30 @@
                             <tr class="task-content">
                                 <td colspan="2">
                                     (1) פה יופיע טקסט לדוגמא
+                                </td>
+                            </tr>
+                            <tr class="task-buttons">
+                                <td style="text-align:right">
+                                    <div class="tristate" onclick="OnTriClick(this);">
+                                        <div class="tri-sta-che md unchecked">
+                                           
+                                            <span class="tsc-b tsc-b-r"></span>
+                                            <span class="tsc-b tsc-b-b"></span>
+                                            <span class="tsc-b tsc-b-t"></span>
+                                            <span class="tsc-b tsc-b-l"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="text-align:left"></td>
+                            </tr>
+                        </table>
+
+
+                        <!-- Tab Content-->
+                        <table class="task">
+                            <tr class="task-content">
+                                <td colspan="2">
+                                    (2) פה יופיע טקסט לדוגמא
                                 </td>
                             </tr>
                             <tr class="task-buttons">
