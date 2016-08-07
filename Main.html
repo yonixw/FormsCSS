@@ -14,11 +14,15 @@
     <link rel="stylesheet" type="text/css" href="./css/chunky-buttons.css" />
     <link rel="stylesheet" type="text/css" href="./css/tristate.css" />
 
+    <link rel="stylesheet" type="text/css" href="./css/side-menu.css" />
+    <link rel="stylesheet" type="text/css" href="./css/button-anime.min.css" />
+    
     
     
     <style type="text/css">
         body {
             font-family: 'OpenSans';
+            overflow-x: hidden;
         }
 
         .prot {
@@ -64,7 +68,10 @@
 
     <script type="text/javascript" language="javascript" src="./js/jquery-3.1.0.min.js" ></script>
     <script type="text/javascript" language="javascript" src="./js/URI.min.js"></script>
-    <script type="text/javascript" language="javascript" src="./js/materialize.min.js"></script>
+    
+    
+
+    
 
     <script>
         var TriStateFSM = [
@@ -123,25 +130,82 @@
                     </div>
                     
 
-                    <!-- Bread-crums menu-->
-                    <ul id="breadcrumbs-four">
-                        <li><a href="">מפקום</a></li>
-                        <li class="selected"><a href="">כללי</a></li>
-                    </ul>
+                    
+
+                    
+
+                    <table>
+                        <tr>
+                            <td>
+                                <!-- htx rot htla htra -->
+                                <button class="c-hamburger c-hamburger--htx"
+                                        style="transform: scale(0.5); z-index: 20;">
+                                    <span>toggle menu</span>
+                                </button>
+                            </td>
+                            <td>
+                                <!-- Bread-crums menu-->
+                                <ul id="breadcrumbs-four" >
+                                    <li><a href="">מפקום</a></li>
+                                    <li><a href="">מפקום</a></li>
+                                    <li><a href="">מפקום</a></li>
+                                    <li><a href="">מפקום</a></li>
+                                    <li class="selected"><a href="">כללי</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <script>
+                        (function () {
+
+                            "use strict";
+
+                            var toggles = document.querySelectorAll(".c-hamburger");
+
+                            for (var i = toggles.length - 1; i >= 0; i--) {
+                                var toggle = toggles[i];
+                                toggleHandler(toggle);
+                            };
+
+                            function toggleHandler(toggle) {
+                                toggle.addEventListener("click", function (e) {
+                                    e.preventDefault();
+                                    (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
+                                    $('nav').toggleClass('active');
+                                });
+                            }
+
+                        })();
+                    </script>
+
+                    <nav>
+                        <ul class="menu">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Works</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <script type="text/javascript" language="javascript" src="./js/mostrar_nav.js"></script>
                 </td>
             </tr>
             <tr id="page-body" >
                 <td colspan="3" style="overflow-y: hidden">
                     <!-- Table adjust to content, restrict through divs! -->
                     <div id="tab-content" class="prot" 
-                         style="width:90%; height: 75vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
+                         style="width:90%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
                         
 
                         <!-- Tab Content-->
                         <table class="task">
                             <tr class="task-content">
                                 <td colspan="2">
-                                    (1) פה יופיע טקסט לדוגמא <br />
+                                    <span style="float: right; margin: 15px;">(1)</span>
+                                    פה יופיע טקסט לדוגמא <br />
                                     עם כמה שורות וגם <b>הדגשים</b>
                                 </td>
                             </tr>
@@ -180,8 +244,53 @@
                         <table class="task">
                             <tr class="task-content">
                                 <td colspan="2">
-                                    (1) פה יופיע טקסט לדוגמא <br />
+                                    <span style="float: right; margin: 15px;">(2)</span>
+                                     פה יופיע טקסט לדוגמא <br />
                                     עם כמה שורות וגם <b>הדגשים</b>
+                                </td>
+                            </tr>
+                            <tr class="task-buttons">
+                                <td style="text-align:right">
+                                    <div id="chunky-buttons">
+                                        <div class="chunky">
+                                            <div class="tristate chunky16" onclick="OnTriClick(this);">
+                                                <div class="tri-sta-che md clear">
+                                                    <span class="tsc-b tsc-b-r"></span>
+                                                    <span class="tsc-b tsc-b-b"></span>
+                                                    <span class="tsc-b tsc-b-t"></span>
+                                                    <span class="tsc-b tsc-b-l"></span>
+                                                </div>
+                                                <a class="tristatedesc">
+                                                    בחר מצב
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="text-align:left">
+                                    <div id="chunky-buttons">
+                                        <div class="chunky chunky26">
+                                            <a>
+                                                +
+                                            </a>
+                                            הוסף הערה
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Tab Content-->
+                        <table class="task">
+                            <tr class="task-content">
+                                <td colspan="2">
+                                    <span style="float: right; margin: 15px;">(3)</span>
+                                    פה יופיע טקסט לדוגמא <br />
+                                    עם כמה שורות וגם <b>הדגשים</b> <br />
+                                    מלא פרטים: <input type="text" style="font-size:1em;" /> <br />
+                                    <u>בחר: </u>
+                                        <input type="radio" name="group1" value="1" style="width:1.5em; height: 1.5em;"/> 1 
+                                        <input type="radio" name="group1" value="2" style="width:1.5em; height: 1.5em;"/> 2 
                                 </td>
                             </tr>
                             <tr class="task-buttons">
