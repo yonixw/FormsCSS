@@ -14,7 +14,7 @@ body {
 }
 
 /* Color bar under the navigator */
-nav {
+.nav {
   border-bottom: 10px solid rgb(0,160,222);
 }
 
