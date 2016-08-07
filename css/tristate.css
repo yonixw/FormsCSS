@@ -1,4 +1,5 @@
 .tri-sta-che {
+
     display: inline-block;
     cursor: pointer;
     outline: none;
@@ -10,7 +11,8 @@
     transition: 0.2s ease-out;
     position: relative;
     vertical-align: top;
-    margin: 0 5px;
+
+    margin: 0 10px; /*ABS ... just multiply every abs with same factor*/
 }
 
 .tri-sta-che.checked {
@@ -31,8 +33,8 @@
 }
 
 .md {
-    width: 16px;
-    height: 16px;
+    width: 32px;  /*ABS*/
+    height: 32px;  /*ABS*/
 }
 
 .tri-sta-che > .tsc-b {
@@ -45,10 +47,10 @@
 
 }
 .tri-sta-che.md > .tsc-b.tsc-b-l, .tri-sta-che.md > .tsc-b.tsc-b-r {
-    width: 3px;
+    width: 6px;  /*ABS*/
 }
 .tri-sta-che.md > .tsc-b.tsc-b-t, .tri-sta-che.md > .tsc-b.tsc-b-b {
-    height: 3px;
+    height: 6px;  /*ABS*/
 }
 
 .tri-sta-che.clear > .tsc-b {

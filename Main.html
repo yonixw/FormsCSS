@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./css/HMenuArrow.css" />
     <link rel="stylesheet" type="text/css" href="./css/bread-crumbs.css" />
 
+    <link rel="stylesheet" type="text/css" href="./css/chunky-buttons.css" />
     <link rel="stylesheet" type="text/css" href="./css/tristate.css" />
     
     <style type="text/css">
@@ -39,16 +40,48 @@
         .task-content{
             text-align:center;
             font-size: 1.5em;
-            background-color: #99d6ff;
+            background-color: #99d6ff;            
+        }
+
+        .task-content td {
+            padding-top: 10px;
+            padding-bottom: 10px;  
+        }
+
+        .task-buttons {
+            font-size: 1.5em;
+        }
+
+        .tristatedesc{
+            display: inline;
         }
     </style>
 
     <script type="text/javascript" language="javascript" src="./js/jquery-3.1.0.min.js" ></script>
 
     <script>
+        var TriStateFSM = [
+            { text: "תקין", css: "checked", next: 1 },
+            { text: "לא תקין", css: "unchecked", next: 0 },
+            { text: "בחר מצב", css: "clear", next: 0 }
+        ]
+
         function OnTriClick(elm) {
-            $(elm).find(">:first-child").removeClass("unchecked");
-            $(elm).find(">:first-child").addClass("checked");
+            var $tristate = $(elm).find(">:first-child");
+            var $desc = $(elm).find(".tristatedesc");
+            for (var i = 0; i < TriStateFSM.length; i++) {
+                if ($tristate.hasClass(TriStateFSM[i].css)) {
+                    //Change text to next :
+                    $desc.text(TriStateFSM[TriStateFSM[i].next].text);
+                    //Remove current css
+                    $tristate.removeClass(TriStateFSM[i].css);
+                    // Add next css
+                    $tristate.addClass(TriStateFSM[TriStateFSM[i].next].css);
+
+                    //return to avoid races.
+                    return;
+                }
+            }
         }
     </script>
 </head>
@@ -104,13 +137,19 @@
                             </tr>
                             <tr class="task-buttons">
                                 <td style="text-align:right">
-                                    <div class="tristate" onclick="OnTriClick(this);">
-                                        <div class="tri-sta-che md unchecked">
-                                           
-                                            <span class="tsc-b tsc-b-r"></span>
-                                            <span class="tsc-b tsc-b-b"></span>
-                                            <span class="tsc-b tsc-b-t"></span>
-                                            <span class="tsc-b tsc-b-l"></span>
+                                    <div id="chunky-buttons">
+                                        <div class="chunky">
+                                            <div class="tristate chunky16" onclick="OnTriClick(this);">
+                                                <div class="tri-sta-che md clear">
+                                                    <span class="tsc-b tsc-b-r"></span>
+                                                    <span class="tsc-b tsc-b-b"></span>
+                                                    <span class="tsc-b tsc-b-t"></span>
+                                                    <span class="tsc-b tsc-b-l"></span>
+                                                </div>
+                                                <a class="tristatedesc">
+                                                    בחר מצב
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
