@@ -11,7 +11,8 @@ body {
   margin: auto;
   /*outline: 1px solid red;*/
   padding-left: 0;
-  width: 15em;
+  width: 30vw;
+  color: white;
 }
 
 .menu a {
@@ -59,7 +60,7 @@ nav {
   background: rgba(41,128,185,1);
   padding-right: .25em;
   position: absolute;
-  left: -18em;
+  left: -36vw;
   top: 0;
   padding-top: 5em;
   box-sizing: border-box;
