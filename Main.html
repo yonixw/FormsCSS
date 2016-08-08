@@ -74,13 +74,23 @@
         .tristatedesc{
             display: inline;
         }
+
+        .ui-widget {
+            font-size: 1.5em;
+        }
+
+        /*Hide close button in dialog: */
+
+        .custom-dialog .ui-dialog-titlebar-close {
+          display: none;
+        }
     </style>
 
     <script type="text/javascript" language="javascript" src="./js/jquery-3.1.0.min.js" ></script>
 
     <script type="text/javascript" language="javascript" src="./js/jquery-ui.js"></script>
     
-    
+    <script type="text/javascript" language="javascript" src="./js/jSignature.min.js"></script>
 
     
 
@@ -393,8 +403,24 @@
                      555
                 </td>
                 <td id="footer-center"style="text-align:center">
-                    <b>טופס:</b>
-                     000
+                    <script>
+                        var sigInit = false;
+                        var $sigdiv = $("#signature");
+                        function openMenu() {
+                            $("#sig-dialog").dialog("open");
+                            if (!sigInit) {
+                                $("#signature").jSignature();
+                                sigInit = true;
+                            } else {
+                                $("#signature").jSignature("reset");
+                                //$sigdiv.jSignature();
+                            }
+                        }
+                    </script>
+                    <span onclick="openMenu();">
+                        <b>טופס:</b>
+                        000
+                    </span>
                 </td>
                 <td id="footer-left" style="text-align:center ">
                     <b>גרסא:</b>
@@ -402,11 +428,44 @@
                 </td>
             </tr>
         </table>
-
-
-       
-
     </div>
+    
+    <jqui-theme>
+        <div id="sig-dialog" class="ui-dialog" title="אנא הכנס חתימה">
+            <script>
+                $("#sig-dialog").dialog({
+                    draggable: false,
+                    dialogClass: "custom-dialog",
+                    autoOpen: false,
+                    modal: true,
+                    width: "auto",
+                    height: "auto",
+
+                    show: {
+                        effect: "bounce",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "fade",
+                        duration: 100
+                    },
+                    buttons: {
+                    "אישור": function() {
+                        $( this ).dialog( "close" );
+                    },
+                    "ביטול": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+                });
+            </script>
+            Hello! <br />
+            Hello2 <br />
+            Hello3 
+            
+            <div id="signature" class="prot" style="width:50vw; height:30vh;"></div>
+        </div>
+    </jqui-theme>
   
 </body>
 </html>
