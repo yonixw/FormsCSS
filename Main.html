@@ -17,12 +17,22 @@
     <link rel="stylesheet" type="text/css" href="./css/side-menu.css" />
     <link rel="stylesheet" type="text/css" href="./css/button-anime.min.css" />
     
-    
+    <link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" />
     
     <style type="text/css">
         body {
             font-family: 'OpenSans';
             overflow-x: hidden;
+        }
+
+        .noselect { /* http://stackoverflow.com/questions/826782/ */
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Chrome/Safari/Opera */
+            -khtml-user-select: none; /* Konqueror */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                              not supported by any browser */
         }
 
         .prot {
@@ -67,7 +77,8 @@
     </style>
 
     <script type="text/javascript" language="javascript" src="./js/jquery-3.1.0.min.js" ></script>
-    <script type="text/javascript" language="javascript" src="./js/URI.min.js"></script>
+
+    <script type="text/javascript" language="javascript" src="./js/jquery-ui.js"></script>
     
     
 
@@ -99,7 +110,7 @@
         }
     </script>
 </head>
-<body dir="rtl">
+<body dir="rtl" class="noselect">
 
     <div id="entire-page" class="prot" style="width: 90%; ">
         <table class="center" width="100%" >
@@ -129,11 +140,6 @@
                         </table>
                     </div>
                     
-
-                    
-
-                    
-
                     <table>
                         <tr>
                             <td>
@@ -179,6 +185,7 @@
                         })();
                     </script>
 
+                    <!-- Tasks hierarchy navigator -->
                     <nav>
                         <div style="overflow-y: scroll; height: 100%">
                             <ul class="menu">
