@@ -11,7 +11,7 @@ body {
   margin: 30px 0px;
   /*outline: 1px solid red;*/
   padding-left: 0;
-  width: 30vw;
+  width: 50vw;
   color: white;
 }
 
@@ -60,7 +60,7 @@ nav {
   background: rgba(41,128,185,1);
   padding-right: .25em;
   position: absolute;
-  left: -36vw;
+  right: -55vw;
   top: 0;
   /*padding-top: 5em;*/
   box-sizing: border-box;
@@ -71,7 +71,7 @@ nav {
   transition: all .3s;
 }
 
-nav.active { left: 0; }
+nav.active { right: 0; }
 
 #mobile-nav {
   background: url(menu-icon.png);

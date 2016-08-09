@@ -36,7 +36,7 @@
         }
 
         .prot {
-            border: 1px;
+            border: 3px;
             border-style:solid;
             border-color: #AAA;
 
@@ -48,12 +48,13 @@
         .center {
             margin-right: auto;
             margin-left: auto;
+            width: 100%;
         }
 
         .task{
             margin: 15px auto 15px auto;
             box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
-            width: 90%;
+            width: 100%;
         }
 
         .task-content{
@@ -87,6 +88,10 @@
 
         .hidden {
             display: none;
+        }
+
+        .task-text {
+            text-align: right;
         }
     </style>
 
@@ -151,8 +156,8 @@
 </head>
 <body dir="rtl" class="noselect">
 
-    <div id="entire-page" class="prot" style="width: 90%; ">
-        <table class="center" width="100%" >
+    <div id="entire-page" class="prot" style="width: 100%; ">
+        <table class="center">
             <tr id="header" style="height: 15vh;">
                 <td colspan="3">
                     <!-- Navigation bar, like tabs-->
@@ -181,15 +186,8 @@
                     
                     <!-- Task Navigation bar -->
 
-                    <table>
+                    <table width="100%">
                         <tr>
-                            <td>
-                                <!-- htx rot htla htra -->
-                                <button class="c-hamburger c-hamburger--htx"
-                                        style="transform: scale(0.5); z-index: 20;">
-                                    <span>toggle menu</span>
-                                </button>
-                            </td>
                             <td>
                                 <!-- Bread-crums menu-->
                                 <ul id="breadcrumbs-four" >
@@ -199,6 +197,13 @@
                                     <li><a href="">מפקום</a></li>
                                     <li class="selected"><a href="">כללי</a></li>
                                 </ul>
+                            </td>
+                            <td >
+                                <!-- htx rot htla htra -->
+                                <button class="c-hamburger c-hamburger--htx"
+                                        style="transform: scale(0.5); z-index: 20; float: left;">
+                                    <span>toggle menu</span>
+                                </button>
                             </td>
                         </tr>
                     </table>
@@ -295,7 +300,7 @@
                 <td colspan="3" style="overflow-y: hidden">
                     <!-- Table adjust to content, restrict through divs! -->
                     <div id="tab-content" class="prot" 
-                         style="width:90%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
+                         style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
                         
 
                         <!-- Tab Content-->
@@ -433,9 +438,18 @@
                         <table class="task">
                             <tr class="task-content">
                                 <td colspan="2">
-                                    <span style="float: right; margin: 15px;">(1)</span>
+                                    <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
+                                                 border: 2px solid black;border-radius: 10px;padding: 7px;">(1)</span>
 
-                                    <div id="chunky-buttons" style="float:right; border-radius: 10px;">
+                                    <div id="chunky-buttons" style="float:left">
+                                        <div class="chunky chunky26">
+                                            <a>
+                                                <b>+</b> הערה
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div id="chunky-buttons" style="float:left; border-radius: 10px;">
                                         <div class="chunky chunky16">
                                             <a>
                                                 <div class="tristate" onclick="OnTriClick2(this);">
@@ -453,16 +467,11 @@
                                         </div>
                                     </div>
 
-                                    <div id="chunky-buttons" style="float:right">
-                                        <div class="chunky chunky26">
-                                            <a>
-                                            +הערה                                            
-                                            </a>  
-                                        </div>
-                                    </div>
 
-                                    פה יופיע טקסט לדוגמא <br />
-                                    עם כמה שורות וגם <b>הדגשים</b>
+                                    <div class="task-text">
+                                        פה יופיע טקסט לדוגמא <br />
+                                        עם כמה שורות וגם <b>הדגשים</b>
+                                    </div>
                                 </td>
                             </tr>
                             <tr class="task-buttons">
