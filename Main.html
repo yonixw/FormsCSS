@@ -93,6 +93,14 @@
         .task-text {
             text-align: right;
         }
+
+        #navigate {
+            font-size: 1.5em;
+        }
+
+        #navigate .chunky a {
+           /* width: 50%;*/
+        }
     </style>
 
     <script type="text/javascript" language="javascript" src="./js/jquery-3.1.0.min.js" ></script>
@@ -480,8 +488,81 @@
                             </tr>
                         </table>
 
+
+                        <!-- Tab Content-->
+                        <table class="task">
+                            <tr class="task-content">
+                                <td colspan="2">
+                                    <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
+                                                 border: 2px solid black;border-radius: 10px;padding: 7px;">(1)</span>
+
+                                    <div id="chunky-buttons" style="float:left; margin-right: 10px;">
+                                        <div class="chunky chunky26">
+                                            <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
+                                                <img src="./svg/add-text-notes.svg" style="width: 32px;"/>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div id="chunky-buttons" style="float:left; border-radius: 10px;">
+                                        <div class="chunky chunky16">
+                                            <a>
+                                                <div class="tristate narrow-tristate" onclick="OnTriClick2(this);">
+                                                    <div class="tri-sta-che md hidden">
+                                                        <span class="tsc-b tsc-b-r"></span>
+                                                        <span class="tsc-b tsc-b-b"></span>
+                                                        <span class="tsc-b tsc-b-t"></span>
+                                                        <span class="tsc-b tsc-b-l"></span>
+                                                    </div>
+                                                    <div class="tristatedesc">
+                                                        מצב
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="task-text">
+                                        פה יופיע טקסט לדוגמא <br />
+                                        עם כמה שורות וגם <b>הדגשים</b>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="task-buttons">
+                                <td style="text-align:right"></td>
+                                <td style="text-align:left"></td>
+                            </tr>
+                        </table>
+
                     </div>
                 </td>
+            </tr>
+            <tr id="navigate">
+                <td>
+                    <div id="chunky-buttons" style="float:right; ">
+                        <div class="chunky chunky12">
+                            <a >
+                                הקודם
+                            </a>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <!-- empty ... -->
+                </td>
+
+                <td>
+                    <div id="chunky-buttons" style="float:left; ">
+                        <div class="chunky chunky12">
+                            <a >
+                                הבא
+                            </a>
+                        </div>
+                    </div>
+                </td>
+
             </tr>
             <tr id="footer" style="height: 5vh;">
                 <td id="footer-right" style="text-align:center">

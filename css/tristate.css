@@ -15,6 +15,10 @@
     margin: 0 10px; /*ABS ... just multiply every abs with same factor*/
 }
 
+.narrow-tristate .tri-sta-che {
+    margin: 0 0px;
+}
+
 .tri-sta-che.checked {
     transform-origin: 80% 20%;
     -webkit-transform: rotateZ(38deg);

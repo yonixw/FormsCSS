@@ -1,2 +1,25 @@
 Add tasks js like Tri-State ad Materilize RTL for adding notes.
 Maybe use Angular for automating things....
+
+
+sideways swipe:  http://stereobit.github.io/dragend/
+animated multilevel menu: http://www.jqueryrain.com/?Vloh9R1u
+dot paginiator: http://demo.tutorialzine.com/2010/05/sweet-pages-jquery-pagination-solution/demo.html
+
+Scenarios: 
+[ ] Menu in one place.... scroll up down 
+	[ ] All scrolling with intermidiate headers and auto title jumping with scrolling
+
+[ ] Scroll sideways: swipe left + multi level menu 
+	[ ] All scrolling with intermidiate headers and auto title jumping with scrolling
+
+[ ] Just top categories.  
+	[ ] Sqipe sideways with next\back and dot paginator - with main titles only. with moving category
+
+[ ] Tree view 
+	[ ] All scrolling with intermidiate headers and auto title jumping with scrolling
+
+[ ] Menu ???
+	[ ] Scroll down per category and swipe left for category change
+
+[ ] Favor
