@@ -101,6 +101,18 @@
         #navigate .chunky a {
            /* width: 50%;*/
         }
+
+        .cat-table {
+            border: 0;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .cat-table td {
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
     </style>
 
     <script type="text/javascript" language="javascript" src="./js/jquery-3.1.0.min.js" ></script>
@@ -110,6 +122,8 @@
     <script type="text/javascript" language="javascript" src="./js/jSignature.min.js"></script>
 
     <script type="text/javascript" language="javascript" src="./js/angular.1.5.8.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./js/angular-resource.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./js/angular-route.min.js"></script>
 
     <script>
         var TriStateFSM = [
@@ -164,59 +178,60 @@
 </head>
 <body dir="rtl" class="noselect">
 
-    <div id="entire-page" class="prot" style="width: 100%; ">
-        <table class="center">
-            <tr id="header" style="height: 15vh;">
-                <td colspan="3">
-                    <!-- Navigation bar, like tabs-->
-                    
-                    <div class="nav">
-                        <table class="nav-table cf">
-                            <tr>
-                                <td>
-                                    <a href="#">סטטיסטיקה</a>
-                                </td>
-                                <td class="selected">
-                                    <a href="#">מטלות</a>
-                                </td>
-                                <td>
-                                    <a href="#">סיכום</a>
-                                </td>
-                                <td>
-                                    <a href="#">חתימה</a>
-                                </td>
-                                <td>
-                                    <a href="#">חמש</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <!-- Task Navigation bar -->
+    <div id="entire-page" class="prot" style="width: 100%; height: 100%;">
 
-                    <table width="100%">
-                        <tr>
-                            <td>
-                                <!-- Bread-crums menu-->
-                                <ul id="breadcrumbs-four" >
-                                    <li><a href="">מפקום</a></li>
-                                    <li><a href="">מפקום</a></li>
-                                    <li><a href="">מפקום</a></li>
-                                    <li><a href="">מפקום</a></li>
-                                    <li class="selected"><a href="">כללי</a></li>
-                                </ul>
-                            </td>
-                            <td >
-                                <!-- htx rot htla htra -->
-                                <button class="c-hamburger c-hamburger--htx"
-                                        style="transform: scale(0.5); z-index: 20; float: left;">
-                                    <span>toggle menu</span>
-                                </button>
-                            </td>
-                        </tr>
-                    </table>
+        <div class="nav">
+            <table class="nav-table cf">
+                <tr>
+                    <td>
+                        <a href="#">סטטיסטיקה</a>
+                    </td>
+                    <td class="selected">
+                        <a href="#">מטלות</a>
+                    </td>
+                    <td>
+                        <a href="#">סיכום</a>
+                    </td>
+                    <td>
+                        <a href="#">חתימה</a>
+                    </td>
+                    <td>
+                        <a href="#">חמש</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-                    <script>
+
+
+        <div id="header">
+            <div colspan="3">
+                <!-- Navigation bar, like tabs-->
+                <!-- Task Navigation bar -->
+
+                <table style="width:100%;" class="cat-table">
+                    <tr>
+                        <td>
+                            <!-- Bread-crums menu-->
+                            <ul id="breadcrumbs-four">
+                                <li><a href="">מפקום</a></li>
+                                <li><a href="">מפקום</a></li>
+                                <li><a href="">מפקום</a></li>
+                                <li><a href="">מפקום</a></li>
+                                <li class="selected"><a href="">כללי</a></li>
+                            </ul>
+                        </td>
+                        <td>
+                            <!-- htx rot htla htra -->
+                            <button class="c-hamburger c-hamburger--htx"
+                                    style="transform: scale(0.5); z-index: 20; float: left;">
+                                <span>toggle menu</span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+
+                <script>
                         (function () {
 
                             "use strict";
@@ -237,365 +252,365 @@
                             }
 
                         })();
-                    </script>
+                </script>
 
-                    <!-- Tasks hierarchy navigator -->
-                    <nav>
-                        <div style="overflow-y: scroll; height: 100%">
-                            <ul class="menu">
-                                <li><a href="#">Home</a></li>
-                                <ul>
-                                    <li>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <li><a href="#">Works</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <ul>
-                                    <li>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Home</a>
-                                                        <a href="#">Home</a>
-                                                        <a href="#">Home</a>
-                                                        <a href="#">Home</a>
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#">Home</a>
-                                                                <a href="#">Home</a>
-                                                                <a href="#">Home</a>
-                                                                <a href="#">Home</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                <!-- Tasks hierarchy navigator -->
+                <nav>
+                    <div style="overflow-y: scroll; height: 100%">
+                        <ul class="menu">
+                            <li><a href="#">Home</a></li>
+                            <ul>
+                                <li>
+                                    <a href="#">Home</a>
+                                    <a href="#">Home</a>
+                                    <a href="#">Home</a>
+                                    <a href="#">Home</a>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Home</a>
+                                            <a href="#">Home</a>
+                                            <a href="#">Home</a>
+                                            <a href="#">Home</a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </div>
-                    </nav>
+                            <li><a href="#">Works</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <ul>
+                                <li>
+                                    <a href="#">Home</a>
+                                    <a href="#">Home</a>
+                                    <a href="#">Home</a>
+                                    <a href="#">Home</a>
+                                    <ul>
+                                        <li>
+                                            <a href="#">Home</a>
+                                            <a href="#">Home</a>
+                                            <a href="#">Home</a>
+                                            <a href="#">Home</a>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Home</a>
+                                                    <a href="#">Home</a>
+                                                    <a href="#">Home</a>
+                                                    <a href="#">Home</a>
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#">Home</a>
+                                                            <a href="#">Home</a>
+                                                            <a href="#">Home</a>
+                                                            <a href="#">Home</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </nav>
 
-                    <script type="text/javascript" language="javascript" src="./js/mostrar_nav.js"></script>
-                </td>
-            </tr>
-            <tr id="page-body" >
-                <td colspan="3" style="overflow-y: hidden">
-                    <!-- Table adjust to content, restrict through divs! -->
-                    <div id="tab-content" class="prot" 
-                         style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
-                        
+                <script type="text/javascript" language="javascript" src="./js/mostrar_nav.js"></script>
+            </div>
+        </div>
+        <div id="page-body">
+            <div colspan="3" style="overflow-y: hidden">
+                <!-- Table adjust to content, restrict through divs! -->
+                <div id="tab-content" class="prot"
+                     style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
 
-                        <!-- Tab Content-->
-                        <table class="task">
-                            <tr class="task-content">
-                                <td colspan="2">
-                                    <span style="float: right; margin: 15px;">(1)</span>
 
-                                    <div id="chunky-buttons" style="float:right; border-radius: 10px;">
-                                        <div class="chunky">
-                                            <div class="tristate chunky16" onclick="OnTriClick(this);">
-                                                <div class="tri-sta-che md clear">
-                                                    <span class="tsc-b tsc-b-r"></span>
-                                                    <span class="tsc-b tsc-b-b"></span>
-                                                    <span class="tsc-b tsc-b-t"></span>
-                                                    <span class="tsc-b tsc-b-l"></span>
-                                                </div>
-                                                <a class="tristatedesc">
-                                                    בחר מצב
-                                                </a>
+                    <!-- Tab Content-->
+                    <table class="task">
+                        <tr class="task-content">
+                            <td colspan="2">
+                                <span style="float: right; margin: 15px;">(1)</span>
+
+                                <div id="chunky-buttons" style="float:right; border-radius: 10px;">
+                                    <div class="chunky">
+                                        <div class="tristate chunky16" onclick="OnTriClick(this);">
+                                            <div class="tri-sta-che md clear">
+                                                <span class="tsc-b tsc-b-r"></span>
+                                                <span class="tsc-b tsc-b-b"></span>
+                                                <span class="tsc-b tsc-b-t"></span>
+                                                <span class="tsc-b tsc-b-l"></span>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="chunky-buttons" style="float:left">
-                                        <div class="chunky chunky26">
-                                            <a>
-                                                +
+                                            <a class="tristatedesc">
+                                                בחר מצב
                                             </a>
-                                            הוסף הערה
                                         </div>
                                     </div>
+                                </div>
 
-                                    פה יופיע טקסט לדוגמא <br />
-                                    עם כמה שורות וגם <b>הדגשים</b>
-                                </td>
-                            </tr>
-                            <tr class="task-buttons">
-                                <td style="text-align:right">
-                                    
-                                </td>
-                                <td style="text-align:left">
-                                    
-                                </td>
-                            </tr>
-                        </table>
+                                <div id="chunky-buttons" style="float:left">
+                                    <div class="chunky chunky26">
+                                        <a>
+                                            +
+                                        </a>
+                                        הוסף הערה
+                                    </div>
+                                </div>
 
-                        <!-- Tab Content-->
-                        <table class="task">
-                            <tr class="task-content">
-                                <td colspan="2">
-                                    <span style="float: right; margin: 15px;">(1)</span>
+                                פה יופיע טקסט לדוגמא <br />
+                                עם כמה שורות וגם <b>הדגשים</b>
+                            </td>
+                        </tr>
+                        <tr class="task-buttons">
+                            <td style="text-align:right"></td>
+                            <td style="text-align:left"></td>
+                        </tr>
+                    </table>
 
-                                    <div id="chunky-buttons" style="float:right; border-radius: 10px;">
-                                        <div class="chunky">
-                                            <div class="tristate chunky16" onclick="OnTriClick(this);">
-                                                <div class="tri-sta-che md clear">
-                                                    <span class="tsc-b tsc-b-r"></span>
-                                                    <span class="tsc-b tsc-b-b"></span>
-                                                    <span class="tsc-b tsc-b-t"></span>
-                                                    <span class="tsc-b tsc-b-l"></span>
-                                                </div>
-                                                <a class="tristatedesc">
-                                                    בחר 
-                                                </a>
+                    <!-- Tab Content-->
+                    <table class="task">
+                        <tr class="task-content">
+                            <td colspan="2">
+                                <span style="float: right; margin: 15px;">(1)</span>
+
+                                <div id="chunky-buttons" style="float:right; border-radius: 10px;">
+                                    <div class="chunky">
+                                        <div class="tristate chunky16" onclick="OnTriClick(this);">
+                                            <div class="tri-sta-che md clear">
+                                                <span class="tsc-b tsc-b-r"></span>
+                                                <span class="tsc-b tsc-b-b"></span>
+                                                <span class="tsc-b tsc-b-t"></span>
+                                                <span class="tsc-b tsc-b-l"></span>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="chunky-buttons" style="float:right">
-                                        <div class="chunky chunky26">
-                                            <a>
-                                                +
+                                            <a class="tristatedesc">
+                                                בחר
                                             </a>
-                                           הערה
                                         </div>
                                     </div>
+                                </div>
 
-                                    פה יופיע טקסט לדוגמא <br />
-                                    עם כמה שורות וגם <b>הדגשים</b>
-                                </td>
-                            </tr>
-                            <tr class="task-buttons">
-                                <td style="text-align:right"></td>
-                                <td style="text-align:left"></td>
-                            </tr>
-                        </table>
+                                <div id="chunky-buttons" style="float:right">
+                                    <div class="chunky chunky26">
+                                        <a>
+                                            +
+                                        </a>
+                                        הערה
+                                    </div>
+                                </div>
 
-                        <!-- Tab Content-->
-                        <table class="task">
-                            <tr class="task-content">
-                                <td colspan="2">
-                                    <span style="float: right; margin: 15px;">(3)</span>
-                                    פה יופיע טקסט לדוגמא <br />
-                                    עם כמה שורות וגם <b>הדגשים</b> <br />
-                                    מלא פרטים: <input type="text" style="font-size:1em;" /> <br />
-                                    <u>בחר: </u>
-                                        <input type="radio" name="group1" value="1" style="width:1.5em; height: 1.5em;"/> 1 
-                                        <input type="radio" name="group1" value="2" style="width:1.5em; height: 1.5em;"/> 2 
-                                </td>
-                            </tr>
-                            <tr class="task-buttons">
-                                <td style="text-align:right">
-                                    <div id="chunky-buttons">
-                                        <div class="chunky">
-                                            <div class="tristate chunky16" onclick="OnTriClick(this);">
-                                                <div class="tri-sta-che md clear">
-                                                    <span class="tsc-b tsc-b-r"></span>
-                                                    <span class="tsc-b tsc-b-b"></span>
-                                                    <span class="tsc-b tsc-b-t"></span>
-                                                    <span class="tsc-b tsc-b-l"></span>
-                                                </div>
-                                                <a class="tristatedesc">
-                                                    בחר מצב
-                                                </a>
+                                פה יופיע טקסט לדוגמא <br />
+                                עם כמה שורות וגם <b>הדגשים</b>
+                            </td>
+                        </tr>
+                        <tr class="task-buttons">
+                            <td style="text-align:right"></td>
+                            <td style="text-align:left"></td>
+                        </tr>
+                    </table>
+
+                    <!-- Tab Content-->
+                    <table class="task">
+                        <tr class="task-content">
+                            <td colspan="2">
+                                <span style="float: right; margin: 15px;">(3)</span>
+                                פה יופיע טקסט לדוגמא <br />
+                                עם כמה שורות וגם <b>הדגשים</b> <br />
+                                מלא פרטים: <input type="text" style="font-size:1em;" /> <br />
+                                <u>בחר: </u>
+                                <input type="radio" name="group1" value="1" style="width:1.5em; height: 1.5em;" /> 1
+                                <input type="radio" name="group1" value="2" style="width:1.5em; height: 1.5em;" /> 2
+                            </td>
+                        </tr>
+                        <tr class="task-buttons">
+                            <td style="text-align:right">
+                                <div id="chunky-buttons">
+                                    <div class="chunky">
+                                        <div class="tristate chunky16" onclick="OnTriClick(this);">
+                                            <div class="tri-sta-che md clear">
+                                                <span class="tsc-b tsc-b-r"></span>
+                                                <span class="tsc-b tsc-b-b"></span>
+                                                <span class="tsc-b tsc-b-t"></span>
+                                                <span class="tsc-b tsc-b-l"></span>
                                             </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td style="text-align:left">
-                                    <div id="chunky-buttons">
-                                        <div class="chunky chunky26">
-                                            <a>
-                                                +
+                                            <a class="tristatedesc">
+                                                בחר מצב
                                             </a>
-                                            הוסף הערה
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
+                                </div>
+                            </td>
+                            <td style="text-align:left">
+                                <div id="chunky-buttons">
+                                    <div class="chunky chunky26">
+                                        <a>
+                                            +
+                                        </a>
+                                        הוסף הערה
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
 
 
-                        <!-- Tab Content-->
-                        <table class="task">
-                            <tr class="task-content">
-                                <td colspan="2">
-                                    <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
+                    <!-- Tab Content-->
+                    <table class="task">
+                        <tr class="task-content">
+                            <td colspan="2">
+                                <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
                                                  border: 2px solid black;border-radius: 10px;padding: 7px;">(1)</span>
 
-                                    <div id="chunky-buttons" style="float:left">
-                                        <div class="chunky chunky26">
-                                            <a>
-                                                <b>+</b> הערה
-                                            </a>
-                                        </div>
+                                <div id="chunky-buttons" style="float:left">
+                                    <div class="chunky chunky26">
+                                        <a>
+                                            <b>+</b> הערה
+                                        </a>
                                     </div>
+                                </div>
 
-                                    <div id="chunky-buttons" style="float:left; border-radius: 10px;">
-                                        <div class="chunky chunky16">
-                                            <a>
-                                                <div class="tristate" onclick="OnTriClick2(this);">
-                                                    <div class="tri-sta-che md hidden">
-                                                        <span class="tsc-b tsc-b-r"></span>
-                                                        <span class="tsc-b tsc-b-b"></span>
-                                                        <span class="tsc-b tsc-b-t"></span>
-                                                        <span class="tsc-b tsc-b-l"></span>
-                                                    </div>
-                                                    <div class="tristatedesc">
-                                                        מצב
-                                                    </div>
+                                <div id="chunky-buttons" style="float:left; border-radius: 10px;">
+                                    <div class="chunky chunky16">
+                                        <a>
+                                            <div class="tristate" onclick="OnTriClick2(this);">
+                                                <div class="tri-sta-che md hidden">
+                                                    <span class="tsc-b tsc-b-r"></span>
+                                                    <span class="tsc-b tsc-b-b"></span>
+                                                    <span class="tsc-b tsc-b-t"></span>
+                                                    <span class="tsc-b tsc-b-l"></span>
                                                 </div>
-                                            </a>
-                                        </div>
+                                                <div class="tristatedesc">
+                                                    מצב
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
+                                </div>
 
 
-                                    <div class="task-text">
-                                        פה יופיע טקסט לדוגמא <br />
-                                        עם כמה שורות וגם <b>הדגשים</b>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="task-buttons">
-                                <td style="text-align:right"></td>
-                                <td style="text-align:left"></td>
-                            </tr>
-                        </table>
+                                <div class="task-text">
+                                    פה יופיע טקסט לדוגמא <br />
+                                    עם כמה שורות וגם <b>הדגשים</b>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="task-buttons">
+                            <td style="text-align:right"></td>
+                            <td style="text-align:left"></td>
+                        </tr>
+                    </table>
 
 
-                        <!-- Tab Content-->
-                        <table class="task">
-                            <tr class="task-content">
-                                <td colspan="2">
-                                    <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
+                    <!-- Tab Content-->
+                    <table class="task">
+                        <tr class="task-content">
+                            <td colspan="2">
+                                <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
                                                  border: 2px solid black;border-radius: 10px;padding: 7px;">(1)</span>
 
-                                    <div id="chunky-buttons" style="float:left; margin-right: 10px;">
-                                        <div class="chunky chunky26">
-                                            <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
-                                                <img src="./svg/add-text-notes.svg" style="width: 32px;"/>
-                                            </a>
-                                        </div>
+                                <div id="chunky-buttons" style="float:left; margin-right: 10px;">
+                                    <div class="chunky chunky26">
+                                        <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
+                                            <img src="./svg/add-text-notes.svg" style="width: 32px;" />
+                                        </a>
                                     </div>
+                                </div>
 
-                                    <div id="chunky-buttons" style="float:left; border-radius: 10px;">
-                                        <div class="chunky chunky16">
-                                            <a>
-                                                <div class="tristate narrow-tristate" onclick="OnTriClick2(this);">
-                                                    <div class="tri-sta-che md hidden">
-                                                        <span class="tsc-b tsc-b-r"></span>
-                                                        <span class="tsc-b tsc-b-b"></span>
-                                                        <span class="tsc-b tsc-b-t"></span>
-                                                        <span class="tsc-b tsc-b-l"></span>
-                                                    </div>
-                                                    <div class="tristatedesc">
-                                                        מצב
-                                                    </div>
+                                <div id="chunky-buttons" style="float:left; border-radius: 10px;">
+                                    <div class="chunky chunky16">
+                                        <a>
+                                            <div class="tristate narrow-tristate" onclick="OnTriClick2(this);">
+                                                <div class="tri-sta-che md hidden">
+                                                    <span class="tsc-b tsc-b-r"></span>
+                                                    <span class="tsc-b tsc-b-b"></span>
+                                                    <span class="tsc-b tsc-b-t"></span>
+                                                    <span class="tsc-b tsc-b-l"></span>
                                                 </div>
-                                            </a>
-                                        </div>
+                                                <div class="tristatedesc">
+                                                    מצב
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
+                                </div>
 
 
-                                    <div class="task-text">
-                                        פה יופיע טקסט לדוגמא <br />
-                                        עם כמה שורות וגם <b>הדגשים</b>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="task-buttons">
-                                <td style="text-align:right"></td>
-                                <td style="text-align:left"></td>
-                            </tr>
-                        </table>
+                                <div class="task-text">
+                                    פה יופיע טקסט לדוגמא <br />
+                                    עם כמה שורות וגם <b>הדגשים</b>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="task-buttons">
+                            <td style="text-align:right"></td>
+                            <td style="text-align:left"></td>
+                        </tr>
+                    </table>
 
+                </div>
+            </div>
+        </div>
+        <div id="navigate">
+            <div style="float:right;">
+                <div id="chunky-buttons" style="float:right; ">
+                    <div class="chunky chunky12">
+                        <a>
+                            הקודם
+                        </a>
                     </div>
-                </td>
-            </tr>
-            <tr id="navigate">
-                <td>
-                    <div id="chunky-buttons" style="float:right; ">
-                        <div class="chunky chunky12">
-                            <a >
-                                הקודם
-                            </a>
-                        </div>
+                </div>
+            </div>
+
+            <div style="float:left">
+                <div id="chunky-buttons" style="float:left; ">
+                    <div class="chunky chunky12">
+                        <a>
+                            הבא
+                        </a>
                     </div>
-                </td>
+                </div>
+            </div>
 
-                <td>
-                    <!-- empty ... -->
-                </td>
+        </div>
+        <div id="footer">
+            <table style="width:100%;">
+                <tr>
 
-                <td>
-                    <div id="chunky-buttons" style="float:left; ">
-                        <div class="chunky chunky12">
-                            <a >
-                                הבא
-                            </a>
-                        </div>
-                    </div>
-                </td>
-
-            </tr>
-            <tr id="footer" style="height: 5vh;">
-                <td id="footer-right" style="text-align:center">
-                   <b>טאבלט:</b>
-                     555
-                </td>
-                <td id="footer-center"style="text-align:center">
-                    <script>
-                        var sigInit = false;
-                        var $sigdiv = $("#signature");
-                        function openMenu() {
-                            $("#sig-dialog").dialog("open");
-                            if (!sigInit) {
-                                $("#signature").jSignature();
-                                sigInit = true;
-                            } else {
-                                $("#signature").jSignature("reset");
-                                //$sigdiv.jSignature();
+                    <td id="footer-right" style="text-align:center">
+                        <b>טאבלט:</b>
+                        555
+                    </td>
+                    <td id="footer-center" style="text-align:center">
+                        <script>
+                            var sigInit = false;
+                            var $sigdiv = $("#signature");
+                            function openMenu() {
+                                $("#sig-dialog").dialog("open");
+                                if (!sigInit) {
+                                    $("#signature").jSignature();
+                                    sigInit = true;
+                                } else {
+                                    $("#signature").jSignature("reset");
+                                    //$sigdiv.jSignature();
+                                }
                             }
-                        }
-                    </script>
-                    <span onclick="openMenu();">
-                        <b>טופס:</b>
-                        000
-                    </span>
-                </td>
-                <td id="footer-left" style="text-align:center ">
-                    <b>גרסא:</b>
-                     555
-                </td>
-            </tr>
-        </table>
+                        </script>
+                        <span onclick="openMenu();">
+                            <b>טופס:</b>
+                            000
+                        </span>
+                    </td>
+                    <td id="footer-left" style="text-align:center ">
+                        <b>גרסא:</b>
+                        555
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+
     </div>
+
+
     
     <jqui-theme>
         <div id="sig-dialog" class="ui-dialog" title="אנא הכנס חתימה">
