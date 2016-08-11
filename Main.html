@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head ng-app="tankforms">
+    <meta charset=utf-8 />
+    <title>Forms main page</title>
+
+    <!-- Styles -->
+
+    <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./css/HMenuArrow.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bread-crumbs.css" />
+    <link rel="stylesheet" type="text/css" href="./css/chunky-buttons.css" />
+    <link rel="stylesheet" type="text/css" href="./css/tristate.css" />
+    <link rel="stylesheet" type="text/css" href="./css/side-menu.css" />
+    <link rel="stylesheet" type="text/css" href="./css/button-anime.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mycss.css" />
+    
+   <!-- JS Libs-->
+
+    <script type="text/javascript" language="javascript" src="./js-lib/jquery-3.1.0.min.js" ></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/jquery-ui.js"></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/jSignature.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/angular.1.5.8.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/angular-resource.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/angular-route.min.js"></script>
+
+
+    <!-- General JS Functions -->
+    <script type="text/javascript" language="javascript" src="./js/myJS.js"></script>
+
+    <!-- App js-->
+    <script type="text/javascript" language="javascript" src="./js/app.js"></script>
+    <script type="text/javascript" language="javascript" src="./js/controllers/tasks.js"></script>
+
+
+</head>
+<body dir="rtl" class="noselect">
+
+    <div id="entire-page" class="prot" style="width: 100%; height: 100%;">
+
+        <!-- App menu-->
+        <div class="nav">
+            <table class="nav-table cf">
+                <tr>
+                    <td>
+                        <a href="#">סטטיסטיקה</a>
+                    </td>
+                    <td class="selected">
+                        <a href="#">מטלות</a>
+                    </td>
+                    <td>
+                        <a href="#">סיכום</a>
+                    </td>
+                    <td>
+                        <a href="#">חתימה</a>
+                    </td>
+                    <td>
+                        <a href="#">חמש</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div ng-view></div>
+    
+
+         <div id="footer">
+            <table style="width:100%;">
+                <tr>
+
+                    <td id="footer-right" style="text-align:center">
+                        <b>טאבלט:</b>
+                        555
+                    </td>
+                    <td id="footer-center" style="text-align:center">
+                        <script>
+                            var sigInit = false;
+                            var $sigdiv = $("#signature");
+                            function openMenu() {
+                                $("#sig-dialog").dialog("open");
+                                if (!sigInit) {
+                                    $("#signature").jSignature();
+                                    sigInit = true;
+                                } else {
+                                    $("#signature").jSignature("reset");
+                                    //$sigdiv.jSignature();
+                                }
+                            }
+                        </script>
+                        <span onclick="openMenu();">
+                            <b>טופס:</b>
+                            000
+                        </span>
+                    </td>
+                    <td id="footer-left" style="text-align:center ">
+                        <b>גרסא:</b>
+                        555
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
