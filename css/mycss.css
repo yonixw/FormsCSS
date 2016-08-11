@@ -1,0 +1,93 @@
+
+body {
+    font-family: 'OpenSans';
+    overflow-x: hidden;
+}
+
+.noselect { /* http://stackoverflow.com/questions/826782/ */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                              not supported by any browser */
+}
+
+.prot {
+    border: 3px;
+    border-style: solid;
+    border-color: #AAA;
+    padding: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.center {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.task {
+    margin: 15px auto 15px auto;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+    width: 100%;
+}
+
+.task-content {
+    text-align: center;
+    font-size: 1.5em;
+    background-color: #99d6ff;
+}
+
+    .task-content td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+.task-buttons {
+    font-size: 1.5em;
+}
+
+.tristatedesc {
+    display: inline;
+}
+
+.ui-widget {
+    font-size: 1.5em;
+}
+
+/*Hide close button in dialog: */
+
+.custom-dialog .ui-dialog-titlebar-close {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.task-text {
+    text-align: right;
+}
+
+#navigate {
+    font-size: 1.5em;
+}
+
+    #navigate .chunky a {
+        /* width: 50%;*/
+    }
+
+.cat-table {
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    .cat-table td {
+        padding: 0;
+        margin: 0;
+        border: 0;
+    }

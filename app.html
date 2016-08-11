@@ -4,7 +4,7 @@
     <meta charset=utf-8 />
     <title>Forms main page</title>
 
-    
+    <!-- Styles -->
 
     <link rel="stylesheet" type="text/css" href="./css/fonts.css" />
     
@@ -18,168 +18,31 @@
     <link rel="stylesheet" type="text/css" href="./css/button-anime.min.css" />
     
     <link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" />
+
+    <link rel="stylesheet" type="text/css" href="./css/mycss.css" />
     
-    <style type="text/css">
-        body {
-            font-family: 'OpenSans';
-            overflow-x: hidden;
-        }
+   <!-- JS Libs-->
 
-        .noselect { /* http://stackoverflow.com/questions/826782/ */
-            -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Chrome/Safari/Opera */
-            -khtml-user-select: none; /* Konqueror */
-            -moz-user-select: none; /* Firefox */
-            -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                              not supported by any browser */
-        }
+    <script type="text/javascript" language="javascript" src="./js-lib/jquery-3.1.0.min.js" ></script>
 
-        .prot {
-            border: 3px;
-            border-style:solid;
-            border-color: #AAA;
-
-            padding: 0px;
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        .center {
-            margin-right: auto;
-            margin-left: auto;
-            width: 100%;
-        }
-
-        .task{
-            margin: 15px auto 15px auto;
-            box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
-            width: 100%;
-        }
-
-        .task-content{
-            text-align:center;
-            font-size: 1.5em;
-            background-color: #99d6ff;            
-        }
-
-        .task-content td {
-            padding-top: 10px;
-            padding-bottom: 10px;  
-        }
-
-        .task-buttons {
-            font-size: 1.5em;
-        }
-
-        .tristatedesc{
-            display: inline;
-        }
-
-        .ui-widget {
-            font-size: 1.5em;
-        }
-
-        /*Hide close button in dialog: */
-
-        .custom-dialog .ui-dialog-titlebar-close {
-          display: none;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .task-text {
-            text-align: right;
-        }
-
-        #navigate {
-            font-size: 1.5em;
-        }
-
-        #navigate .chunky a {
-           /* width: 50%;*/
-        }
-
-        .cat-table {
-            border: 0;
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-
-        .cat-table td {
-            padding: 0;
-            margin: 0;
-            border: 0;
-        }
-    </style>
-
-    <script type="text/javascript" language="javascript" src="./js/jquery-3.1.0.min.js" ></script>
-
-    <script type="text/javascript" language="javascript" src="./js/jquery-ui.js"></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/jquery-ui.js"></script>
     
-    <script type="text/javascript" language="javascript" src="./js/jSignature.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/jSignature.min.js"></script>
 
-    <script type="text/javascript" language="javascript" src="./js/angular.1.5.8.min.js"></script>
-    <script type="text/javascript" language="javascript" src="./js/angular-resource.min.js"></script>
-    <script type="text/javascript" language="javascript" src="./js/angular-route.min.js"></script>
-
-    <script>
-        var TriStateFSM = [
-            { text: "תקין", css: "checked", next: 1 },
-            { text: "לא תקין", css: "unchecked", next: 0 },
-            { text: "בחר מצב", css: "clear", next: 0 }
-        ]
-
-        function OnTriClick(elm) {
-            var $tristate = $(elm).find(">:first-child");
-            var $desc = $(elm).find(".tristatedesc");
-            for (var i = 0; i < TriStateFSM.length; i++) {
-                if ($tristate.hasClass(TriStateFSM[i].css)) {
-                    //Change text to next :
-                    $desc.text(TriStateFSM[TriStateFSM[i].next].text);
-                    //Remove current css
-                    $tristate.removeClass(TriStateFSM[i].css);
-                    // Add next css
-                    $tristate.addClass(TriStateFSM[TriStateFSM[i].next].css);
-
-                    //return to avoid races.
-                    return;
-                }
-            }
-        }
+    <script type="text/javascript" language="javascript" src="./js-lib/angular.1.5.8.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/angular-resource.min.js"></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/angular-route.min.js"></script>
 
 
-        var TriStateFSM2 = [
-            { text: "", css: "checked", next: 1 },
-            { text: "", css: "unchecked", next: 0 },
-            { text: "מצב", css: "hidden", next: 0 }
-        ]
+    <!-- App js-->
+    <script type="text/javascript" language="javascript" src="./js/myJS.js"></script>
 
-        function OnTriClick2(elm) {
-            var $tristate = $(elm).find(">:first-child");
-            var $desc = $(elm).find(".tristatedesc");
-            for (var i = 0; i < TriStateFSM2.length; i++) {
-                if ($tristate.hasClass(TriStateFSM2[i].css)) {
-                    //Change text to next :
-                    $desc.text(TriStateFSM2[TriStateFSM2[i].next].text);
-                    //Remove current css
-                    $tristate.removeClass(TriStateFSM2[i].css);
-                    // Add next css
-                    $tristate.addClass(TriStateFSM2[TriStateFSM2[i].next].css);
-
-                    //return to avoid races.
-                    return;
-                }
-            }
-        }
-    </script>
 </head>
 <body dir="rtl" class="noselect">
 
     <div id="entire-page" class="prot" style="width: 100%; height: 100%;">
 
+        <!-- App menu-->
         <div class="nav">
             <table class="nav-table cf">
                 <tr>
@@ -203,7 +66,7 @@
         </div>
 
 
-
+        <!-- Constent-->
         <div id="header">
             <div colspan="3">
                 <!-- Navigation bar, like tabs-->
@@ -571,7 +434,46 @@
             </div>
 
         </div>
-        <div id="footer">
+
+        <!-- Dialogs -->
+        <jqui-theme>
+            <div id="sig-dialog" class="ui-dialog" title="אנא הכנס חתימה">
+                <script>
+                $("#sig-dialog").dialog({
+                    draggable: false,
+                    dialogClass: "custom-dialog",
+                    autoOpen: false,
+                    modal: true,
+                    width: "auto",
+                    height: "auto",
+
+                    show: {
+                        effect: "bounce",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "fade",
+                        duration: 100
+                    },
+                    buttons: {
+                    "אישור": function() {
+                        $( this ).dialog( "close" );
+                    },
+                    "ביטול": function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+                });
+                </script>
+                Hello! <br />
+                Hello2 <br />
+                Hello3
+
+                <div id="signature" class="prot" style="width:50vw; height:30vh;"></div>
+            </div>
+        </jqui-theme>
+
+         <div id="footer">
             <table style="width:100%;">
                 <tr>
 
@@ -609,45 +511,5 @@
         </div>
 
     </div>
-
-
-    
-    <jqui-theme>
-        <div id="sig-dialog" class="ui-dialog" title="אנא הכנס חתימה">
-            <script>
-                $("#sig-dialog").dialog({
-                    draggable: false,
-                    dialogClass: "custom-dialog",
-                    autoOpen: false,
-                    modal: true,
-                    width: "auto",
-                    height: "auto",
-
-                    show: {
-                        effect: "bounce",
-                        duration: 1000
-                    },
-                    hide: {
-                        effect: "fade",
-                        duration: 100
-                    },
-                    buttons: {
-                    "אישור": function() {
-                        $( this ).dialog( "close" );
-                    },
-                    "ביטול": function() {
-                        $( this ).dialog( "close" );
-                    }
-                }
-                });
-            </script>
-            Hello! <br />
-            Hello2 <br />
-            Hello3 
-            
-            <div id="signature" class="prot" style="width:50vw; height:30vh;"></div>
-        </div>
-    </jqui-theme>
-  
 </body>
 </html>
