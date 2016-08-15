@@ -13,9 +13,7 @@ function MenuClick(elem) {
     $selected.addClass("selected");
 }
 
-/**************************************
-        TRI STATE CHECKBOX
-***************************************/
+
 
 var TriStateFSM = [
     { text: "תקין", css: "checked", next: 1 },

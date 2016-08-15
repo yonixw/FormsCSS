@@ -17,3 +17,11 @@ var app = angular.module('tankforms', ['ngRoute'])
             redirectTo: '/'
         });
 });
+
+
+// Add way to print html directly (unsafe from XSS) [SO? 9381926]
+app.filter("trusthtml", ['$sce', function ($sce) {
+    return function (htmlCode) {
+        return $sce.trustAsHtml(htmlCode);
+    }
+}]);

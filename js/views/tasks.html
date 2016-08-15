@@ -111,8 +111,6 @@
                 </ul>
             </div>
         </nav>
-
-        <script type="text/javascript" language="javascript" src="./js/mostrar_nav.js"></script>
     </div>
 </div>
 <div id="page-body">
@@ -121,226 +119,52 @@
         <div id="tab-content" class="prot"
              style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
 
+            
+            <div ng-repeat="task in taskArray">
+                <table class="task">
+                    <tr class="task-content">
+                        <td colspan="2">
+                            <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
+                                                 border: 2px solid black;border-radius: 10px;padding: 7px;">({{task.taskID}})</span>
 
-            <!-- Tab Content-->
-            <table class="task">
-                <tr class="task-content">
-                    <td colspan="2">
-                        <span style="float: right; margin: 15px;">(1)</span>
-
-                        <div id="chunky-buttons" style="float:right; border-radius: 10px;">
-                            <div class="chunky">
-                                <div class="tristate chunky16" onclick="OnTriClick(this);">
-                                    <div class="tri-sta-che md clear">
-                                        <span class="tsc-b tsc-b-r"></span>
-                                        <span class="tsc-b tsc-b-b"></span>
-                                        <span class="tsc-b tsc-b-t"></span>
-                                        <span class="tsc-b tsc-b-l"></span>
-                                    </div>
-                                    <a class="tristatedesc">
-                                        בחר מצב
+                            <div id="chunky-buttons" style="float:left; margin-right: 10px;">
+                                <div class="chunky chunky26">
+                                    <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
+                                        <img src="./svg/add-text-notes.svg" style="width: 32px;" />
                                     </a>
                                 </div>
                             </div>
-                        </div>
 
-                        <div id="chunky-buttons" style="float:left">
-                            <div class="chunky chunky26">
-                                <a>
-                                    +
-                                </a>
-                                הוסף הערה
-                            </div>
-                        </div>
-
-                        פה יופיע טקסט לדוגמא <br />
-                        עם כמה שורות וגם <b>הדגשים</b>
-                    </td>
-                </tr>
-                <tr class="task-buttons">
-                    <td style="text-align:right"></td>
-                    <td style="text-align:left"></td>
-                </tr>
-            </table>
-
-            <!-- Tab Content-->
-            <table class="task">
-                <tr class="task-content">
-                    <td colspan="2">
-                        <span style="float: right; margin: 15px;">(1)</span>
-
-                        <div id="chunky-buttons" style="float:right; border-radius: 10px;">
-                            <div class="chunky">
-                                <div class="tristate chunky16" onclick="OnTriClick(this);">
-                                    <div class="tri-sta-che md clear">
-                                        <span class="tsc-b tsc-b-r"></span>
-                                        <span class="tsc-b tsc-b-b"></span>
-                                        <span class="tsc-b tsc-b-t"></span>
-                                        <span class="tsc-b tsc-b-l"></span>
-                                    </div>
-                                    <a class="tristatedesc">
-                                        בחר
+                            <div id="chunky-buttons" style="float:left; border-radius: 10px;" ng-click="OnTriClick(task.taskID);">
+                                <div class="chunky chunky16">
+                                    <a>
+                                        <div class="tristate narrow-tristate">
+                                            <div class="tri-sta-che md {{task.tristate.css}}">
+                                                <span class="tsc-b tsc-b-r"></span>
+                                                <span class="tsc-b tsc-b-b"></span>
+                                                <span class="tsc-b tsc-b-t"></span>
+                                                <span class="tsc-b tsc-b-l"></span>
+                                            </div>
+                                            <div class="tristatedesc">
+                                                {{task.tristate.text}}
+                                            </div>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
-                        </div>
 
-                        <div id="chunky-buttons" style="float:right">
-                            <div class="chunky chunky26">
-                                <a>
-                                    +
-                                </a>
-                                הערה
+
+                            <div class="task-text">
+                              <div ng-bind-html="task.description | trusthtml"></div>
                             </div>
-                        </div>
-
-                        פה יופיע טקסט לדוגמא <br />
-                        עם כמה שורות וגם <b>הדגשים</b>
-                    </td>
-                </tr>
-                <tr class="task-buttons">
-                    <td style="text-align:right"></td>
-                    <td style="text-align:left"></td>
-                </tr>
-            </table>
-
-            <!-- Tab Content-->
-            <table class="task">
-                <tr class="task-content">
-                    <td colspan="2">
-                        <span style="float: right; margin: 15px;">(3)</span>
-                        פה יופיע טקסט לדוגמא <br />
-                        עם כמה שורות וגם <b>הדגשים</b> <br />
-                        מלא פרטים: <input type="text" style="font-size:1em;" /> <br />
-                        <u>בחר: </u>
-                        <input type="radio" name="group1" value="1" style="width:1.5em; height: 1.5em;" /> 1
-                        <input type="radio" name="group1" value="2" style="width:1.5em; height: 1.5em;" /> 2
-                    </td>
-                </tr>
-                <tr class="task-buttons">
-                    <td style="text-align:right">
-                        <div id="chunky-buttons">
-                            <div class="chunky">
-                                <div class="tristate chunky16" onclick="OnTriClick(this);">
-                                    <div class="tri-sta-che md clear">
-                                        <span class="tsc-b tsc-b-r"></span>
-                                        <span class="tsc-b tsc-b-b"></span>
-                                        <span class="tsc-b tsc-b-t"></span>
-                                        <span class="tsc-b tsc-b-l"></span>
-                                    </div>
-                                    <a class="tristatedesc">
-                                        בחר מצב
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td style="text-align:left">
-                        <div id="chunky-buttons">
-                            <div class="chunky chunky26">
-                                <a>
-                                    +
-                                </a>
-                                הוסף הערה
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-
-
-            <!-- Tab Content-->
-            <table class="task">
-                <tr class="task-content">
-                    <td colspan="2">
-                        <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
-                                                 border: 2px solid black;border-radius: 10px;padding: 7px;">(1)</span>
-
-                        <div id="chunky-buttons" style="float:left">
-                            <div class="chunky chunky26">
-                                <a>
-                                    <b>+</b> הערה
-                                </a>
-                            </div>
-                        </div>
-
-                        <div id="chunky-buttons" style="float:left; border-radius: 10px;">
-                            <div class="chunky chunky16">
-                                <a>
-                                    <div class="tristate" onclick="OnTriClick2(this);">
-                                        <div class="tri-sta-che md hidden">
-                                            <span class="tsc-b tsc-b-r"></span>
-                                            <span class="tsc-b tsc-b-b"></span>
-                                            <span class="tsc-b tsc-b-t"></span>
-                                            <span class="tsc-b tsc-b-l"></span>
-                                        </div>
-                                        <div class="tristatedesc">
-                                            מצב
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-
-                        <div class="task-text">
-                            פה יופיע טקסט לדוגמא <br />
-                            עם כמה שורות וגם <b>הדגשים</b>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="task-buttons">
-                    <td style="text-align:right"></td>
-                    <td style="text-align:left"></td>
-                </tr>
-            </table>
-
-
-            <!-- Tab Content-->
-            <table class="task">
-                <tr class="task-content">
-                    <td colspan="2">
-                        <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
-                                                 border: 2px solid black;border-radius: 10px;padding: 7px;">(1)</span>
-
-                        <div id="chunky-buttons" style="float:left; margin-right: 10px;">
-                            <div class="chunky chunky26">
-                                <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
-                                    <img src="./svg/add-text-notes.svg" style="width: 32px;" />
-                                </a>
-                            </div>
-                        </div>
-
-                        <div id="chunky-buttons" style="float:left; border-radius: 10px;">
-                            <div class="chunky chunky16">
-                                <a>
-                                    <div class="tristate narrow-tristate" onclick="OnTriClick2(this);">
-                                        <div class="tri-sta-che md hidden">
-                                            <span class="tsc-b tsc-b-r"></span>
-                                            <span class="tsc-b tsc-b-b"></span>
-                                            <span class="tsc-b tsc-b-t"></span>
-                                            <span class="tsc-b tsc-b-l"></span>
-                                        </div>
-                                        <div class="tristatedesc">
-                                            מצב
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-
-                        <div class="task-text">
-                            פה יופיע טקסט לדוגמא <br />
-                            עם כמה שורות וגם <b>הדגשים</b>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="task-buttons">
-                    <td style="text-align:right"></td>
-                    <td style="text-align:left"></td>
-                </tr>
-            </table>
+                        </td>
+                    </tr>
+                    <tr class="task-buttons">
+                        <td style="text-align:right"></td>
+                        <td style="text-align:left"></td>
+                    </tr>
+                </table>
+            </div>
 
         </div>
     </div>
