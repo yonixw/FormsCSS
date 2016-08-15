@@ -1,5 +1,12 @@
-Add tasks js like Tri-State ad Materilize RTL for adding notes.
-Maybe use Angular for automating things....
+[v] Add tasks js like Tri-State ad Materilize RTL for adding notes.
+[v] Maybe use Angular for automating things....
+
+[ ] Add and change notes with dialog
+[ ] Tasks hierarchy.
+[ ] ng-repeat inside ng-repeat?
+[ ] Favorite filter (buttons for each task + one at top?)
+[ ] Side menu in $scope
+
 
 
 sideways swipe:  http://stereobit.github.io/dragend/
