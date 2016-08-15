@@ -1,6 +1,7 @@
 
 body {
     font-family: 'OpenSans';
+    font-size: 1em;
     overflow-x: hidden;
 }
 
@@ -30,15 +31,21 @@ body {
 }
 
 .task {
-    margin: 15px auto 15px auto;
+    margin: 15px 5px;
     box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
-    width: 100%;
+    width: calc(100% - 15px);
+}
+
+.task ul {
+    margin-top:4px;
+    margin-bottom: 4px;
 }
 
 .task-content {
     text-align: center;
     font-size: 1.5em;
-    background-color: #99d6ff;
+    /*background-color: #99d6ff;*/
+    background: -webkit-linear-gradient(top,#99d6ff,white)
 }
 
     .task-content td {
@@ -90,4 +97,14 @@ body {
         padding: 0;
         margin: 0;
         border: 0;
+    }
+
+
+    .tasknote {
+        margin: 7px auto;
+        font-size: 1.2em;
+    }
+
+    #breadcrumbs-four {
+        font-size: 1.1em;
     }

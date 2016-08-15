@@ -27,29 +27,7 @@
             </tr>
         </table>
 
-        <script>
-                        (function () {
-
-                            "use strict";
-
-                            var toggles = document.querySelectorAll(".c-hamburger");
-
-                            for (var i = toggles.length - 1; i >= 0; i--) {
-                                var toggle = toggles[i];
-                                toggleHandler(toggle);
-                            };
-
-                            function toggleHandler(toggle) {
-                                toggle.addEventListener("click", function (e) {
-                                    e.preventDefault();
-                                    (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
-                                    $('nav').toggleClass('active');
-                                });
-                            }
-
-                        })();
-        </script>
-
+       
         <!-- Tasks hierarchy navigator -->
         <nav>
             <div style="overflow-y: scroll; height: 100%">
@@ -127,7 +105,7 @@
                             <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
                                                  border: 2px solid black;border-radius: 10px;padding: 7px;">({{task.taskID}})</span>
 
-                            <div id="chunky-buttons" style="float:left; margin-right: 10px;">
+                            <div id="chunky-buttons" style="float:left; margin-right: 10px;" ng-click="AddNote(task.taskID);">
                                 <div class="chunky chunky26">
                                     <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
                                         <img src="./svg/add-text-notes.svg" style="width: 32px;" />
@@ -159,9 +137,15 @@
                             </div>
                         </td>
                     </tr>
-                    <tr class="task-buttons">
-                        <td style="text-align:right"></td>
-                        <td style="text-align:left"></td>
+                    <tr>
+                        <td colspan="2">
+                            <ul >
+                                <li class="tasknote" ng-repeat="note in task.notes">
+                                    <h3 style="display: inline;">{{note.noteOwner}}:</h3>
+                                    <span class="note-text" ng-bind-html="note.noteText | trusthtml"></span>
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
                 </table>
             </div>
