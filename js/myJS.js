@@ -1,3 +1,21 @@
+/**************************************
+        NAVIGATE MENU
+***************************************/
+
+var $selected = null;
+
+function MenuClick(elem) {
+    if ($selected) {
+        $selected.removeClass("selected");
+    }
+
+    $selected = $(elem);
+    $selected.addClass("selected");
+}
+
+/**************************************
+        TRI STATE CHECKBOX
+***************************************/
 
 var TriStateFSM = [
     { text: "תקין", css: "checked", next: 1 },

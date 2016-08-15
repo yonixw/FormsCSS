@@ -5,6 +5,4 @@ app.controller('tasks', function ($scope) {
     $scope.fullName = function () {
         return $scope.firstName + " " + $scope.lastName;
     };
-
-
 });

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
-<html>
-<head ng-app="tankforms">
-    <meta charset=utf-8 />
+<html ng-app="tankforms">
+<head >
+    <meta charset="utf-8" />
     <title>Forms main page</title>
 
     <!-- Styles -->
@@ -19,6 +19,7 @@
    <!-- JS Libs-->
 
     <script type="text/javascript" language="javascript" src="./js-lib/jquery-3.1.0.min.js" ></script>
+    <script type="text/javascript" language="javascript" src="./js-lib/mostrar_nav.js"></script>
     <script type="text/javascript" language="javascript" src="./js-lib/jquery-ui.js"></script>
     <script type="text/javascript" language="javascript" src="./js-lib/jSignature.min.js"></script>
     <script type="text/javascript" language="javascript" src="./js-lib/angular.1.5.8.min.js"></script>
@@ -43,20 +44,20 @@
         <div class="nav">
             <table class="nav-table cf">
                 <tr>
-                    <td>
-                        <a href="#">סטטיסטיקה</a>
+                    <td onclick="MenuClick(this);">
+                        <a href="#/stats">סטטיסטיקה</a>
                     </td>
-                    <td class="selected">
-                        <a href="#">מטלות</a>
+                    <td onclick="MenuClick(this);">
+                        <a href="#/tasks">מטלות</a>
                     </td>
-                    <td>
-                        <a href="#">סיכום</a>
+                    <td onclick="MenuClick(this);">
+                        <a href="#/summer">סיכום</a>
                     </td>
-                    <td>
-                        <a href="#">חתימה</a>
-                    </td>
-                    <td>
-                        <a href="#">חמש</a>
+                    <td onclick="MenuClick(this);">
+                        <a href="#/sig">חתימה</a>
+                    </td >
+                    <td onclick="MenuClick(this);">
+                        <a href="#/last">חמש</a>
                     </td>
                 </tr>
             </table>

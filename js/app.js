@@ -4,16 +4,16 @@ var app = angular.module('tankforms', ['ngRoute'])
 
     $routeProvider.when('/',
         {
-            controller: null,
-            templateUrl:'./views/notready.html',
+            controller: '',
+            templateUrl: './js/views/notready.html',
         })
         .when('/tasks',
         {
-            controller:'tasks',
-            templateUrl:'./views/tasks.html',
+            controller: 'tasks',
+            templateUrl: './js/views/tasks.html',
         })
         .otherwise(
         {
-            redirectTo:'/'
+            redirectTo: '/'
         });
-})
+});
