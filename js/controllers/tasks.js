@@ -10,7 +10,7 @@
     ]
 
     function _clickTri(id) {
-        // Get task by place on the list:
+        // Get task by id on the list:
         var task = _getTaskByID(id);
         if (!task) return;
 
@@ -19,7 +19,7 @@
                 //Change text to next :
                 task.tristate.text = TriStateFSM[TriStateFSM[i].next].text;
                 // Change css to next
-                 task.tristate.css = (TriStateFSM2[TriStateFSM2[i].next].css);
+                task.tristate.css = (TriStateFSM[TriStateFSM[i].next].css);
                 //return to avoid races.
                 return;
             }
@@ -33,27 +33,119 @@
     /**************************************
            NOTES
    ***************************************/
+   
+ 
 
-    $scope.AddNote = function (id) {
+    // Setup dialog:
+    $("#note-dialog").dialog({
+        draggable: false,
+        dialogClass: "custom-dialog",
+        autoOpen: false,
+        modal: true,
+        width: "auto",
+        height: "auto",
+
+        show: {
+            effect: "bounce",
+            duration: 1000
+        },
+        hide: {
+            effect: "fade",
+            duration: 100
+        },
+        buttons: {
+            "שמור": function () {
+                //SO? 10490570
+                $scope.$apply(function () {
+                    $scope.saveNote();
+                });
+                $(this).dialog("close");
+            },
+            "ביטול": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+
+    // Set dialog values:
+    function _setNoteDialog(taskID, noteID, owner, text) {
+        $("#input_note_taskid").val(taskID);
+        $("#input_note_noteid").val(noteID);
+        $("#input_note_owner").val(owner);
+        $("#input_note_text").val(text);
+    }
+
+    // Get dialog values:
+    function _getNoteDialog() {
+        return {
+            taskid: $("#input_note_taskid").val(),
+            noteid: $("#input_note_noteid").val(),
+            owner: $("#input_note_owner").val(),
+            text: $("#input_note_text").val(),
+        };
+    }
+
+    function _getNoteByID(task,noteid) {
+        for (var i = 0; i < task.notes.length; i++) {
+            if (task.notes[i].taskID == noteid)
+                return task.notes[i];
+        }
+
+        // If we got here, no id is present:
+        console.log("tasks::_getNoteByID(task,noteid) cant find note with id:" + noteid );
+        return null;
+    }
+
+    // Add note to task:
+    $scope.AddNote = function (taskid) {
         // Get task by place on the list:
-        var task = _getTaskByID(id);
+        var task = _getTaskByID(taskid);
         if (!task) return;
 
-        // notes can be empty
-        if (task.notes) {
-            task.notes.push({
-                noteID: 12,
-                noteOwner: 'yoyo',
-                noteText: 'הכל סבבה'
-            });
+        // Set note id to -1 because new:
+        _setNoteDialog(taskid, -1, "", "");
+
+        // Open dialog:
+        $("#note-dialog").dialog("open");
+    }
+
+    // Edit existing note
+    $scope.editNote = function (taskid, noteid) {
+
+    }
+
+    // Save note either from adding or editing.
+    $scope.saveNote = function () {
+        var note = _getNoteDialog();
+        var task = _getTaskByID(note.taskid);
+        if (!task) return;
+
+        if (note.noteid == -1)
+        {
+            // Check if no notes
+            if (task.notes) {
+                task.notes.push({
+                    noteID: 0, // value from db
+                    noteOwner: note.owner,
+                    noteText: note.text
+                });
+            }
+            else {
+                task.notes = [{
+                    noteID: 0, // value from db
+                    noteOwner: note.owner,
+                    noteText: note.text
+                }];
+            }
+            
         }
         else
         {
-            task.notes = [{
-                noteID: 12,
-                noteOwner: 'yoyo',
-                noteText: 'הכל סבבה'
-            }];
+            var noteObj = _getNoteByID(task, note.noteid);
+            if (!noteObj) return;
+
+            noteObj.noteOwner = note.owner;
+            noteObj.noteText = note.text;
         }
     }
 

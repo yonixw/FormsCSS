@@ -1,193 +1,231 @@
-﻿<!-- Constent-->
+﻿<div>
+    <!-- Content-->
 
-<div id="header">
-    <div colspan="3">
-        <!-- Navigation bar, like tabs-->
-        <!-- Task Navigation bar -->
+    <div id="header">
+        <div colspan="3">
+            <!-- Navigation bar, like tabs-->
+            <!-- Task Navigation bar -->
 
-        <table style="width:100%;" class="cat-table">
-            <tr>
-                <td>
-                    <!-- Bread-crums menu-->
-                    <ul id="breadcrumbs-four">
-                        <li><a href="">מפקום</a></li>
-                        <li><a href="">מפקום</a></li>
-                        <li><a href="">מפקום</a></li>
-                        <li><a href="">מפקום</a></li>
-                        <li class="selected"><a href="">כללי</a></li>
-                    </ul>
-                </td>
-                <td>
-                    <!-- htx rot htla htra -->
-                    <button class="c-hamburger c-hamburger--htx"
-                            style="transform: scale(0.5); z-index: 20; float: left;">
-                        <span>toggle menu</span>
-                    </button>
-                </td>
-            </tr>
-        </table>
+            <table style="width:100%;" class="cat-table">
+                <tr>
+                    <td>
+                        <!-- Bread-crums menu-->
+                        <ul id="breadcrumbs-four">
+                            <li><a href="">מפקום</a></li>
+                            <li><a href="">מפקום</a></li>
+                            <li><a href="">מפקום</a></li>
+                            <li><a href="">מפקום</a></li>
+                            <li class="selected"><a href="">כללי</a></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <!-- htx rot htla htra -->
+                        <button class="c-hamburger c-hamburger--htx"
+                                style="transform: scale(0.5); z-index: 20; float: left;">
+                            <span>toggle menu</span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
 
-       
-        <!-- Tasks hierarchy navigator -->
-        <nav>
-            <div style="overflow-y: scroll; height: 100%">
-                <ul class="menu">
-                    <li><a href="#">Home</a></li>
-                    <ul>
-                        <li>
-                            <a href="#">Home</a>
-                            <a href="#">Home</a>
-                            <a href="#">Home</a>
-                            <a href="#">Home</a>
-                            <ul>
-                                <li>
-                                    <a href="#">Home</a>
-                                    <a href="#">Home</a>
-                                    <a href="#">Home</a>
-                                    <a href="#">Home</a>
-                                </li>
-                            </ul>
-                        </li>
+
+            <script>
+            // This script open and closes the side navigation menu.
+            (function () {
+
+                "use strict";
+
+                var toggles = document.querySelectorAll(".c-hamburger");
+
+                for (var i = toggles.length - 1; i >= 0; i--) {
+                    var toggle = toggles[i];
+                    toggleHandler(toggle);
+                };
+
+                function toggleHandler(toggle) {
+                    toggle.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
+                        $('nav').toggleClass('active');
+                    });
+                }
+
+            })();
+            </script>
+            <!-- Tasks hierarchy navigator -->
+            <nav>
+                <div style="overflow-y: scroll; height: 100%">
+                    <ul class="menu">
+                        <li><a href="#">Home</a></li>
+                        <ul>
+                            <li>
+                                <a href="#">Home</a>
+                                <a href="#">Home</a>
+                                <a href="#">Home</a>
+                                <a href="#">Home</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">Home</a>
+                                        <a href="#">Home</a>
+                                        <a href="#">Home</a>
+                                        <a href="#">Home</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <li><a href="#">Works</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <ul>
+                            <li>
+                                <a href="#">Home</a>
+                                <a href="#">Home</a>
+                                <a href="#">Home</a>
+                                <a href="#">Home</a>
+                                <ul>
+                                    <li>
+                                        <a href="#">Home</a>
+                                        <a href="#">Home</a>
+                                        <a href="#">Home</a>
+                                        <a href="#">Home</a>
+                                        <ul>
+                                            <li>
+                                                <a href="#">Home</a>
+                                                <a href="#">Home</a>
+                                                <a href="#">Home</a>
+                                                <a href="#">Home</a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">Home</a>
+                                                        <a href="#">Home</a>
+                                                        <a href="#">Home</a>
+                                                        <a href="#">Home</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </ul>
-                    <li><a href="#">Works</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <ul>
-                        <li>
-                            <a href="#">Home</a>
-                            <a href="#">Home</a>
-                            <a href="#">Home</a>
-                            <a href="#">Home</a>
-                            <ul>
-                                <li>
-                                    <a href="#">Home</a>
-                                    <a href="#">Home</a>
-                                    <a href="#">Home</a>
-                                    <a href="#">Home</a>
-                                    <ul>
-                                        <li>
-                                            <a href="#">Home</a>
-                                            <a href="#">Home</a>
-                                            <a href="#">Home</a>
-                                            <a href="#">Home</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Home</a>
-                                                    <a href="#">Home</a>
-                                                    <a href="#">Home</a>
-                                                    <a href="#">Home</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </ul>
-            </div>
-        </nav>
+                </div>
+            </nav>
+        </div>
     </div>
-</div>
-<div id="page-body">
-    <div colspan="3" style="overflow-y: hidden">
-        <!-- Table adjust to content, restrict through divs! -->
-        <div id="tab-content" class="prot"
-             style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
+    <div id="page-body">
+        <div colspan="3" style="overflow-y: hidden">
+            <!-- Table adjust to content, restrict through divs! -->
+            <div id="tab-content" class="prot"
+                 style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
 
-            
-            <div ng-repeat="task in taskArray">
-                <table class="task">
-                    <tr class="task-content">
-                        <td colspan="2">
-                            <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
+
+                <div ng-repeat="task in taskArray">
+                    <table class="task">
+                        <tr class="task-content">
+                            <td colspan="2">
+                                <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
                                                  border: 2px solid black;border-radius: 10px;padding: 7px;">({{$index+1}})</span>
 
-                            <div id="chunky-buttons" style="float:left; margin-right: 10px;" ng-click="AddNote(task.taskID);">
-                                <div class="chunky chunky26">
-                                    <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
-                                        <img src="./svg/add-text-notes.svg" style="width: 32px;" />
-                                    </a>
+                                <div id="chunky-buttons" style="float:left; margin-right: 10px;" ng-click="AddNote(task.taskID);">
+                                    <div class="chunky chunky26">
+                                        <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
+                                            <img src="./svg/add-text-notes.svg" style="width: 32px;" />
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div id="chunky-buttons" style="float:left; border-radius: 10px;" ng-click="OnTriClick(task.taskID);">
-                                <div class="chunky chunky16">
-                                    <a>
-                                        <div class="tristate narrow-tristate">
-                                            <div class="tri-sta-che md {{task.tristate.css}}">
-                                                <span class="tsc-b tsc-b-r"></span>
-                                                <span class="tsc-b tsc-b-b"></span>
-                                                <span class="tsc-b tsc-b-t"></span>
-                                                <span class="tsc-b tsc-b-l"></span>
+                                <div id="chunky-buttons" style="float:left; border-radius: 10px;" ng-click="OnTriClick(task.taskID);">
+                                    <div class="chunky chunky16">
+                                        <a>
+                                            <div class="tristate narrow-tristate">
+                                                <div class="tri-sta-che md {{task.tristate.css}}">
+                                                    <span class="tsc-b tsc-b-r"></span>
+                                                    <span class="tsc-b tsc-b-b"></span>
+                                                    <span class="tsc-b tsc-b-t"></span>
+                                                    <span class="tsc-b tsc-b-l"></span>
+                                                </div>
+                                                <div class="tristatedesc">
+                                                    {{task.tristate.text}}
+                                                </div>
                                             </div>
-                                            <div class="tristatedesc">
-                                                {{task.tristate.text}}
-                                            </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="task-text">
-                              <div ng-bind-html="task.description | trusthtml"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <ul >
-                                <li class="tasknote" ng-repeat="note in task.notes">
-                                    <h3 style="display: inline;">{{note.noteOwner}}:</h3>
-                                    <span class="note-text" ng-bind-html="note.noteText | trusthtml"></span>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                                <div class="task-text">
+                                    <div ng-bind-html="task.description | trusthtml"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <ul>
+                                    <li class="tasknote" ng-repeat="note in task.notes">
+                                        <h3 style="display: inline;">{{note.noteOwner}}:</h3>
+                                        <span class="note-text" ng-bind-html="note.noteText | trusthtml"></span> <span ng-click="editNote(note.noteID)">(ערוך)</span>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-        </div>
-    </div>
-</div>
-<div id="navigate">
-    <div style="float:right;">
-        <div id="chunky-buttons" style="float:right; ">
-            <div class="chunky chunky12">
-                <a>
-                    הקודם
-                </a>
             </div>
         </div>
     </div>
-
-    <div style="float:left">
-        <div id="chunky-buttons" style="float:left; ">
-            <div class="chunky chunky12">
-                <a>
-                    הבא
-                </a>
+    <div id="navigate">
+        <div style="float:right;">
+            <div id="chunky-buttons" style="float:right; ">
+                <div class="chunky chunky12">
+                    <a>
+                        הקודם
+                    </a>
+                </div>
             </div>
         </div>
+
+        <div style="float:left">
+            <div id="chunky-buttons" style="float:left; ">
+                <div class="chunky chunky12">
+                    <a>
+                        הבא
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-</div>
+    <!-- Dialogs -->
 
-<!-- Dialogs -->
-
-<jqui-theme>
-    <div id="sig-dialog" class="ui-dialog" title="אנא הכנס חתימה">
-        <script>
+    <div>
+        <div id="sig-dialog" class="ui-dialog" title="אנא הכנס חתימה">
+            <script>
+                var sigInit = false;
+                var $sigdiv = $("#signature");
+                function openMenu() {
+                    $("#sig-dialog").dialog("open");
+                    if (!sigInit) {
+                        $("#signature").jSignature();
+                        sigInit = true;
+                    } else {
+                        $("#signature").jSignature("reset");
+                        //$sigdiv.jSignature();
+                    }
+                }
+            </script>
+            <script>
                 $("#sig-dialog").dialog({
                     draggable: false,
                     dialogClass: "custom-dialog",
                     autoOpen: false,
                     modal: true,
                     width: "auto",
-                    height: "auto",
+                    height: "700",
 
                     show: {
                         effect: "bounce",
@@ -206,11 +244,19 @@
                     }
                 }
                 });
-        </script>
-        Hello! <br />
-        Hello2 <br />
-        Hello3
+            </script>
+            Hello! <br />
+            Hello2 <br />
+            Hello3
 
-        <div id="signature" class="prot" style="width:50vw; height:30vh;"></div>
+            <div id="signature" class="prot" style="width:85vw; height:400px;"></div>
+        </div>
+
+        <div id="note-dialog" class="ui-dialog" title="הערות">
+            <input type="hidden" id="input_note_taskid"  />
+            <input type="hidden" id="input_note_noteid"  />
+            שם: <input type="text" id="input_note_owner"/> <br />
+            הערה: <br /> <textarea id="input_note_text"></textarea>
+        </div>
     </div>
-</jqui-theme>
+</div>

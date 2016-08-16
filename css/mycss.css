@@ -45,7 +45,7 @@ body {
     text-align: center;
     font-size: 1.5em;
     /*background-color: #99d6ff;*/
-    background: -webkit-linear-gradient(top,#99d6ff,white)
+    background: -webkit-linear-gradient(top,#99d6ff,#99d6ff,white)
 }
 
     .task-content td {
@@ -108,3 +108,5 @@ body {
     #breadcrumbs-four {
         font-size: 1.1em;
     }
+
+    canvas.jSignature { height: 300px; }
