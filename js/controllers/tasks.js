@@ -87,7 +87,7 @@
 
     function _getNoteByID(task,noteid) {
         for (var i = 0; i < task.notes.length; i++) {
-            if (task.notes[i].taskID == noteid)
+            if (task.notes[i].noteID == noteid)
                 return task.notes[i];
         }
 
@@ -98,10 +98,6 @@
 
     // Add note to task:
     $scope.AddNote = function (taskid) {
-        // Get task by place on the list:
-        var task = _getTaskByID(taskid);
-        if (!task) return;
-
         // Set note id to -1 because new:
         _setNoteDialog(taskid, -1, "", "");
 
@@ -111,7 +107,17 @@
 
     // Edit existing note
     $scope.editNote = function (taskid, noteid) {
+        var task = _getTaskByID(taskid);
+        if (!task) return;
 
+        var note = _getNoteByID(task, noteid);
+        if (!note) return;
+
+        // Set note id to -1 because new:
+        _setNoteDialog(taskid, noteid, note.noteOwner, note.noteText);
+
+        // Open dialog:
+        $("#note-dialog").dialog("open");
     }
 
     // Save note either from adding or editing.
@@ -148,6 +154,18 @@
             noteObj.noteText = note.text;
         }
     }
+
+    /**************************************
+          Category Array
+  ***************************************/
+
+    $scope.catArr =
+    [
+        {
+        catID: 0,
+        catName: 'קטלנן',
+        },
+    ];
 
     /**************************************
            TASK ARRAY

@@ -166,7 +166,8 @@
                                 <ul>
                                     <li class="tasknote" ng-repeat="note in task.notes">
                                         <h3 style="display: inline;">{{note.noteOwner}}:</h3>
-                                        <span class="note-text" ng-bind-html="note.noteText | trusthtml"></span> <span ng-click="editNote(note.noteID)">(ערוך)</span>
+                                        <span class="note-text" ng-bind-html="note.noteText | trusthtml"></span>
+                                        <span ng-click="editNote(task.taskID,note.noteID);" class="editnote">(ערוך)</span>
                                     </li>
                                 </ul>
                             </td>

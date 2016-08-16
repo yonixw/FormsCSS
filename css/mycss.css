@@ -109,4 +109,8 @@ body {
         font-size: 1.1em;
     }
 
-    canvas.jSignature { height: 300px; }
+    .editnote {
+        text-decoration: underline;
+        color:blue;
+        font-weight: bold;
+    }

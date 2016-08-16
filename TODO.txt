@@ -1,11 +1,13 @@
 [v] Add tasks js like Tri-State ad Materilize RTL for adding notes.
 [v] Maybe use Angular for automating things....
 
-[ ] Add and change notes with dialog
+[V] Add and change notes with dialog
+[ ] WYSIWYG for note text
 [ ] Tasks hierarchy.
-[ ] ng-repeat inside ng-repeat?
+	[ ] ng-repeat inside ng-repeat?
+	 *	Total order instead of hier?
 [ ] Favorite filter (buttons for each task + one at top?)
-[ ] Side menu in $scope
+[ ] Side menu (with $scope)
 
 
 
