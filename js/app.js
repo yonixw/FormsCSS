@@ -25,3 +25,7 @@ app.filter("trusthtml", ['$sce', function ($sce) {
         return $sce.trustAsHtml(htmlCode);
     }
 }]);
+
+app.run(['$route', function ($route) {
+    $route.reload();
+}]);

@@ -1,4 +1,16 @@
 ﻿app.controller('tasks', function ($scope) {
+
+    /**************************************
+            Create and destroy dialog boxes
+    ***************************************/
+
+
+    $scope.$on('$routeChangeStart', function(next, current) { 
+        $("#note-dialog").dialog('destroy').remove()
+        $("#sig-dialog").dialog('destroy').remove()
+    });
+
+
     /**************************************
             TRI STATE CHECKBOX
     ***************************************/
