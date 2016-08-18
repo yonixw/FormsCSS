@@ -8,6 +8,7 @@
 	 *	Total order instead of hier?
 [ ] Favorite filter (buttons for each task + one at top?)
 [ ] Side menu (with $scope)
+[ ] Download ICON folder for angular material
 
 
 

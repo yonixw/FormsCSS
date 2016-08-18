@@ -97,6 +97,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
             parent: document.querySelector("#tasks-view"),
             targetEvent: event,
             clickOutsideToClose: true,
+            title: "הערות",
             fullscreen: false
         })
         .then(function (answer) {
