@@ -1,4 +1,9 @@
-﻿app.controller('tasks', function ($scope) {
+﻿
+app.controller('noteDialog', function ($scope, $mdDialog, $mdMedia, selectedTask) {
+    $scope.selectedTask = selectedTask;
+});
+
+app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
 
     /**************************************
             Create and destroy dialog boxes
@@ -49,38 +54,6 @@
    
     $scope.selectedTask = {taskID: -1, notes: [] }; // The task of the notes.
  
-
-    // Setup dialog:
-    /*$("#note-dialog").dialog({
-        draggable: false,
-        dialogClass: "custom-dialog",
-        autoOpen: false,
-        modal: true,
-        width: "auto",
-        height: "auto",
-
-        show: {
-            effect: "bounce",
-            duration: 1000
-        },
-        hide: {
-            effect: "fade",
-            duration: 100
-        },
-        buttons: {
-            "שמור": function () {
-                //SO? 10490570
-                $scope.$apply(function () {
-                    $scope.saveNote();
-                });
-                $(this).dialog("close");
-            },
-            "ביטול": function () {
-                $(this).dialog("close");
-            }
-        }
-    });*/
-
     // Set dialog values:
     function _setNoteDialog(taskID, noteID, owner, text) {
         $("#input_note_taskid").val(taskID);
@@ -111,33 +84,30 @@
     }
 
     // Show notes list for specific task:
-    $scope.ShowNotes = function (taskID) {
-        $scope.selectedTask = _getTaskByID(taskID);
+    $scope.ShowNotes = function (taskID, event) {
+        t = _getTaskByID(taskID);
+        $scope.selectedTask = t;  
 
-        // Setup dialog:
-        $("#notes-dialog").dialog({
-            draggable: false,
-            dialogClass: "custom-dialog",
-            autoOpen: false,
-            modal: true,
-            width: "auto",
-            height: "auto",
-
-            show: {
-                effect: "bounce",
-                duration: 1000
+        $mdDialog.show({
+            controller: 'noteDialog',
+            locals: {
+                selectedTask: $scope.selectedTask
             },
-            hide: {
-                effect: "fade",
-                duration: 100
-            },
-            buttons: {
-                "סגור": function () {
-                    $(this).dialog("close");
-                    $(this).dialog('destroy').remove()
-                }
-            }
+            templateUrl: './js/views/tasknotes.html',
+            parent: document.querySelector("#tasks-view"),
+            targetEvent: event,
+            clickOutsideToClose: true,
+            fullscreen: false
+        })
+        .then(function (answer) {
+            //$scope.status = 'You said the information was "' + answer + '".';
+            //answer
+        }, function () {
+            //$scope.status = 'You cancelled the dialog.';
+            //cancel
         });
+
+       
     }
 
     // Add note to task:

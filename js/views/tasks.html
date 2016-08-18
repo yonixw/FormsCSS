@@ -1,4 +1,4 @@
-﻿<div>
+﻿<div id="tasks-view">
     <!-- Content-->
 
     <div id="header">
@@ -130,7 +130,7 @@
                                     <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
                                                  border: 2px solid black;border-radius: 10px;padding: 7px;">({{$index+1}})</span>
 
-                                    <div id="chunky-buttons" style="float:left; margin-right: 10px;" ng-click="ShowNotes(task.taskID);">
+                                    <div id="chunky-buttons" style="float:left; margin-right: 10px;" ng-click="ShowNotes(task.taskID,$event);">
                                         <div class="chunky chunky26">
                                             <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
                                                 <img src="./svg/add-text-notes.svg" style="width: 32px;" />
@@ -252,24 +252,6 @@
             הערה: <br /> <textarea id="input_note_text"></textarea>
         </div>
 
-        <div id="notes-dialog" class="hidden ui-dialog" title="הערות">
-            הוסף: <input type="text" id="input_newNote" /><br />
-
-            <div ng-click="AddNote(selectedTask.taskID);"
-                 id="chunky-buttons" style="float:left; border-radius: 10px;">
-                <div class="chunky chunky26">
-                    <a>+</a>
-                </div>
-            </div>
-
-            <ul>
-                <li class="tasknote" ng-repeat="note in selectedTask.notes">
-                    <h3 style="display: inline;">{{note.noteOwner}}:</h3>
-                    <span class="note-text" ng-bind-html="note.noteText | trusthtml"></span>
-                    <span ng-click="editNote(selectedTask.taskID,note.noteID);" class="editnote">ערוך</span>
-                </li>
-            </ul>
-
-        </div>
+        
     </div>
 </div>
