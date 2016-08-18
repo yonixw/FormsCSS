@@ -7,8 +7,8 @@
 
     $scope.$on('$routeChangeStart', function (next, current) {
         //SO? 14765719 ; 2864740
-        $("#note-dialog").dialog('destroy').remove()
-        $("#sig-dialog").dialog('destroy').remove()
+        //$("#note-dialog").dialog('destroy').remove()
+        //$("#sig-dialog").dialog('destroy').remove()
     });
 
 
@@ -47,10 +47,11 @@
            NOTES
    ***************************************/
    
+    $scope.selectedTask = {taskID: -1, notes: [] }; // The task of the notes.
  
 
     // Setup dialog:
-    $("#note-dialog").dialog({
+    /*$("#note-dialog").dialog({
         draggable: false,
         dialogClass: "custom-dialog",
         autoOpen: false,
@@ -78,7 +79,7 @@
                 $(this).dialog("close");
             }
         }
-    });
+    });*/
 
     // Set dialog values:
     function _setNoteDialog(taskID, noteID, owner, text) {
@@ -107,6 +108,36 @@
         // If we got here, no id is present:
         console.log("tasks::_getNoteByID(task,noteid) cant find note with id:" + noteid );
         return null;
+    }
+
+    // Show notes list for specific task:
+    $scope.ShowNotes = function (taskID) {
+        $scope.selectedTask = _getTaskByID(taskID);
+
+        // Setup dialog:
+        $("#notes-dialog").dialog({
+            draggable: false,
+            dialogClass: "custom-dialog",
+            autoOpen: false,
+            modal: true,
+            width: "auto",
+            height: "auto",
+
+            show: {
+                effect: "bounce",
+                duration: 1000
+            },
+            hide: {
+                effect: "fade",
+                duration: 100
+            },
+            buttons: {
+                "סגור": function () {
+                    $(this).dialog("close");
+                    $(this).dialog('destroy').remove()
+                }
+            }
+        });
     }
 
     // Add note to task:
@@ -242,5 +273,115 @@
                 text: 'מצב'
             },
         },
+{
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+},
+{
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+},
+{
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+},
+{
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+},
+{
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+},
+{
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+}, {
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+}, {
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+}, {
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+}, {
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+}, {
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+}, {
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+}, {
+    taskID: 10,
+    favor: false,
+    description: 'Hello From the <u>pther</u><br /> side',
+    tristate: {
+        css: 'hidden',
+        text: 'מצב'
+    },
+},
     ];
 });

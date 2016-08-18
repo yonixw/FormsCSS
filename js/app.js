@@ -1,4 +1,4 @@
-var app = angular.module('tankforms', ['ngRoute'])
+var app = angular.module('tankforms', ['ngRoute', 'ngMaterial'])
 
 .config(function ($routeProvider) {
 

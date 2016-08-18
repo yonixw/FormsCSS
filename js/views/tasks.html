@@ -116,55 +116,58 @@
         </div>
     </div>
     <div id="page-body">
-        <div colspan="3" style="overflow-y: hidden">
+        <div style="overflow-y: hidden">
             <!-- Table adjust to content, restrict through divs! -->
-            <div id="tab-content" class="prot"
-                 style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
+            
+                <div id="tab-content" class="prot"
+                     style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
 
 
-                <div ng-repeat="task in taskArray">
-                    <table class="task">
-                        <tr class="task-content">
-                            <td colspan="2">
-                                <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
+                    <div ng-repeat="task in taskArray">
+                        <table class="task">
+                            <tr class="task-content">
+                                <td colspan="2">
+                                    <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
                                                  border: 2px solid black;border-radius: 10px;padding: 7px;">({{$index+1}})</span>
 
-                                <div id="chunky-buttons" style="float:left; margin-right: 10px;" ng-click="ShowNotes(task.taskID);">
-                                    <div class="chunky chunky26">
-                                        <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
-                                            <img src="./svg/add-text-notes.svg" style="width: 32px;" />
-                                        </a>
+                                    <div id="chunky-buttons" style="float:left; margin-right: 10px;" ng-click="ShowNotes(task.taskID);">
+                                        <div class="chunky chunky26">
+                                            <a style="line-height: initial; padding-top: 7px; padding-bottom: initial;">
+                                                <img src="./svg/add-text-notes.svg" style="width: 32px;" />
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div id="chunky-buttons" style="float:left; border-radius: 10px;" ng-click="OnTriClick(task.taskID);">
-                                    <div class="chunky chunky16">
-                                        <a>
-                                            <div class="tristate narrow-tristate">
-                                                <div class="tri-sta-che md {{task.tristate.css}}">
-                                                    <span class="tsc-b tsc-b-r"></span>
-                                                    <span class="tsc-b tsc-b-b"></span>
-                                                    <span class="tsc-b tsc-b-t"></span>
-                                                    <span class="tsc-b tsc-b-l"></span>
+                                    <div id="chunky-buttons" style="float:left; border-radius: 10px;" ng-click="OnTriClick(task.taskID);">
+                                        <div class="chunky chunky16">
+                                            <a>
+                                                <div class="tristate narrow-tristate">
+                                                    <div class="tri-sta-che md {{task.tristate.css}}">
+                                                        <span class="tsc-b tsc-b-r"></span>
+                                                        <span class="tsc-b tsc-b-b"></span>
+                                                        <span class="tsc-b tsc-b-t"></span>
+                                                        <span class="tsc-b tsc-b-l"></span>
+                                                    </div>
+                                                    <div class="tristatedesc">
+                                                        {{task.tristate.text}}
+                                                    </div>
                                                 </div>
-                                                <div class="tristatedesc">
-                                                    {{task.tristate.text}}
-                                                </div>
-                                            </div>
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
 
 
-                                <div class="task-text">
-                                    <div ng-bind-html="task.description | trusthtml"></div>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+                                    <div class="task-text">
+                                        <div ng-bind-html="task.description | trusthtml"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
                 </div>
-
-            </div>
+            
+           
         </div>
     </div>
     <div id="navigate">
@@ -193,7 +196,7 @@
     <!-- Dialogs -->
 
     <div>
-        <div id="sig-dialog" class="ui-dialog" title="אנא הכנס חתימה">
+        <div id="sig-dialog" class="hidden ui-dialog" title="אנא הכנס חתימה">
             <script>
                 var sigInit = false;
                 var $sigdiv = $("#signature");
@@ -209,7 +212,7 @@
                 }
             </script>
             <script>
-                $("#sig-dialog").dialog({
+               /* $("#sig-dialog").dialog({
                     draggable: false,
                     dialogClass: "custom-dialog",
                     autoOpen: false,
@@ -233,7 +236,7 @@
                         $( this ).dialog( "close" );
                     }
                 }
-                });
+                });*/
             </script>
             Hello! <br />
             Hello2 <br />
@@ -242,14 +245,30 @@
             <div id="signature" class="prot" style="width:85vw; height:400px;"></div>
         </div>
 
-        <div id="note-dialog" class="ui-dialog" title="הערות">
-            <input type="hidden" id="input_note_taskid"  />
-            <input type="hidden" id="input_note_noteid"  />
-            שם: <input type="text" id="input_note_owner"/> <br />
+        <div id="note-dialog" class="hidden ui-dialog" title="הערות">
+            <input type="hidden" id="input_note_taskid" />
+            <input type="hidden" id="input_note_noteid" />
+            שם: <input type="text" id="input_note_owner" /> <br />
             הערה: <br /> <textarea id="input_note_text"></textarea>
         </div>
 
-        <div id="notes-dialog" class="ui-dialog" title="הערות">
+        <div id="notes-dialog" class="hidden ui-dialog" title="הערות">
+            הוסף: <input type="text" id="input_newNote" /><br />
+
+            <div ng-click="AddNote(selectedTask.taskID);"
+                 id="chunky-buttons" style="float:left; border-radius: 10px;">
+                <div class="chunky chunky26">
+                    <a>+</a>
+                </div>
+            </div>
+
+            <ul>
+                <li class="tasknote" ng-repeat="note in selectedTask.notes">
+                    <h3 style="display: inline;">{{note.noteOwner}}:</h3>
+                    <span class="note-text" ng-bind-html="note.noteText | trusthtml"></span>
+                    <span ng-click="editNote(selectedTask.taskID,note.noteID);" class="editnote">ערוך</span>
+                </li>
+            </ul>
 
         </div>
     </div>

@@ -2,7 +2,7 @@
 body {
     font-family: 'OpenSans';
     font-size: 1em;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .noselect { /* http://stackoverflow.com/questions/826782/ */
