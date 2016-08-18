@@ -5,7 +5,8 @@
     ***************************************/
 
 
-    $scope.$on('$routeChangeStart', function(next, current) { 
+    $scope.$on('$routeChangeStart', function (next, current) {
+        //SO? 14765719 ; 2864740
         $("#note-dialog").dialog('destroy').remove()
         $("#sig-dialog").dialog('destroy').remove()
     });
