@@ -199,6 +199,97 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
 
     $scope.taskArray = [
         {
+            catid: 0,
+            catname: 'מפקום-דלת',
+            tasks: [
+                 {
+                     taskID: 0,
+                     favor: false,
+                     description: '<b>Hello</b>',
+                     tristate: {
+                         css: 'checked',
+                         text: ''
+                     },
+                     notes: [
+                         {
+                             noteID: 0,
+                             noteOwner: 'מקשחר',
+                             noteText: 'הכל סבבה'
+                         },
+                         {
+                             noteID: 1,
+                             noteOwner: '2מקשחר',
+                             noteText: 'הכל סבבה2'
+                         },
+                     ]
+                 },
+                {
+                    taskID: 1,
+                    favor: false,
+                    description: '<b>Hello From the <u>pther</u> side</b>',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                    notes: [
+                        {
+                            noteID: 2,
+                            noteOwner: 'מקש222חר',
+                            noteText: 'הכל סב<u>sss</u>בה'
+                        },
+                    ]
+                },
+                {
+                    taskID: 10,
+                    favor: false,
+                    description: 'Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                },
+            ]
+        },
+
+
+        {
+            catid: 1,
+            catname: 'קטגוריה שניה',
+            tasks: [
+                {
+                    taskID: 100,
+                    favor: false,
+                    description: 'Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                },
+                {
+                    taskID: 101,
+                    favor: false,
+                    description: 'Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                },
+                {
+                    taskID: 102,
+                    favor: false,
+                    description: 'Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                },
+            ]
+        }
+    ];
+
+    /* OLD TASK ARRAY
+    $scope.taskArray = [
+        {
             taskID: 0,
             favor: false,
             description: '<b>Hello</b>',
@@ -244,115 +335,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
                 text: 'מצב'
             },
         },
-{
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-},
-{
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-},
-{
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-},
-{
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-},
-{
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-},
-{
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-}, {
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-}, {
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-}, {
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-}, {
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-}, {
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-}, {
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-}, {
-    taskID: 10,
-    favor: false,
-    description: 'Hello From the <u>pther</u><br /> side',
-    tristate: {
-        css: 'hidden',
-        text: 'מצב'
-    },
-},
     ];
 });
+
+*/
