@@ -283,6 +283,87 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
                         text: 'מצב'
                     },
                 },
+                 {
+                     taskID: 102,
+                     favor: false,
+                     description: 'Hello From the <u>pther</u><br /> side',
+                     tristate: {
+                         css: 'hidden',
+                         text: 'מצב'
+                     },
+                 },
+                  {
+                      taskID: 102,
+                      favor: false,
+                      description: 'Hello From the <u>pther</u><br /> side',
+                      tristate: {
+                          css: 'hidden',
+                          text: 'מצב'
+                      },
+                  },
+                   {
+                       taskID: 102,
+                       favor: false,
+                       description: 'Hello From the <u>pther</u><br /> side',
+                       tristate: {
+                           css: 'hidden',
+                           text: 'מצב'
+                       },
+                   },
+                    {
+                        taskID: 102,
+                        favor: false,
+                        description: 'Hello From the <u>pther</u><br /> side',
+                        tristate: {
+                            css: 'hidden',
+                            text: 'מצב'
+                        },
+                    },
+                     {
+                         taskID: 102,
+                         favor: false,
+                         description: 'Hello From the <u>pther</u><br /> side',
+                         tristate: {
+                             css: 'hidden',
+                             text: 'מצב'
+                         },
+                     },
+                      {
+                          taskID: 102,
+                          favor: false,
+                          description: 'Hello From the <u>pther</u><br /> side',
+                          tristate: {
+                              css: 'hidden',
+                              text: 'מצב'
+                          },
+                      },
+                       {
+                           taskID: 102,
+                           favor: false,
+                           description: 'Hello From the <u>pther</u><br /> side',
+                           tristate: {
+                               css: 'hidden',
+                               text: 'מצב'
+                           },
+                       },
+                        {
+                            taskID: 102,
+                            favor: false,
+                            description: 'Hello From the <u>pther</u><br /> side',
+                            tristate: {
+                                css: 'hidden',
+                                text: 'מצב'
+                            },
+                        },
+                         {
+                             taskID: 102,
+                             favor: false,
+                             description: 'Hello From the <u>pther</u><br /> side',
+                             tristate: {
+                                 css: 'hidden',
+                                 text: 'מצב'
+                             },
+                         },
             ]
         }
     ];
