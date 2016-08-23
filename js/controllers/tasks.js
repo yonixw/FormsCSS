@@ -286,6 +286,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
             ]
         }
     ];
+});
 
     /* OLD TASK ARRAY
     $scope.taskArray = [

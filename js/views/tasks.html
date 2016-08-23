@@ -119,8 +119,12 @@
         <div style="overflow-y: hidden">
             <!-- Table adjust to content, restrict through divs! -->
 
-            <div id="tab-content" class="prot"
+            <md-content id="tab-content" class="prot"
                  style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
+
+                <md-toolbar md-scroll-shrink>
+                    <div class="md-toolbar-tools">מטלות</div>
+                </md-toolbar>
 
                 <section ng-repeat="cat in taskArray">
                     <md-subheader class="md-primary">{{cat.catname}}</md-subheader>
@@ -168,7 +172,7 @@
                 </section>
 
 
-            </div>
+            </md-content>
 
 
         </div>
