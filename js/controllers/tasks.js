@@ -197,6 +197,9 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
         return null;
     }
 
+    $scope.favor = 0; 
+
+
     $scope.taskArray = [
         {
             catid: 0,
@@ -276,7 +279,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
                 },
                 {
                     taskID: 102,
-                    favor: false,
+                    favor: true,
                     description: 'Hello From the <u>pther</u><br /> side',
                     tristate: {
                         css: 'hidden',

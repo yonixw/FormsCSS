@@ -4,10 +4,13 @@
 [V] Add and change notes with dialog
 [ ] WYSIWYG for note text
 [ ] Tasks hierarchy.
-	[ ] ng-repeat inside ng-repeat?
+	[?] ng-repeat inside ng-repeat?
 	 *	Total order instead of hier?
+	[V] array of categories contain array of tasks contain array of notes
 [ ] Favorite filter (buttons for each task + one at top?)
-[ ] Side menu (with $scope)
+	[ ] ng-if for each task and ng-if for each categorie how much favor under it.
+			variable or method that count?
+[ ] Side menu (with $scope --> angular material)
 [ ] Download ICON folder for angular material
 
 

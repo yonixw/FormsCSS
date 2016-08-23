@@ -126,7 +126,7 @@
                 <section ng-repeat="cat in taskArray">
                     <md-subheader class="md-primary">{{cat.catname}}</md-subheader>
                     <div ng-repeat="task in cat.tasks">
-                        <table class="task">
+                        <table class="task" ng-if="task.favor == false">
                             <tr class="task-content">
                                 <td colspan="2">
                                     <span style="float: right;margin: 0px 15px;background-color: whitesmoke;

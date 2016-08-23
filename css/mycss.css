@@ -114,3 +114,7 @@ body {
         color:blue;
         font-weight: bold;
     }
+
+    .md-subheader {
+        font-size: 1.5em;
+    }
