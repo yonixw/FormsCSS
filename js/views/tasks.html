@@ -11,12 +11,14 @@
                     <td>
                         <!-- Bread-crums menu-->
                         <ul id="breadcrumbs-four">
-                            <li><a href="">מפקום</a></li>
-                            <li><a href="">מפקום</a></li>
-                            <li><a href="">מפקום</a></li>
+                            <li><a ng-click="goCat(0)">מפקום</a></li>
+                            <li><a ng-click="goCat(1)">מפקו22ם</a></li>
                             <li><a href="">מפקום</a></li>
                             <li class="selected"><a href="">כללי</a></li>
                         </ul>
+                    </td>
+                    <td>
+                        סנן
                     </td>
                     <td>
                         <!-- htx rot htla htra -->
@@ -119,14 +121,20 @@
         <div style="overflow-y: hidden">
             <!-- Table adjust to content, restrict through divs! -->
 
+            
             <md-content id="tab-content" class="prot"
-                 style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;">
+                 style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;"
+                  >
 
 
                 <section ng-repeat="cat in taskArray">
-                    <md-subheader class="md-primary">{{cat.catname}}</md-subheader>
+                    <a id="subheader-{{cat.catid}}"> </a>
+                    <md-subheader class="md-primary" >{{cat.catname}}</md-subheader>
+
                     <div ng-repeat="task in cat.tasks">
-                        <table class="task" ng-if="task.favor == false">
+
+                       
+                        <table class="task" ng-hide="task.favor == false" >
                             <tr class="task-content">
                                 <td colspan="2">
                                     <span style="float: right;margin: 0px 15px;background-color: whitesmoke;

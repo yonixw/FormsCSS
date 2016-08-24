@@ -7,9 +7,14 @@
 	[?] ng-repeat inside ng-repeat?
 	 *	Total order instead of hier?
 	[V] array of categories contain array of tasks contain array of notes
-[ ] Favorite filter (buttons for each task + one at top?)
-	[ ] ng-if for each task and ng-if for each categorie how much favor under it.
+[X] Favorite filter (buttons for each task + one at top?)
+	[X] ng-if for each task and ng-if for each categorie how much favor under it.
 			variable or method that count?
+[ ] Filter:
+	- Favor
+	- Has notes
+	- State (unchecked, ok, bad)
+
 [ ] Side menu (with $scope --> angular material)
 [ ] Download ICON folder for angular material
 

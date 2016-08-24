@@ -1,9 +1,9 @@
 ﻿
-app.controller('noteDialog', function ($scope, $mdDialog, $mdMedia, selectedTask) {
+app.controller('noteDialog', function ($scope, $mdDialog, $mdMedia,  selectedTask) {
     $scope.selectedTask = selectedTask;
 });
 
-app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
+app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) {
 
     /**************************************
             Create and destroy dialog boxes
@@ -174,13 +174,19 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia) {
           Category Array
   ***************************************/
 
-    $scope.catArr =
-    [
-        {
-        catID: 0,
-        catName: 'קטלנן',
-        },
-    ];
+    $scope.goCat = function (id) {
+        // based on SO? 25316780
+
+        var element = $("#tab-content"); // The context element of scrolling
+        //$("#subheader-" + id.toString(), $(element)) ===> our anchor 
+
+        var pos = $("#subheader-" + id.toString(), $(element)).position().top + $(element).scrollTop();        
+        $(element).animate({
+            scrollTop: pos
+        }, 1000);
+    }
+
+
 
     /**************************************
            TASK ARRAY
