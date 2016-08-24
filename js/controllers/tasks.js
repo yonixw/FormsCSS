@@ -1,6 +1,25 @@
 ﻿
 app.controller('noteDialog', function ($scope, $mdDialog, $mdMedia,  selectedTask) {
     $scope.selectedTask = selectedTask;
+
+    $scope.answer = function (answer) {
+        $mdDialog.hide(answer);
+    };
+});
+
+app.controller('task-filter-dialog', function ($scope, $mdDialog, $mdMedia, filterarray) {
+    $scope.filterArray = filterarray;
+
+    $scope.answer = function (answer) {
+        $mdDialog.hide(answer);
+    };
+
+    $scope.textDesc = function(filtername, value) {
+        switch (filtername) {
+            case 'favor':
+                return (value) ? 'הצג מועדפים' : 'הצג רגילים';
+        }
+    }
 });
 
 app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) {
@@ -203,6 +222,62 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
         return null;
     }
 
+    $scope.filters = [
+        { filter: false, name: 'favor', value: true },
+        { filter: false, name: 'statecss', value: 'hidden' },
+        { filter: false, name: 'notes' }, // Filter if have notes... not if doesnt
+    ];
+
+    // Filter tasks based on options:
+    $scope.filterTask = function (task) {
+        var result = true;
+        for (var i = 0; i < $scope.filters.length; i++) {
+            var filter = $scope.filters[i];
+
+            if (filter.filter) {
+                switch (filter.name) {
+                    case 'favor':
+                        result = result && (task.favor == filter.value);
+                        break;
+                    case 'statecss':
+                        result = result && (task.tristate.css == filter.value);
+                        break;
+                    case 'notes':
+                        result = result && (task.notes && task.notes.length > 0);
+                        break;
+                }
+            }
+
+            if (!result) break; // to exit function.
+        }
+        return result;
+    }
+
+    $scope.filterDialog = function () {
+       
+        $mdDialog.show({
+            controller: 'task-filter-dialog',
+            locals: {
+                filterarray: $scope.filters
+            },
+            templateUrl: './js/views/task_filters.html',
+            parent: document.querySelector("#tasks-view"),
+            targetEvent: event,
+            clickOutsideToClose: true,
+            title: "סינון",
+            fullscreen: false
+        })
+        .then(function (answer) {
+            //$scope.status = 'You said the information was "' + answer + '".';
+            //answer
+        }, function () {
+            //$scope.status = 'You cancelled the dialog.';
+            //cancel
+        });
+
+
+    }
+
     $scope.favor = 0; 
 
 
@@ -377,56 +452,3 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
         }
     ];
 });
-
-    /* OLD TASK ARRAY
-    $scope.taskArray = [
-        {
-            taskID: 0,
-            favor: false,
-            description: '<b>Hello</b>',
-            tristate : {
-                css: 'checked',
-                text: ''
-            },
-            notes: [
-                {
-                    noteID: 0,
-                    noteOwner: 'מקשחר',
-                    noteText: 'הכל סבבה'
-                },
-                {
-                    noteID: 1,
-                    noteOwner: '2מקשחר',
-                    noteText: 'הכל סבבה2'
-                },
-            ]
-        },
-        {
-            taskID: 1,
-            favor: false,
-            description: '<b>Hello From the <u>pther</u> side</b>',
-            tristate : {
-                css: 'hidden',
-                text: 'מצב'
-            },
-            notes: [
-                {
-                    noteID: 2,
-                    noteOwner: 'מקש222חר',
-                    noteText: 'הכל סב<u>sss</u>בה'
-                },
-            ]
-        },
-        {
-            taskID: 10,
-            favor: false,
-            description: 'Hello From the <u>pther</u><br /> side',
-            tristate: {
-                css: 'hidden',
-                text: 'מצב'
-            },
-        },
-    ];
-});
-
-*/

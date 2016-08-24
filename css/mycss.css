@@ -119,3 +119,7 @@ body {
         font-size: 1.5em;
         border-bottom: 3px double blue;
     }
+
+    md-dialog {
+        font-size: 2em;
+    }

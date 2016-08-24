@@ -1,0 +1,44 @@
+﻿
+
+<md-dialog aria-label="סנן מטלות" ng-cloak >
+    <form>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>סנן מטלות</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content >
+           
+            <table style="width: 50vw;">
+                <tr>
+                    <td>
+                        <md-checkbox ng-model="filterArray[0].filter" 
+                                     class="md-primary" style="margin: 16px;">
+                            מועדפים
+                        </md-checkbox>
+                    </td>
+                    <td>
+                        <md-switch ng-model="filterArray[0].value" 
+                                   class="md-primary" md-no-ink  aria-label="true or false"
+                                   style="margin: 16px;">
+                            {{textDesc(filterArray[0].name,filterArray[0].value);}}
+                        </md-switch>
+                    </td>
+                </tr>
+            </table>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">            
+            <span flex></span>
+            <md-button ng-click="answer('done')" style="margin-right:20px;">
+                סגור
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
