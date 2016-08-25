@@ -234,7 +234,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
     ];
 
     // Filter tasks based on options:
-    $scope.filterTask = function (task) {
+    $scope.filterTasks = function (task) {
         var result = true;
         for (var i = 0; i < $scope.filters.length; i++) {
             var filter = $scope.filters[i];
@@ -282,9 +282,6 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
 
 
     }
-
-    $scope.favor = 0; 
-
 
     $scope.taskArray = [
         {
@@ -366,14 +363,14 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
                 {
                     taskID: 102,
                     favor: true,
-                    description: 'Hello From the <u>pther</u><br /> side',
+                    description: 'FAVOR Hello From the <u>pther</u><br /> side',
                     tristate: {
                         css: 'hidden',
                         text: 'מצב'
                     },
                 },
                  {
-                     taskID: 102,
+                     taskID: 103,
                      favor: false,
                      description: 'Hello From the <u>pther</u><br /> side',
                      tristate: {
@@ -382,7 +379,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
                      },
                  },
                   {
-                      taskID: 102,
+                      taskID: 104,
                       favor: false,
                       description: 'Hello From the <u>pther</u><br /> side',
                       tristate: {
@@ -391,7 +388,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
                       },
                   },
                    {
-                       taskID: 102,
+                       taskID: 105,
                        favor: false,
                        description: 'Hello From the <u>pther</u><br /> side',
                        tristate: {
@@ -400,7 +397,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
                        },
                    },
                     {
-                        taskID: 102,
+                        taskID: 106,
                         favor: false,
                         description: 'Hello From the <u>pther</u><br /> side',
                         tristate: {
@@ -409,7 +406,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
                         },
                     },
                      {
-                         taskID: 102,
+                         taskID: 107,
                          favor: false,
                          description: 'Hello From the <u>pther</u><br /> side',
                          tristate: {
@@ -418,7 +415,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
                          },
                      },
                       {
-                          taskID: 102,
+                          taskID: 108,
                           favor: false,
                           description: 'Hello From the <u>pther</u><br /> side',
                           tristate: {
@@ -427,7 +424,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
                           },
                       },
                        {
-                           taskID: 102,
+                           taskID: 109,
                            favor: false,
                            description: 'Hello From the <u>pther</u><br /> side',
                            tristate: {
@@ -436,7 +433,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
                            },
                        },
                         {
-                            taskID: 102,
+                            taskID: 120,
                             favor: false,
                             description: 'Hello From the <u>pther</u><br /> side',
                             tristate: {
@@ -445,7 +442,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
                             },
                         },
                          {
-                             taskID: 102,
+                             taskID: 132,
                              favor: false,
                              description: 'Hello From the <u>pther</u><br /> side',
                              tristate: {
@@ -456,4 +453,41 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
             ]
         }
     ];
+});
+
+app.filter('taskfilter', function () {
+
+    var filterTask = function (task,filters) {
+        var result = true;
+        for (var i = 0; i < filters.length; i++) {
+            var filter = filters[i];
+
+            if (filter.filter) {
+                switch (filter.name) {
+                    case 'favor':
+                        result = result && (task.favor == filter.value);
+                        break;
+                    case 'statecss':
+                        result = result && (task.tristate.css == filter.value);
+                        break;
+                    case 'notes':
+                        result = result && (task.notes && task.notes.length > 0);
+                        break;
+                }
+            }
+
+            if (!result) break; // to exit function.
+        }
+        return result;
+    }
+
+    return function (items, filters) {
+        var filteredArray = [];
+        for (var i = 0; i < items.length; i++) {
+            if (filterTask(items[i],filters)) {
+                filteredArray.push(items[i]);
+            }
+        }
+        return filteredArray;
+    }
 });

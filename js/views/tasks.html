@@ -130,17 +130,20 @@
 
 
                 <section ng-repeat="cat in taskArray">
-                    <a id="subheader-{{cat.catid}}"> </a>
-                    <md-subheader class="md-primary" >{{cat.catname}}</md-subheader>
+                    
 
-                    <div ng-repeat="task in cat.tasks">
-
-                       
-                        <table class="task" ng-show="filterTask(task);" >
+                    <div ng-repeat="task in cat.tasks | taskfilter:filters ">
+                         <div ng-if="$first">
+                             <a id="subheader-{{cat.catid}}"> </a>
+                             <md-subheader class="md-primary">
+                                 {{cat.catname}}
+                             </md-subheader>
+                         </div>
+                        <table class="task">
                             <tr class="task-content">
                                 <td colspan="2">
                                     <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
-                                                 border: 2px solid black;border-radius: 10px;padding: 7px;">({{$index+1}})</span>
+                                                 border: 2px solid black;border-radius: 10px;padding: 7px;">(-5)</span>
 
                                     <div id="chunky-buttons" style="float:left; margin-right: 10px;" ng-click="ShowNotes(task.taskID,$event);">
                                         <div class="chunky chunky26">

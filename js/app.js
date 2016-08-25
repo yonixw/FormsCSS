@@ -25,6 +25,10 @@ app.filter("trusthtml", ['$sce', function ($sce) {
     }
 }]);
 
-app.run(['$route', function ($route) {
-    $route.reload();
-}]);
+
+
+//app.run(['$route', function ($route) {
+//    $route.reload();
+//}]);
+
+
