@@ -14,6 +14,10 @@ app.controller('task-filter-dialog', function ($scope, $mdDialog, $mdMedia, filt
         $mdDialog.hide(answer);
     };
 
+    $scope.cancel = function () {
+        $mdDialog.cancel();
+    };
+
     $scope.textDesc = function(filtername, value) {
         switch (filtername) {
             case 'favor':
@@ -199,9 +203,10 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
         var element = $("#tab-content"); // The context element of scrolling
         //$("#subheader-" + id.toString(), $(element)) ===> our anchor 
 
-        var pos = $("#subheader-" + id.toString(), $(element)).position().top + $(element).scrollTop();        
+        //pos -1 because we dont wnat floating header when scrolling.
+        var pos = $("#subheader-" + id.toString(), $(element)).position().top + $(element).scrollTop() - 1;        
         $(element).animate({
-            scrollTop: pos
+            scrollTop: pos 
         }, 1000);
     }
 

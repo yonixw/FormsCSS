@@ -10,10 +10,11 @@
 [X] Favorite filter (buttons for each task + one at top?)
 	[X] ng-if for each task and ng-if for each categorie how much favor under it.
 			variable or method that count?
-[ ] Filter:
+[V] Filter:
 	- Favor
 	- Has notes
 	- State (unchecked, ok, bad)
+	[ ] Hide categories
 
 [ ] Side menu (with $scope --> angular material)
 [ ] Download ICON folder for angular material
@@ -39,5 +40,3 @@ Scenarios:
 
 [ ] Menu ???
 	[ ] Scroll down per category and swipe left for category change
-
-[ ] Favor

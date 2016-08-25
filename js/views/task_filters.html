@@ -12,32 +12,82 @@
             </div>
         </md-toolbar>
 
-        <md-dialog-content >
-           
-            <table style="width: 50vw;">
+        <md-dialog-content>
+            <table>
                 <tr>
                     <td>
-                        <md-checkbox ng-model="filterArray[0].filter" 
-                                     class="md-primary" style="margin: 16px;">
-                            מועדפים
-                        </md-checkbox>
+
+                        <div>
+                            <md-checkbox ng-model="filterArray[0].filter"
+                                         class="md-primary" style="margin: 16px; float:right">
+                                מועדפים
+                            </md-checkbox>
+
+                            <md-radio-group ng-model="filterArray[0].value" class="md-primary">
+                                <md-radio-button ng-value="true"
+                                                 ng-disabled="!filterArray[0].filter"
+                                                 style="float:left; margin:16px;">
+                                    רק מועדפים
+                                </md-radio-button>
+                                <md-radio-button ng-value="false"
+                                                 ng-disabled="!filterArray[0].filter"
+                                                 style="float:left; margin:16px;">
+                                    רק רגילים
+                                </md-radio-button>
+                            </md-radio-group>
+                        </div>
+
                     </td>
+                </tr>
+                <tr>
                     <td>
-                        <md-switch ng-model="filterArray[0].value" 
-                                   class="md-primary" md-no-ink  aria-label="true or false"
-                                   style="margin: 16px;">
-                            {{textDesc(filterArray[0].name,filterArray[0].value);}}
-                        </md-switch>
+
+                        <div flex>
+                            <md-checkbox ng-model="filterArray[2].filter"
+                                         class="md-primary" style="margin: 16px; float:right">
+                                הערות
+                            </md-checkbox>
+                        </div><br />
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <div>
+                            <md-checkbox ng-model="filterArray[1].filter"
+                                         class="md-primary" style="margin: 16px; float:right">
+                                מצב
+                            </md-checkbox>
+
+                            <md-radio-group ng-model="filterArray[1].value" class="md-primary">
+                                <md-radio-button ng-value="'hidden'"
+                                                 ng-disabled="!filterArray[1].filter"
+                                                 style="float:left; margin:16px;">
+                                    חסר
+                                </md-radio-button>
+                                <md-radio-button ng-value="'checked'"
+                                                 ng-disabled="!filterArray[1].filter"
+                                                 style="float:left; margin:16px;">
+                                    תקין
+                                </md-radio-button>
+                                <md-radio-button ng-value="'unchecked'"
+                                                 ng-disabled="!filterArray[1].filter"
+                                                 style="float:left; margin:16px;">
+                                    לא תקין
+                                </md-radio-button>
+                            </md-radio-group>
+                        </div>
+
                     </td>
                 </tr>
             </table>
-
         </md-dialog-content>
 
         <md-dialog-actions layout="row">            
             <span flex></span>
             <md-button ng-click="answer('done')" style="margin-right:20px;">
-                סגור
+                OK
             </md-button>
         </md-dialog-actions>
     </form>
