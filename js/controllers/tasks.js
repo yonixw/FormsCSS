@@ -231,6 +231,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
         { filter: false, name: 'favor', value: true },
         { filter: false, name: 'statecss', value: 'hidden' },
         { filter: false, name: 'notes' }, // Filter if have notes... not if doesnt
+        { filter: false, name: 'content', value: '' },
     ];
 
     // Filter tasks based on options:
@@ -337,9 +338,62 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
             ]
         },
 
+         {
+             catid: 1,
+             catname: 'מפקום-דלת',
+             tasks: [
+                  {
+                      taskID: 60,
+                      favor: false,
+                      description: '<b>Hello</b>',
+                      tristate: {
+                          css: 'checked',
+                          text: ''
+                      },
+                      notes: [
+                          {
+                              noteID: 0,
+                              noteOwner: 'מקשחר',
+                              noteText: 'הכל סבבה'
+                          },
+                          {
+                              noteID: 1,
+                              noteOwner: '2מקשחר',
+                              noteText: 'הכל סבבה2'
+                          },
+                      ]
+                  },
+                 {
+                     taskID: 61,
+                     favor: false,
+                     description: '<b>Hello From the <u>pther</u> side</b>',
+                     tristate: {
+                         css: 'hidden',
+                         text: 'מצב'
+                     },
+                     notes: [
+                         {
+                             noteID: 2,
+                             noteOwner: 'מקש222חר',
+                             noteText: 'הכל סב<u>sss</u>בה'
+                         },
+                     ]
+                 },
+                 {
+                     taskID: 610,
+                     favor: false,
+                     description: 'Hello From the <u>pther</u><br /> side',
+                     tristate: {
+                         css: 'hidden',
+                         text: 'מצב'
+                     },
+                 },
+             ]
+         },
+
 
         {
-            catid: 1,
+            catid: 2,
             catname: 'קטגוריה שניה',
             tasks: [
                 {
@@ -473,6 +527,8 @@ app.filter('taskfilter', function () {
                     case 'notes':
                         result = result && (task.notes && task.notes.length > 0);
                         break;
+                    case 'content':
+                        result = result && (task.description.indexOf(filter.value) > -1);
                 }
             }
 

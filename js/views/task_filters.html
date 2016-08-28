@@ -18,6 +18,23 @@
                     <td>
 
                         <div>
+                            <md-checkbox ng-model="filterArray[3].filter"
+                                         class="md-primary" style="margin: 16px; float:right">
+                                מכיל טקסט:
+                            </md-checkbox>
+
+                            <md-input-container md-no-float  ng-disabled="!filterArray[3].filter">
+                                <input ng-model="filterArray[3].value" placeholder="טקסט לחיפוש">
+                            </md-input-container>
+                            
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <div>
                             <md-checkbox ng-model="filterArray[0].filter"
                                          class="md-primary" style="margin: 16px; float:right">
                                 מועדפים:

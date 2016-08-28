@@ -8,7 +8,7 @@
 
             <table style="width:100%;" class="cat-table">
                 <tr>
-                    <td>
+                    <td width="100%">
                         <!-- Bread-crums menu-->
                         <ul id="breadcrumbs-four">
                             <li><a ng-click="goCat(0)">מפקום</a></li>
@@ -18,8 +18,9 @@
                         </ul>
                     </td>
                     <td>
-                        <md-button ng-click="filterDialog();" style="margin-right:20px;">
-                            סנן
+                        <md-button class="md-primary md-raised" ng-click="filterDialog();" 
+                                   style="float: left; vertical-align:middle; font-size: 3em;">
+                            <i class="material-icons" style="font-size: 1.0em">&#xE8B6;</i>
                         </md-button>
                     </td>
                     <td>
@@ -131,16 +132,17 @@
 
                 <section ng-repeat="cat in taskArray">
                     
-
+                    <a id="subheader-{{cat.catid}}"> </a>
                     <div ng-repeat="task in cat.tasks | taskfilter:filters ">
                          <div ng-if="$first">
-                             <a id="subheader-{{cat.catid}}"> </a>
+                             
                              <md-subheader class="md-primary">
                                  <input type="hidden" name="catid" value="{{cat.catid}}" />
                                  <div id="navigate">
 
+                                     
 
-                                     <div style="float:left" ng-click="goCat(cat.catid+1);">
+                                     <div ng-hide="$parent.$parent.$last" style="float:left" ng-click="goCat(cat.catid+1);">
                                          <div id="chunky-buttons">
                                              <div class="chunky chunky12">
                                                  <a>
@@ -150,7 +152,9 @@
                                          </div>
                                      </div>
 
-                                     <div style="float:left;" ng-click="goCat(cat.catid-1);">
+                                     
+
+                                     <div ng-hide="$parent.$parent.$first" style="float:left;" ng-click="goCat(cat.catid-1);">
                                          <div id="chunky-buttons">
                                              <div class="chunky chunky12">
                                                  <a>
@@ -160,10 +164,21 @@
                                          </div>
                                      </div>
 
+                                     <div  style="float:left" ng-click="goCat(cat.catid);">
+                                         <div id="chunky-buttons">
+                                             <div class="chunky chunky12">
+                                                 <a>
+                                                     <i class="material-icons">&#xE5D8;</i>
+                                                 </a>
+                                             </div>
+                                         </div>
+                                     </div>
+
                                  </div>
 
-                                 {{cat.catname}}
-
+                                 <span>
+                                     {{cat.catname}}
+                                 </span>
                                  
                              </md-subheader>
                          </div>
