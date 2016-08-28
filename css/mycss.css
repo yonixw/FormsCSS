@@ -118,6 +118,7 @@ body {
     .md-subheader {
         font-size: 1.5em;
         border-bottom: 3px double blue;
+        text-align: center;
     }
 
     md-dialog {

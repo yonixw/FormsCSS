@@ -2,11 +2,8 @@
 [v] Maybe use Angular for automating things....
 
 [V] Add and change notes with dialog
-[ ] WYSIWYG for note text
-[ ] Tasks hierarchy.
-	[?] ng-repeat inside ng-repeat?
-	 *	Total order instead of hier?
-	[V] array of categories contain array of tasks contain array of notes
+[X] WYSIWYG for note text
+	---> Only for editor of tasks, not in my scope, all notes are simple text
 [X] Favorite filter (buttons for each task + one at top?)
 	[X] ng-if for each task and ng-if for each categorie how much favor under it.
 			variable or method that count?
@@ -14,11 +11,16 @@
 	- Favor
 	- Has notes
 	- State (unchecked, ok, bad)
-	[ ] Hide categories
+	[V] Hide categories
+
+
+[V] Download ICON folder for angular material
 
 [ ] Side menu (with $scope --> angular material)
-[ ] Download ICON folder for angular material
-
+[ ] Tasks hierarchy.
+	[?] ng-repeat inside ng-repeat?
+	 *	Total order instead of hier?
+	[V] array of categories contain array of tasks contain array of notes
 
 
 sideways swipe:  http://stereobit.github.io/dragend/
