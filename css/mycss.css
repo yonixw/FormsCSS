@@ -153,3 +153,11 @@ body {
     display: block !important;
     visibility: hidden;
 }
+
+md-sidenav, 
+md-sidenav.md-locked-open, 
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 200px !important;
+    width: 85vw !important;
+    max-width: 400px !important;
+} 

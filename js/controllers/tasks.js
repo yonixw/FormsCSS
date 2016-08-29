@@ -26,7 +26,7 @@ app.controller('task-filter-dialog', function ($scope, $mdDialog, $mdMedia, filt
     }
 });
 
-app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) {
+app.controller('tasks', function ($scope, $mdDialog, $mdMedia, $anchorScroll, $mdSidenav, $log) {
 
     /**************************************
             Create and destroy dialog boxes
@@ -210,7 +210,16 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
         }, 1000);
     }
 
-
+    /**************************************
+           RIGHT MENU
+   ***************************************/
+    $scope.openSideMenu = function () {
+        $mdSidenav('rightmenu')
+              .toggle()
+              .then(function () {
+                  $log.debug("toggle right is done");
+              });
+    }
 
     /**************************************
            TASK ARRAY
@@ -218,8 +227,10 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
 
     function _getTaskByID(id) {
         for (var i = 0; i < $scope.taskArray.length; i++) {
-            if ($scope.taskArray[i].taskID == id)
-                return $scope.taskArray[i];
+            for (var j = 0; j < $scope.taskArray[i].tasks.length ; j++) {
+                if ($scope.taskArray[i].tasks[j].taskID == id)
+                    return $scope.taskArray[i].tasks[j];
+            }
         }
 
         // If we got here, no id is present:
@@ -227,11 +238,22 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia , $anchorScroll ) 
         return null;
     }
 
+    // Get count of finished taks in a category object; return int.
+    $scope.getTasksWithStateCount = function (cat) {
+        var i=0;
+        for (var j = 0; j < cat.tasks.length ; j++) {
+            if (cat.tasks[j].tristate.css != 'hidden')
+                i++;
+        }
+
+        return i;
+    }
+
     $scope.filters = [
         { filter: false, name: 'favor', value: true },
         { filter: false, name: 'statecss', value: 'hidden' },
         { filter: false, name: 'notes' }, // Filter if have notes... not if doesnt
-        { filter: false, name: 'content', value: '' },
+        { filter: false, name: 'content', value: '' }, // search for text inside task description
     ];
 
     // Filter tasks based on options:
@@ -546,4 +568,14 @@ app.filter('taskfilter', function () {
         }
         return filteredArray;
     }
+});
+
+app.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+    $scope.close = function () {
+        // Component lookup should always be available since we are not using `ng-if`
+        $mdSidenav('right').close()
+          .then(function () {
+              $log.debug("close RIGHT is done");
+          });
+    };
 });

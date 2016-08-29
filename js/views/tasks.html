@@ -26,7 +26,8 @@
                     <td>
                         <!-- htx rot htla htra -->
                         <button class="c-hamburger c-hamburger--htx"
-                                style="transform: scale(0.5); z-index: 20; float: left;">
+                                style="transform: scale(0.5); z-index: 20; float: left;"
+                                ng-click="openSideMenu();">
                             <span>toggle menu</span>
                         </button>
                     </td>
@@ -40,20 +41,20 @@
 
                 "use strict";
 
-                var toggles = document.querySelectorAll(".c-hamburger");
-
-                for (var i = toggles.length - 1; i >= 0; i--) {
-                    var toggle = toggles[i];
-                    toggleHandler(toggle);
-                };
-
-                function toggleHandler(toggle) {
-                    toggle.addEventListener("click", function (e) {
-                        e.preventDefault();
-                        (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
-                        $('nav').toggleClass('active');
-                    });
-                }
+                //var toggles = document.querySelectorAll(".c-hamburger");
+                //
+                //for (var i = toggles.length - 1; i >= 0; i--) {
+                //    var toggle = toggles[i];
+                //    toggleHandler(toggle);
+                //};
+                //
+                //function toggleHandler(toggle) {
+                //    toggle.addEventListener("click", function (e) {
+                //        e.preventDefault();
+                //        (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
+                //        $('nav').toggleClass('active');
+                //    });
+                //}
 
             })();
             </script>
@@ -168,7 +169,7 @@
                                          <div id="chunky-buttons">
                                              <div class="chunky chunky12">
                                                  <a>
-                                                     <i class="material-icons">&#xE5D8;</i>
+                                                     <i class="material-icons">&#xE255;</i>
                                                  </a>
                                              </div>
                                          </div>
@@ -177,7 +178,7 @@
                                  </div>
 
                                  <span>
-                                     {{cat.catname}}
+                                     {{cat.catname}} ({{getTasksWithStateCount(cat)}}/{{cat.tasks.length}})
                                  </span>
                                  
                              </md-subheader>
@@ -234,7 +235,24 @@
     </div>
    
 
-    <!-- Dialogs -->
+    <!-- Dialogs and menus -->
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="rightmenu">
+        <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">Sidenav Right</h1>
+        </md-toolbar>
+        <md-content ng-controller="RightCtrl" layout-padding>
+            <form>
+                <md-input-container>
+                    <label for="testInput">Test input</label>
+                    <input type="text" id="testInput"
+                           ng-model="data" md-autofocus>
+                </md-input-container>
+            </form>
+            <md-button ng-click="close()" class="md-primary">
+                Close Sidenav Right
+            </md-button>
+        </md-content>
+    </md-sidenav>
 
     <div>
         <div id="sig-dialog" class="hidden ui-dialog" title="אנא הכנס חתימה">
