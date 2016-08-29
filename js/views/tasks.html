@@ -11,11 +11,16 @@
                     <td width="100%">
                         <!-- Bread-crums menu-->
                         <ul id="breadcrumbs-four">
-                            <li><a ng-click="goCat(0)">מפקום</a></li>
-                            <li><a ng-click="goCat(1)">מפקו22ם</a></li>
-                            <li><a href="">מפקום</a></li>
-                            <li class="selected"><a href="">כללי</a></li>
+                            <li ng-repeat="bread in breads" ng-class="$last?'selected':''">
+                                <a ng-click="goCat(bread.catid);">{{bread.catname}}</a>
+                            </li>
                         </ul>
+                    </td>
+                    <td>
+                        <md-button class="md-primary md-raised" ng-click="toggleFavs();"
+                                   style="float: left; vertical-align:middle; font-size: 3em;">
+                            <i class="material-icons" style="font-size: 1.0em; color:yellow">{{favIcon}}</i>
+                        </md-button>
                     </td>
                     <td>
                         <md-button class="md-primary md-raised" ng-click="filterDialog();" 
@@ -127,23 +132,23 @@
 
             
             <md-content id="tab-content" class="prot"
-                 style="width:100%; height: 70vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;"
+                 style="width:100%; height: 76vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;"
                   >
 
 
                 <section ng-repeat="cat in taskArray">
                     
                     <a id="subheader-{{cat.catid}}"> </a>
-                    <div ng-repeat="task in cat.tasks | taskfilter:filters ">
+                    <div ng-repeat="task in (filteredTasks = ( cat.tasks | taskfilter:filters ))">
                          <div ng-if="$first">
                              
                              <md-subheader class="md-primary">
-                                 <input type="hidden" name="catid" value="{{cat.catid}}" />
+                                 <input type="hidden" id="catid" value="{{cat.catid}}" />
                                  <div id="navigate">
 
                                      
 
-                                     <div ng-hide="$parent.$parent.$last" style="float:left" ng-click="goCat(cat.catid+1);">
+                                     <div ng-hide="$parent.$parent.$last" style="float:left" ng-click="goCat(taskArray[$parent.$parent.$index+1].catid);">
                                          <div id="chunky-buttons">
                                              <div class="chunky chunky12">
                                                  <a>
@@ -153,9 +158,8 @@
                                          </div>
                                      </div>
 
-                                     
 
-                                     <div ng-hide="$parent.$parent.$first" style="float:left;" ng-click="goCat(cat.catid-1);">
+                                     <div ng-hide="$parent.$parent.$first" style="float:left;" ng-click="goCat(taskArray[$parent.$parent.$index-1].catid);">
                                          <div id="chunky-buttons">
                                              <div class="chunky chunky12">
                                                  <a>
@@ -216,7 +220,7 @@
                                     </div>
 
 
-                                    <div class="task-text">
+                                    <div class="task-text" ng-click="breadCrumbs(task);">
                                         <div ng-bind-html="task.description | trusthtml"></div>
                                     </div>
                                 </td>
@@ -238,22 +242,24 @@
     <!-- Dialogs and menus -->
     <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="rightmenu">
         <md-toolbar class="md-theme-light">
-            <h2 class="md-toolbar-tools">נווט בקטגוריות</h2>
+            <h2 class="md-toolbar-tools" >נווט בקטגוריות</h2>
         </md-toolbar>
         <md-content ng-controller="RightCtrl" layout-padding>
 
             <script type="text/ng-template" id="field_renderer.html">
                 <span ng-click="goCat(cat.catid);">{{cat.catname}}</span>
                 <ul ng-if="cat.cats">
-                    <li ng-repeat="cat in cat.cats"
+                    <li ng-repeat="cat in cat.cats" 
                         ng-include="'field_renderer.html'">
                     </li>
                 </ul>
             </script>
 
-            <ul>
-                <li ng-repeat="cat in catTree" ng-include="'field_renderer.html'"></li>
-            </ul>
+            
+                <ul style="font-size:3em">
+                    <li ng-repeat="cat in catTree" ng-include="'field_renderer.html'"></li>
+                </ul>
+            
 
         </md-content>
     </md-sidenav>

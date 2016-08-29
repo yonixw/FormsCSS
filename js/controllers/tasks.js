@@ -13,11 +13,11 @@ function scrollToCat(id) {
 }
 
 
-app.factory('taskService', function() {
+app.factory('taskService', function () {
     var _taskArray = [
         {
             catid: 0,
-            catname: 'מפקום-דלת',
+            catname: 'א. מפקום-דלת',
             tasks: [
                  {
                      taskID: 0,
@@ -70,7 +70,7 @@ app.factory('taskService', function() {
 
          {
              catid: 1,
-             catname: 'מפקום-דלת',
+             catname: 'ב. מפקום-דלת',
              tasks: [
                   {
                       taskID: 60,
@@ -124,9 +124,24 @@ app.factory('taskService', function() {
 
         {
             catid: 2,
-            catname: 'קטגוריה שניה',
+            catname: 'ג. קטגוריה שניה',
             cats: [
-                
+                {
+                    catid: 100,
+                    catname: '1. תת קטגוריה',
+                    tasks: [
+                        {
+                            taskID: 99,
+                            favor: true,
+                            description: 'Helllo from under',
+                            tristate: {
+                                css: 'hidden',
+                                text: 'מצב',
+                            },
+                        },
+                    ]
+
+                }
             ],
             tasks: [
                 {
@@ -241,8 +256,9 @@ app.factory('taskService', function() {
         }
     ];
 
+    // Create linaear and recursive from input:
     function recCat(origincat, targetcat) {
-        
+
         //console.log('Now cat:' + origincat.catid);
         if (origincat.tasks) {
             for (var i = 0; i < (origincat.tasks.length) ; i++) {
@@ -251,10 +267,10 @@ app.factory('taskService', function() {
             }
         }
 
-       
+
 
         if (origincat.cats) {
-            for (var j = 0; j < ( origincat.cats.length) ; j++) {
+            for (var j = 0; j < (origincat.cats.length) ; j++) {
                 subcat = origincat.cats[j];
                 var newObjSubCat = addCat(subcat.catid, subcat.catname, targetcat);
 
@@ -326,11 +342,19 @@ app.factory('taskService', function() {
     init();
 
     return { catLinearArray: _catLinearArray, catObjectArray: _catObjectArray };
-   
+
 });
 
-app.controller('noteDialog', function ($scope, $mdDialog, $mdMedia,  selectedTask) {
+app.controller('noteDialog', function ($scope, $mdDialog, $mdMedia, selectedTask) {
     $scope.selectedTask = selectedTask;
+
+    $scope.getFavIcon = function () {
+        return selectedTask.favor ? 'star' : 'star_border';
+    }
+
+    $scope.toggleFavs = function () {
+        $scope.selectedTask.favor = !$scope.selectedTask.favor;
+    }
 
     $scope.answer = function (answer) {
         $mdDialog.hide(answer);
@@ -366,6 +390,28 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
 
     /**************************************
+            Scrollign and breadcrumbs
+    ***************************************/
+    //$scope.i = 5;
+    //$('#tab-content')[0].onscroll = function () {
+    //    var catelem = $("#catid", $("*[sticky-state='active']")[0]);
+    //    if (catelem) {
+    //        console.log(catelem.val());
+    //    }
+    //}
+
+    $scope.breads = [];
+
+    $scope.breadCrumbs = function (task) {
+        cat = task.taskparent;
+        $scope.breads = [cat];
+        while (cat.catparent) {
+            cat = cat.catparent;
+            $scope.breads.push(cat);
+        }
+    }
+
+    /**************************************
             TRI STATE CHECKBOX
     ***************************************/
 
@@ -399,9 +445,9 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     /**************************************
            NOTES
    ***************************************/
-   
-    $scope.selectedTask = {taskID: -1, notes: [] }; // The task of the notes.
- 
+
+    $scope.selectedTask = { taskID: -1, notes: [] }; // The task of the notes.
+
     // Set dialog values:
     function _setNoteDialog(taskID, noteID, owner, text) {
         $("#input_note_taskid").val(taskID);
@@ -420,21 +466,21 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         };
     }
 
-    function _getNoteByID(task,noteid) {
+    function _getNoteByID(task, noteid) {
         for (var i = 0; i < task.notes.length; i++) {
             if (task.notes[i].noteID == noteid)
                 return task.notes[i];
         }
 
         // If we got here, no id is present:
-        console.log("tasks::_getNoteByID(task,noteid) cant find note with id:" + noteid );
+        console.log("tasks::_getNoteByID(task,noteid) cant find note with id:" + noteid);
         return null;
     }
 
     // Show notes list for specific task:
     $scope.ShowNotes = function (taskID, event) {
         t = _getTaskByID(taskID);
-        $scope.selectedTask = t;  
+        $scope.selectedTask = t;
 
         $mdDialog.show({
             controller: 'noteDialog',
@@ -456,7 +502,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             //cancel
         });
 
-       
+
     }
 
     // Add note to task:
@@ -489,8 +535,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         var task = _getTaskByID(note.taskid);
         if (!task) return;
 
-        if (note.noteid == -1)
-        {
+        if (note.noteid == -1) {
             // Check if no notes
             if (task.notes) {
                 task.notes.push({
@@ -506,10 +551,9 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
                     noteText: note.text
                 }];
             }
-            
+
         }
-        else
-        {
+        else {
             var noteObj = _getNoteByID(task, note.noteid);
             if (!noteObj) return;
 
@@ -522,7 +566,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
           Category Array
   ***************************************/
 
-    
+
 
     $scope.goCat = function (id) {
         scrollToCat(id);
@@ -558,7 +602,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
     // Get count of finished taks in a category object; return int.
     $scope.getTasksWithStateCount = function (cat) {
-        var i=0;
+        var i = 0;
         for (var j = 0; j < cat.tasks.length ; j++) {
             if (cat.tasks[j].tristate.css != 'hidden')
                 i++;
@@ -566,6 +610,13 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
         return i;
     }
+
+    $scope.taskArray = taskService.catLinearArray;
+
+    /**************************************
+          Filters
+  ***************************************/
+
 
     $scope.filters = [
         { filter: false, name: 'favor', value: true },
@@ -600,7 +651,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     }
 
     $scope.filterDialog = function () {
-       
+
         $mdDialog.show({
             controller: 'task-filter-dialog',
             locals: {
@@ -624,12 +675,25 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
     }
 
-    $scope.taskArray = taskService.catLinearArray;
+    $scope.favIcon = 'star_border';
+    $scope.toggleFavs = function () {
+        if ($scope.favIcon == 'star') { // no filter
+            $scope.favIcon = 'star_border';
+            $scope.filters[0].filter = false;
+            $scope.filters[0].value = false;
+        }
+        else
+        {
+            $scope.favIcon = 'star';
+            $scope.filters[0].filter = true;
+            $scope.filters[0].value = true;
+        }
+    }
 });
 
 app.filter('taskfilter', function () {
 
-    var filterTask = function (task,filters) {
+    var filterTask = function (task, filters) {
         var result = true;
         for (var i = 0; i < filters.length; i++) {
             var filter = filters[i];
@@ -658,7 +722,7 @@ app.filter('taskfilter', function () {
     return function (items, filters) {
         var filteredArray = [];
         for (var i = 0; i < items.length; i++) {
-            if (filterTask(items[i],filters)) {
+            if (filterTask(items[i], filters)) {
                 filteredArray.push(items[i]);
             }
         }
@@ -679,7 +743,7 @@ app.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log, taskSe
         // Component lookup should always be available since we are not using `ng-if`
         $mdSidenav('rightmenu').close()
           .then(function () {
-             // $log.debug("close RIGHT is done");
+              // $log.debug("close RIGHT is done");
           });
     };
 });

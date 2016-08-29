@@ -4,30 +4,23 @@
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Mango (Fruit)</h2>
+                <h2>מאפייני מטלה</h2>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
-                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                <md-button class="md-primary md-raised" ng-click="toggleFavs();"
+                           style="float: left; font-size: 2em;vertical-align:bottom;">
+                    <i class="material-icons" style="font-size: 1.0em; color:yellow">{{getFavIcon();}}</i>
                 </md-button>
             </div>
         </md-toolbar>
         <md-dialog-content>
            
-            <div id="notes-dialog">
-                הוסף: <input type="text" id="input_newNote" />
-
-                <div ng-click="AddNote(selectedTask.taskID);"
-                     id="chunky-buttons" style="float:left; border-radius: 10px;">
-                    <div class="chunky chunky26">
-                        <a>+</a>
-                    </div>
-                </div><br />
+            <div id="notes-dialog" style="width: 75vw;">
+               
 
                 <ul>
                     <li class="tasknote" ng-repeat="note in selectedTask.notes">
-                        <h3 style="display: inline;">{{note.noteOwner}}:</h3>
-                        <span class="note-text" ng-bind-html="note.noteText | trusthtml"></span>
-                        <span ng-click="editNote(selectedTask.taskID,note.noteID);" class="editnote">ערוך</span>
+                        <h4 style="display: inline;">{{note.noteOwner}}:</h4>
+                        <input ng-model="note.noteText" />
                     </li>
                 </ul>
 
@@ -35,15 +28,8 @@
 
         </md-dialog-content>
         <md-dialog-actions layout="row">
-            <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
-                More on Wikipedia
-            </md-button>
-            <span flex></span>
-            <md-button ng-click="answer('not useful')">
-                Not Useful
-            </md-button>
-            <md-button ng-click="answer('useful')" style="margin-right:20px;">
-                Useful
+            <md-button ng-click="answer('close')" style="margin-right:20px;">
+                OK
             </md-button>
         </md-dialog-actions>
     </form>
