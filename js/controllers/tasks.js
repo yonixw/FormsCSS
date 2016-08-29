@@ -1,4 +1,334 @@
 ﻿
+function scrollToCat(id) {
+    // based on SO? 25316780
+
+    var element = $("#tab-content"); // The context element of scrolling
+    //$("#subheader-" + id.toString(), $(element)) ===> our anchor 
+
+    //pos -1 because we dont wnat floating header when scrolling.
+    var pos = $("#subheader-" + id.toString(), $(element)).position().top + $(element).scrollTop() - 1;
+    $(element).animate({
+        scrollTop: pos
+    }, 1000);
+}
+
+
+app.factory('taskService', function() {
+    var _taskArray = [
+        {
+            catid: 0,
+            catname: 'מפקום-דלת',
+            tasks: [
+                 {
+                     taskID: 0,
+                     favor: false,
+                     description: '<b>Hello</b>',
+                     tristate: {
+                         css: 'checked',
+                         text: ''
+                     },
+                     notes: [
+                         {
+                             noteID: 0,
+                             noteOwner: 'מקשחר',
+                             noteText: 'הכל סבבה'
+                         },
+                         {
+                             noteID: 1,
+                             noteOwner: '2מקשחר',
+                             noteText: 'הכל סבבה2'
+                         },
+                     ]
+                 },
+                {
+                    taskID: 1,
+                    favor: false,
+                    description: '<b>Hello From the <u>pther</u> side</b>',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                    notes: [
+                        {
+                            noteID: 2,
+                            noteOwner: 'מקש222חר',
+                            noteText: 'הכל סב<u>sss</u>בה'
+                        },
+                    ]
+                },
+                {
+                    taskID: 10,
+                    favor: false,
+                    description: 'Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                },
+            ]
+        },
+
+         {
+             catid: 1,
+             catname: 'מפקום-דלת',
+             tasks: [
+                  {
+                      taskID: 60,
+                      favor: false,
+                      description: '<b>Hello</b>',
+                      tristate: {
+                          css: 'checked',
+                          text: ''
+                      },
+                      notes: [
+                          {
+                              noteID: 0,
+                              noteOwner: 'מקשחר',
+                              noteText: 'הכל סבבה'
+                          },
+                          {
+                              noteID: 1,
+                              noteOwner: '2מקשחר',
+                              noteText: 'הכל סבבה2'
+                          },
+                      ]
+                  },
+                 {
+                     taskID: 61,
+                     favor: false,
+                     description: '<b>Hello From the <u>pther</u> side</b>',
+                     tristate: {
+                         css: 'hidden',
+                         text: 'מצב'
+                     },
+                     notes: [
+                         {
+                             noteID: 2,
+                             noteOwner: 'מקש222חר',
+                             noteText: 'הכל סב<u>sss</u>בה'
+                         },
+                     ]
+                 },
+                 {
+                     taskID: 610,
+                     favor: false,
+                     description: 'Hello From the <u>pther</u><br /> side',
+                     tristate: {
+                         css: 'hidden',
+                         text: 'מצב'
+                     },
+                 },
+             ]
+         },
+
+
+        {
+            catid: 2,
+            catname: 'קטגוריה שניה',
+            cats: [
+                
+            ],
+            tasks: [
+                {
+                    taskID: 100,
+                    favor: false,
+                    description: 'Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                },
+                {
+                    taskID: 101,
+                    favor: false,
+                    description: 'Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                },
+                {
+                    taskID: 102,
+                    favor: true,
+                    description: 'FAVOR Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                },
+                 {
+                     taskID: 103,
+                     favor: false,
+                     description: 'Hello From the <u>pther</u><br /> side',
+                     tristate: {
+                         css: 'hidden',
+                         text: 'מצב'
+                     },
+                 },
+                  {
+                      taskID: 104,
+                      favor: false,
+                      description: 'Hello From the <u>pther</u><br /> side',
+                      tristate: {
+                          css: 'hidden',
+                          text: 'מצב'
+                      },
+                  },
+                   {
+                       taskID: 105,
+                       favor: false,
+                       description: 'Hello From the <u>pther</u><br /> side',
+                       tristate: {
+                           css: 'hidden',
+                           text: 'מצב'
+                       },
+                   },
+                    {
+                        taskID: 106,
+                        favor: false,
+                        description: 'Hello From the <u>pther</u><br /> side',
+                        tristate: {
+                            css: 'hidden',
+                            text: 'מצב'
+                        },
+                    },
+                     {
+                         taskID: 107,
+                         favor: false,
+                         description: 'Hello From the <u>pther</u><br /> side',
+                         tristate: {
+                             css: 'hidden',
+                             text: 'מצב'
+                         },
+                     },
+                      {
+                          taskID: 108,
+                          favor: false,
+                          description: 'Hello From the <u>pther</u><br /> side',
+                          tristate: {
+                              css: 'hidden',
+                              text: 'מצב'
+                          },
+                      },
+                       {
+                           taskID: 109,
+                           favor: false,
+                           description: 'Hello From the <u>pther</u><br /> side',
+                           tristate: {
+                               css: 'hidden',
+                               text: 'מצב'
+                           },
+                       },
+                        {
+                            taskID: 120,
+                            favor: false,
+                            description: 'Hello From the <u>pther</u><br /> side',
+                            tristate: {
+                                css: 'hidden',
+                                text: 'מצב'
+                            },
+                        },
+                         {
+                             taskID: 132,
+                             favor: false,
+                             description: 'Hello From the <u>pther</u><br /> side',
+                             tristate: {
+                                 css: 'hidden',
+                                 text: 'מצב'
+                             },
+                         },
+            ]
+        }
+    ];
+
+    function recCat(origincat, targetcat) {
+        
+        //console.log('Now cat:' + origincat.catid);
+        if (origincat.tasks) {
+            for (var i = 0; i < (origincat.tasks.length) ; i++) {
+                task = origincat.tasks[i];
+                addTask(task.taskID, task.favor, task.description, task.tristate.css, task.tristate.text, task.notes, targetcat);
+            }
+        }
+
+       
+
+        if (origincat.cats) {
+            for (var j = 0; j < ( origincat.cats.length) ; j++) {
+                subcat = origincat.cats[j];
+                var newObjSubCat = addCat(subcat.catid, subcat.catname, targetcat);
+
+                // Recursive:
+                recCat(subcat, newObjSubCat);
+            }
+        }
+    }
+
+    function init() {
+        for (var i = 0; i < _taskArray.length; i++) {
+            cat = _taskArray[i];
+            var neCatObj = addCat(cat.catid, cat.catname, null);
+            recCat(cat, neCatObj);
+        }
+
+        console.log('done init');
+    }
+
+    var _catLinearArray = [];
+    var _catObjectArray = [];
+
+
+    // return cat object
+    function addCat(id, name, parent) {
+        var catObj = { catid: id, catname: name, catparent: parent, cats: [], tasks: [] };
+
+        // Add to parent or root
+        if (parent) {
+            parent.cats.push(catObj);
+        }
+        else {
+            if (_catObjectArray) {
+                _catObjectArray.push(catObj);
+            } else {
+                _catObjectArray = [catObj];
+            }
+        }
+
+        // anyway add to linear array:
+        if (_catLinearArray) {
+            _catLinearArray.push(catObj);
+        } else {
+            _catLinearArray = [catObj];
+        }
+
+        return catObj;
+    }
+
+    // return void
+    function addTask(id, favor, desc, css, csstext, notes, parent) {
+        var taskObj = {
+            taskID: id,
+            favor: favor,
+            description: desc,
+            tristate: {
+                css: css,
+                text: csstext,
+            },
+            taskparent: parent,
+            notes: notes,
+        };
+
+        parent.tasks.push(taskObj);
+
+        return taskObj;
+    }
+
+    init();
+
+    return { catLinearArray: _catLinearArray, catObjectArray: _catObjectArray };
+   
+});
+
 app.controller('noteDialog', function ($scope, $mdDialog, $mdMedia,  selectedTask) {
     $scope.selectedTask = selectedTask;
 
@@ -18,15 +348,10 @@ app.controller('task-filter-dialog', function ($scope, $mdDialog, $mdMedia, filt
         $mdDialog.cancel();
     };
 
-    $scope.textDesc = function(filtername, value) {
-        switch (filtername) {
-            case 'favor':
-                return (value) ? 'הצג מועדפים' : 'הצג רגילים';
-        }
-    }
 });
 
-app.controller('tasks', function ($scope, $mdDialog, $mdMedia, $anchorScroll, $mdSidenav, $log) {
+app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
+    $anchorScroll, $mdSidenav, $log, taskService) {
 
     /**************************************
             Create and destroy dialog boxes
@@ -197,17 +522,10 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia, $anchorScroll, $m
           Category Array
   ***************************************/
 
+    
+
     $scope.goCat = function (id) {
-        // based on SO? 25316780
-
-        var element = $("#tab-content"); // The context element of scrolling
-        //$("#subheader-" + id.toString(), $(element)) ===> our anchor 
-
-        //pos -1 because we dont wnat floating header when scrolling.
-        var pos = $("#subheader-" + id.toString(), $(element)).position().top + $(element).scrollTop() - 1;        
-        $(element).animate({
-            scrollTop: pos 
-        }, 1000);
+        scrollToCat(id);
     }
 
     /**************************************
@@ -217,7 +535,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia, $anchorScroll, $m
         $mdSidenav('rightmenu')
               .toggle()
               .then(function () {
-                  $log.debug("toggle right is done");
+                  //$log.debug("toggle right is done");
               });
     }
 
@@ -306,229 +624,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia, $anchorScroll, $m
 
     }
 
-    $scope.taskArray = [
-        {
-            catid: 0,
-            catname: 'מפקום-דלת',
-            tasks: [
-                 {
-                     taskID: 0,
-                     favor: false,
-                     description: '<b>Hello</b>',
-                     tristate: {
-                         css: 'checked',
-                         text: ''
-                     },
-                     notes: [
-                         {
-                             noteID: 0,
-                             noteOwner: 'מקשחר',
-                             noteText: 'הכל סבבה'
-                         },
-                         {
-                             noteID: 1,
-                             noteOwner: '2מקשחר',
-                             noteText: 'הכל סבבה2'
-                         },
-                     ]
-                 },
-                {
-                    taskID: 1,
-                    favor: false,
-                    description: '<b>Hello From the <u>pther</u> side</b>',
-                    tristate: {
-                        css: 'hidden',
-                        text: 'מצב'
-                    },
-                    notes: [
-                        {
-                            noteID: 2,
-                            noteOwner: 'מקש222חר',
-                            noteText: 'הכל סב<u>sss</u>בה'
-                        },
-                    ]
-                },
-                {
-                    taskID: 10,
-                    favor: false,
-                    description: 'Hello From the <u>pther</u><br /> side',
-                    tristate: {
-                        css: 'hidden',
-                        text: 'מצב'
-                    },
-                },
-            ]
-        },
-
-         {
-             catid: 1,
-             catname: 'מפקום-דלת',
-             tasks: [
-                  {
-                      taskID: 60,
-                      favor: false,
-                      description: '<b>Hello</b>',
-                      tristate: {
-                          css: 'checked',
-                          text: ''
-                      },
-                      notes: [
-                          {
-                              noteID: 0,
-                              noteOwner: 'מקשחר',
-                              noteText: 'הכל סבבה'
-                          },
-                          {
-                              noteID: 1,
-                              noteOwner: '2מקשחר',
-                              noteText: 'הכל סבבה2'
-                          },
-                      ]
-                  },
-                 {
-                     taskID: 61,
-                     favor: false,
-                     description: '<b>Hello From the <u>pther</u> side</b>',
-                     tristate: {
-                         css: 'hidden',
-                         text: 'מצב'
-                     },
-                     notes: [
-                         {
-                             noteID: 2,
-                             noteOwner: 'מקש222חר',
-                             noteText: 'הכל סב<u>sss</u>בה'
-                         },
-                     ]
-                 },
-                 {
-                     taskID: 610,
-                     favor: false,
-                     description: 'Hello From the <u>pther</u><br /> side',
-                     tristate: {
-                         css: 'hidden',
-                         text: 'מצב'
-                     },
-                 },
-             ]
-         },
-
-
-        {
-            catid: 2,
-            catname: 'קטגוריה שניה',
-            tasks: [
-                {
-                    taskID: 100,
-                    favor: false,
-                    description: 'Hello From the <u>pther</u><br /> side',
-                    tristate: {
-                        css: 'hidden',
-                        text: 'מצב'
-                    },
-                },
-                {
-                    taskID: 101,
-                    favor: false,
-                    description: 'Hello From the <u>pther</u><br /> side',
-                    tristate: {
-                        css: 'hidden',
-                        text: 'מצב'
-                    },
-                },
-                {
-                    taskID: 102,
-                    favor: true,
-                    description: 'FAVOR Hello From the <u>pther</u><br /> side',
-                    tristate: {
-                        css: 'hidden',
-                        text: 'מצב'
-                    },
-                },
-                 {
-                     taskID: 103,
-                     favor: false,
-                     description: 'Hello From the <u>pther</u><br /> side',
-                     tristate: {
-                         css: 'hidden',
-                         text: 'מצב'
-                     },
-                 },
-                  {
-                      taskID: 104,
-                      favor: false,
-                      description: 'Hello From the <u>pther</u><br /> side',
-                      tristate: {
-                          css: 'hidden',
-                          text: 'מצב'
-                      },
-                  },
-                   {
-                       taskID: 105,
-                       favor: false,
-                       description: 'Hello From the <u>pther</u><br /> side',
-                       tristate: {
-                           css: 'hidden',
-                           text: 'מצב'
-                       },
-                   },
-                    {
-                        taskID: 106,
-                        favor: false,
-                        description: 'Hello From the <u>pther</u><br /> side',
-                        tristate: {
-                            css: 'hidden',
-                            text: 'מצב'
-                        },
-                    },
-                     {
-                         taskID: 107,
-                         favor: false,
-                         description: 'Hello From the <u>pther</u><br /> side',
-                         tristate: {
-                             css: 'hidden',
-                             text: 'מצב'
-                         },
-                     },
-                      {
-                          taskID: 108,
-                          favor: false,
-                          description: 'Hello From the <u>pther</u><br /> side',
-                          tristate: {
-                              css: 'hidden',
-                              text: 'מצב'
-                          },
-                      },
-                       {
-                           taskID: 109,
-                           favor: false,
-                           description: 'Hello From the <u>pther</u><br /> side',
-                           tristate: {
-                               css: 'hidden',
-                               text: 'מצב'
-                           },
-                       },
-                        {
-                            taskID: 120,
-                            favor: false,
-                            description: 'Hello From the <u>pther</u><br /> side',
-                            tristate: {
-                                css: 'hidden',
-                                text: 'מצב'
-                            },
-                        },
-                         {
-                             taskID: 132,
-                             favor: false,
-                             description: 'Hello From the <u>pther</u><br /> side',
-                             tristate: {
-                                 css: 'hidden',
-                                 text: 'מצב'
-                             },
-                         },
-            ]
-        }
-    ];
+    $scope.taskArray = taskService.catLinearArray;
 });
 
 app.filter('taskfilter', function () {
@@ -570,12 +666,20 @@ app.filter('taskfilter', function () {
     }
 });
 
-app.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+app.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log, taskService) {
+
+    $scope.goCat = function (id) {
+        scrollToCat(id);
+        $scope.close();
+    }
+
+    $scope.catTree = taskService.catObjectArray;
+
     $scope.close = function () {
         // Component lookup should always be available since we are not using `ng-if`
-        $mdSidenav('right').close()
+        $mdSidenav('rightmenu').close()
           .then(function () {
-              $log.debug("close RIGHT is done");
+             // $log.debug("close RIGHT is done");
           });
     };
 });
