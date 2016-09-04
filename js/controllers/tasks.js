@@ -617,39 +617,53 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
           Filters
   ***************************************/
 
-
+    // Each filter get 
     $scope.filters = [
-        { filter: false, name: 'favor', value: true },
-        { filter: false, name: 'statecss', value: 'hidden' },
-        { filter: false, name: 'notes' }, // Filter if have notes... not if doesnt
-        { filter: false, name: 'content', value: '' }, // search for text inside task description
-    ];
-
-    // Filter tasks based on options:
-    $scope.filterTasks = function (task) {
-        var result = true;
-        for (var i = 0; i < $scope.filters.length; i++) {
-            var filter = $scope.filters[i];
-
-            if (filter.filter) {
-                switch (filter.name) {
-                    case 'favor':
-                        result = result && (task.favor == filter.value);
-                        break;
-                    case 'statecss':
-                        result = result && (task.tristate.css == filter.value);
-                        break;
-                    case 'notes':
-                        result = result && (task.notes && task.notes.length > 0);
-                        break;
-                }
+        /*groupFavor:*/
+        {
+            nonfavor: {
+                show: false, value: null, f: function (task, value)
+                { return ( task.favor == false); }
+            },
+            favor: {
+                show: false, value: null, f: function (task, value)
+                { return ( task.favor == true); }
             }
-
-            if (!result) break; // to exit function.
+        },
+        /*groupContent:*/
+        {
+            content: {
+                show: false, value: '', f: function (task, value)
+                { return (!value || task.description.indexOf(value) > -1); }
+                // empty of exist
+            }
+        },
+        /*groupNotes: */
+        {
+            notes: {
+                show: false, value: '', f: function (task, value)
+                { return (task.notes && task.notes.length > 0); }
+            }
+        },
+        /* State group*/
+        {
+            hidden : {
+                show: false, value: 'hidden', f: function (task, value)
+                { return (task.tristate.css == value); }
+            },
+            checked: {
+                show: false, value: 'checked', f: function (task, value)
+                { return (task.tristate.css == value); }
+            },
+            unchecked: {
+                show: false, value: 'unchecked', f: function (task, value)
+                { return (task.tristate.css == value); }
+            },
         }
-        return result;
-    }
 
+    ]
+
+ 
     $scope.filterDialog = function () {
 
         $mdDialog.show({
@@ -679,14 +693,12 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     $scope.toggleFavs = function () {
         if ($scope.favIcon == 'star') { // no filter
             $scope.favIcon = 'star_border';
-            $scope.filters[0].filter = false;
-            $scope.filters[0].value = false;
+            $scope.filters[0].favor.show = false;
         }
         else
         {
             $scope.favIcon = 'star';
-            $scope.filters[0].filter = true;
-            $scope.filters[0].value = true;
+            $scope.filters[0].favor.show = true;
         }
     }
 });
@@ -695,26 +707,24 @@ app.filter('taskfilter', function () {
 
     var filterTask = function (task, filters) {
         var result = true;
-        for (var i = 0; i < filters.length; i++) {
-            var filter = filters[i];
+        for (var g = 0; g < filters.length; g++) {
+            // For each group:
+            var currentFilterGroup = filters[g];
+            var groupResult = false;
+            var foundFilter = false;
 
-            if (filter.filter) {
-                switch (filter.name) {
-                    case 'favor':
-                        result = result && (task.favor == filter.value);
-                        break;
-                    case 'statecss':
-                        result = result && (task.tristate.css == filter.value);
-                        break;
-                    case 'notes':
-                        result = result && (task.notes && task.notes.length > 0);
-                        break;
-                    case 'content':
-                        result = result && (task.description.indexOf(filter.value) > -1);
+            for (key in currentFilterGroup) {
+                var currentFilter = currentFilterGroup[key];
+
+                // Each on the group is enough
+                if (currentFilter.show) {
+                    foundFilter = true;
+                    groupResult = groupResult || currentFilter.f(task, currentFilter.value);
                 }
-            }
+            };
 
-            if (!result) break; // to exit function.
+            // All group must requires be met.
+            result =  result && (groupResult || !foundFilter);
         }
         return result;
     }
