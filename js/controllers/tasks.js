@@ -394,17 +394,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         //$("#sig-dialog").dialog('destroy').remove()
     });
 
-    $scope.swipe = function () {
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            onSlideChangeEnd: function (swiper) {
-               // TODO: Change bread crumbs
-            }
-        });
-    }
+    
 
     /**************************************
             Scrollign and breadcrumbs
@@ -419,7 +409,9 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
     $scope.breads = [];
 
-    $scope.breadCrumbs = function (task) {
+    $scope.breadCrumbs = function (first, task) {
+        if (!first) return;
+
         cat = task.taskparent;
         $scope.breads = [cat];
         while (cat.catparent) {
@@ -630,7 +622,21 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
     $scope.taskArray = null; //taskService.catLinearArray;
 
+    $scope.swipe = function () {
+        $scope.swiperObj = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            onSlideChangeEnd: function (swiper) {
+                // TODO: Change bread crumbs
+            }
+        });
+    }
+
     $scope.selectCat = function (cat) {
+       
+
         $scope.taskArray = null;
 
         if (cat.tasks && cat.tasks.length > 0) {
@@ -651,7 +657,14 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             }
         }
 
+
+        $mdSidenav('rightmenu')
+             .toggle()
+             .then(function () {
+                 //$log.debug("toggle right is done");
+             });
         
+        $scope.swiperObj.activeIndex = 0;
     }
 
     /**************************************

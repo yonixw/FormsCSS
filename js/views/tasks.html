@@ -81,7 +81,7 @@
 
                             <a id="subheader-{{cat.catid}}"> </a>
                             <div ng-repeat="task in (filteredTasks = ( cat.tasks | taskfilter:filters ))">
-
+                                {{breadCrumbs($first,task);}}
                                 <table class="task">
                                     <tr class="task-content">
                                         <td colspan="2">
@@ -115,7 +115,7 @@
                                             </div>
 
 
-                                            <div class="task-text" ng-click="breadCrumbs(task);">
+                                            <div class="task-text" ng-click="breadCrumbs(true,task);">
                                                 <div ng-bind-html="task.description | trusthtml"></div>
                                             </div>
                                         </td>
