@@ -141,18 +141,20 @@ app.factory('taskService', function () {
                         },
                     ]
 
-                }
-            ],
-            tasks: [
-                {
-                    taskID: 100,
-                    favor: false,
-                    description: 'Hello From the <u>pther</u><br /> side',
-                    tristate: {
-                        css: 'hidden',
-                        text: 'מצב'
-                    },
                 },
+                {
+                    catid: 100,
+                    catname: '2. תת קטגוריה',
+                    tasks: [
+            {
+                taskID: 100,
+                favor: false,
+                description: 'Hello From the <u>pther</u><br /> side',
+                tristate: {
+                    css: 'hidden',
+                    text: 'מצב'
+                },
+            },
                 {
                     taskID: 101,
                     favor: false,
@@ -252,7 +254,10 @@ app.factory('taskService', function () {
                                  text: 'מצב'
                              },
                          },
-            ]
+                    ]
+                }
+            ],
+
         }
     ];
 
@@ -377,6 +382,7 @@ app.controller('task-filter-dialog', function ($scope, $mdDialog, $mdMedia, filt
 app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     $anchorScroll, $mdSidenav, $log, taskService) {
 
+
     /**************************************
             Create and destroy dialog boxes
     ***************************************/
@@ -388,6 +394,14 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         //$("#sig-dialog").dialog('destroy').remove()
     });
 
+    $scope.swipe = function () {
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev'
+        });
+    }
 
     /**************************************
             Scrollign and breadcrumbs
@@ -407,7 +421,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         $scope.breads = [cat];
         while (cat.catparent) {
             cat = cat.catparent;
-            $scope.breads.push(cat);
+            $scope.breads.splice(0,0,cat);
         }
     }
 
@@ -623,11 +637,11 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         {
             nonfavor: {
                 show: false, value: null, f: function (task, value)
-                { return ( task.favor == false); }
+                { return (task.favor == false); }
             },
             favor: {
                 show: false, value: null, f: function (task, value)
-                { return ( task.favor == true); }
+                { return (task.favor == true); }
             }
         },
         /*groupContent:*/
@@ -647,7 +661,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         },
         /* State group*/
         {
-            hidden : {
+            hidden: {
                 show: false, value: 'hidden', f: function (task, value)
                 { return (task.tristate.css == value); }
             },
@@ -663,7 +677,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
     ]
 
- 
+
     $scope.filterDialog = function () {
 
         $mdDialog.show({
@@ -695,8 +709,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             $scope.favIcon = 'star_border';
             $scope.filters[0].favor.show = false;
         }
-        else
-        {
+        else {
             $scope.favIcon = 'star';
             $scope.filters[0].favor.show = true;
         }
@@ -724,7 +737,7 @@ app.filter('taskfilter', function () {
             };
 
             // All group must requires be met.
-            result =  result && (groupResult || !foundFilter);
+            result = result && (groupResult || !foundFilter);
         }
         return result;
     }
