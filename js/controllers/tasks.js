@@ -280,6 +280,50 @@ app.factory('taskService', function () {
         }
     }
 
+
+    var catid = 0;
+    var taskid = 0;
+    // Create linaear and recursive from input:
+    function recCat_040916(origincat, targetcat)
+    {
+
+        //console.log('Now cat:' + origincat.catid);
+        if (origincat.tasks)
+        {
+            for (var i = 0; i < (origincat.tasks.length) ; i++)
+            {
+                task = origincat.tasks[i];
+                addTask(taskid++, task, null, targetcat)
+            }
+        }
+
+
+
+        if (origincat.cats)
+        {
+            for (var j = 0; j < (origincat.cats.length) ; j++)
+            {
+                subcat = origincat.cats[j];
+                var newObjSubCat = addCat(catid++, subcat.name, targetcat);
+
+                // Recursive:
+                recCat_040916(subcat, newObjSubCat);
+            }
+        }
+    }
+
+    function init_040916()
+    {
+        for (var i = 0; i < catTree.length; i++)
+        {
+            cat = catTree[i];
+            var neCatObj = addCat(catid++, cat.name, null);
+            recCat_040916(cat, neCatObj);
+        }
+
+        console.log('done init new');
+    }
+
     function init() {
         for (var i = 0; i < _taskArray.length; i++) {
             cat = _taskArray[i];
@@ -321,14 +365,14 @@ app.factory('taskService', function () {
     }
 
     // return void
-    function addTask(id, favor, desc, css, csstext, notes, parent) {
+    function addTask(id,  desc, notes, parent) {
         var taskObj = {
             taskID: id,
-            favor: favor,
+            favor: false,
             description: desc,
             tristate: {
-                css: css,
-                text: csstext,
+                css: 'hidden',
+                text: 'מצב',
             },
             taskparent: parent,
             notes: notes,
@@ -339,7 +383,7 @@ app.factory('taskService', function () {
         return taskObj;
     }
 
-    init();
+    init_040916();
 
     return { catLinearArray: _catLinearArray, catObjectArray: _catObjectArray };
 
