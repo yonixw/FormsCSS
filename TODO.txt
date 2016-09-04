@@ -24,8 +24,9 @@
 
 
 sideways swipe:  http://stereobit.github.io/dragend/
-animated multilevel menu: http://www.jqueryrain.com/?Vloh9R1u
+animated multilevel menu: http://tympanus.net/Blueprints/MultiLevelMenu/
 dot paginiator: http://demo.tutorialzine.com/2010/05/sweet-pages-jquery-pagination-solution/demo.html
+mark searched words: https://jsfiddle.net/julmot/hexomvbL/
 
 Scenarios: 
 1)

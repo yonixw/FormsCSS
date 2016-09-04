@@ -246,22 +246,13 @@
         </md-toolbar>
         <md-content ng-controller="RightCtrl" layout-padding>
 
-            <script type="text/ng-template" id="field_renderer.html">
-                <span ng-click="goCat(cat.catid);">{{cat.catname}}</span>
-                <ul ng-if="cat.cats">
-                    <li ng-repeat="cat in cat.cats" 
-                        ng-include="'field_renderer.html'">
+                <!-- Only top categories-->            
+                <ul style="font-size:3em">
+                    <li ng-repeat="cat in catTree" >
+                        <span ng-click="goCat(cat.catid);">{{cat.catname}}</span>
                     </li>
                 </ul>
-            </script>
-
-            
-                <ul style="font-size:3em">
-                    <li ng-repeat="cat in catTree" ng-include="'field_renderer.html'"></li>
-                </ul>
-            
-
-        </md-content>
+       </md-content>
     </md-sidenav>
 
     <div>
