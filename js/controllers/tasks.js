@@ -399,7 +399,10 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             pagination: '.swiper-pagination',
             paginationClickable: true,
             nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev'
+            prevButton: '.swiper-button-prev',
+            onSlideChangeEnd: function (swiper) {
+               // TODO: Change bread crumbs
+            }
         });
     }
 
@@ -625,7 +628,31 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         return i;
     }
 
-    $scope.taskArray = taskService.catLinearArray;
+    $scope.taskArray = null; //taskService.catLinearArray;
+
+    $scope.selectCat = function (cat) {
+        $scope.taskArray = null;
+
+        if (cat.tasks && cat.tasks.length > 0) {
+            $scope.taskArray = [cat];
+            console.log('ello);');
+        }
+
+        if (cat.cats) {
+            for (var i=0;i<cat.cats.length; i++){
+                if (cat.cats[i].tasks && cat.cats[i].tasks.length > 0) {
+                    if ($scope.taskArray) {
+                        $scope.taskArray.push(cat.cats[i]);
+                    }
+                    else {
+                        $scope.taskArray = [cat.cats[i]];
+                    }
+                }
+            }
+        }
+
+        
+    }
 
     /**************************************
           Filters
@@ -743,6 +770,8 @@ app.filter('taskfilter', function () {
     }
 
     return function (items, filters) {
+        if (!items) return null;
+
         var filteredArray = [];
         for (var i = 0; i < items.length; i++) {
             if (filterTask(items[i], filters)) {

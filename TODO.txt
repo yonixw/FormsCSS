@@ -28,6 +28,8 @@ animated multilevel menu: http://tympanus.net/Blueprints/MultiLevelMenu/
 dot paginiator: http://demo.tutorialzine.com/2010/05/sweet-pages-jquery-pagination-solution/demo.html
 mark searched words: https://jsfiddle.net/julmot/hexomvbL/
 
+sidewayswipe + paginator (not fully) : http://idangero.us/swiper/
+
 Scenarios: 
 1)
 [V] Menu in one place.... scroll up down 

@@ -63,68 +63,7 @@
 
             })();
             </script>
-            <!-- Tasks hierarchy navigator -->
-            <nav>
-                <div style="overflow-y: scroll; height: 100%">
-                    <ul class="menu">
-                        <li><a href="#">Home</a></li>
-                        <ul>
-                            <li>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <li><a href="#">Works</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <ul>
-                            <li>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Home</a>
-                                                        <a href="#">Home</a>
-                                                        <a href="#">Home</a>
-                                                        <a href="#">Home</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </ul>
-                </div>
-            </nav>
-        </div>
+               </div>
     </div>
     <div id="page-body">
         <div style="overflow-y: hidden">
@@ -224,7 +163,7 @@
                 <!-- Only top categories-->            
                 <ul style="font-size:3em">
                     <li ng-repeat="cat in catTree" >
-                        <span ng-click="goCat(cat.catid);">{{cat.catname}}</span>
+                        <span ng-click="selectCat(cat);">{{cat.catname}}</span>
                     </li>
                 </ul>
        </md-content>
