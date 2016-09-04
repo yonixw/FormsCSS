@@ -29,8 +29,8 @@ dot paginiator: http://demo.tutorialzine.com/2010/05/sweet-pages-jquery-paginati
 
 Scenarios: 
 1)
-[ ] Menu in one place.... scroll up down 
-	[ ] All scrolling with intermidiate headers and auto title jumping with scrolling
+[V] Menu in one place.... scroll up down 
+	[V] All scrolling with intermidiate headers and auto title jumping with scrolling
 
 2)
 [ ] Scroll sideways: swipe left + multi level menu 
