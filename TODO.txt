@@ -33,8 +33,8 @@ Scenarios:
 	[V] All scrolling with intermidiate headers and auto title jumping with scrolling
 
 2)
-[ ] Scroll sideways: swipe left + multi level menu 
-	[ ] All scrolling with intermidiate headers and auto title jumping with scrolling
+[ ?] Scroll sideways: swipe left + multi level menu 
+	[? ] All scrolling with intermidiate headers and auto title jumping with scrolling
 
 3)
 [ ] Just top categories.  
