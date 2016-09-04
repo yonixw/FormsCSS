@@ -13,7 +13,8 @@ function scrollToCat(id) {
 }
 
 
-app.factory('taskService', function () {
+app.factory('taskService', function ()
+{
     var _taskArray = [
         {
             catid: 0,
@@ -141,20 +142,18 @@ app.factory('taskService', function () {
                         },
                     ]
 
-                },
+                }
+            ],
+            tasks: [
                 {
-                    catid: 100,
-                    catname: '2. תת קטגוריה',
-                    tasks: [
-            {
-                taskID: 100,
-                favor: false,
-                description: 'Hello From the <u>pther</u><br /> side',
-                tristate: {
-                    css: 'hidden',
-                    text: 'מצב'
+                    taskID: 100,
+                    favor: false,
+                    description: 'Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
                 },
-            },
                 {
                     taskID: 101,
                     favor: false,
@@ -254,19 +253,19 @@ app.factory('taskService', function () {
                                  text: 'מצב'
                              },
                          },
-                    ]
-                }
-            ],
-
+            ]
         }
     ];
 
     // Create linaear and recursive from input:
-    function recCat(origincat, targetcat) {
+    function recCat(origincat, targetcat)
+    {
 
         //console.log('Now cat:' + origincat.catid);
-        if (origincat.tasks) {
-            for (var i = 0; i < (origincat.tasks.length) ; i++) {
+        if (origincat.tasks)
+        {
+            for (var i = 0; i < (origincat.tasks.length) ; i++)
+            {
                 task = origincat.tasks[i];
                 addTask(task.taskID, task.favor, task.description, task.tristate.css, task.tristate.text, task.notes, targetcat);
             }
@@ -274,8 +273,10 @@ app.factory('taskService', function () {
 
 
 
-        if (origincat.cats) {
-            for (var j = 0; j < (origincat.cats.length) ; j++) {
+        if (origincat.cats)
+        {
+            for (var j = 0; j < (origincat.cats.length) ; j++)
+            {
                 subcat = origincat.cats[j];
                 var newObjSubCat = addCat(subcat.catid, subcat.catname, targetcat);
 
@@ -285,8 +286,54 @@ app.factory('taskService', function () {
         }
     }
 
-    function init() {
-        for (var i = 0; i < _taskArray.length; i++) {
+
+    var catid = 0;
+    var taskid = 0;
+    // Create linaear and recursive from input:
+    function recCat_040916(origincat, targetcat)
+    {
+
+        //console.log('Now cat:' + origincat.catid);
+        if (origincat.tasks)
+        {
+            for (var i = 0; i < (origincat.tasks.length) ; i++)
+            {
+                task = origincat.tasks[i];
+                addTask(taskid++, task, null, targetcat)
+            }
+        }
+
+
+
+        if (origincat.cats)
+        {
+            for (var j = 0; j < (origincat.cats.length) ; j++)
+            {
+                subcat = origincat.cats[j];
+                var newObjSubCat = addCat(catid++, subcat.name, targetcat);
+
+                // Recursive:
+                recCat_040916(subcat, newObjSubCat);
+            }
+        }
+    }
+
+    function init_040916()
+    {
+        for (var i = 0; i < catTree.length; i++)
+        {
+            cat = catTree[i];
+            var neCatObj = addCat(catid++, cat.name, null);
+            recCat_040916(cat, neCatObj);
+        }
+
+        console.log('done init new');
+    }
+
+    function init()
+    {
+        for (var i = 0; i < _taskArray.length; i++)
+        {
             cat = _taskArray[i];
             var neCatObj = addCat(cat.catid, cat.catname, null);
             recCat(cat, neCatObj);
@@ -300,25 +347,32 @@ app.factory('taskService', function () {
 
 
     // return cat object
-    function addCat(id, name, parent) {
+    function addCat(id, name, parent)
+    {
         var catObj = { catid: id, catname: name, catparent: parent, cats: [], tasks: [] };
 
         // Add to parent or root
-        if (parent) {
+        if (parent)
+        {
             parent.cats.push(catObj);
         }
-        else {
-            if (_catObjectArray) {
+        else
+        {
+            if (_catObjectArray)
+            {
                 _catObjectArray.push(catObj);
-            } else {
+            } else
+            {
                 _catObjectArray = [catObj];
             }
         }
 
         // anyway add to linear array:
-        if (_catLinearArray) {
+        if (_catLinearArray)
+        {
             _catLinearArray.push(catObj);
-        } else {
+        } else
+        {
             _catLinearArray = [catObj];
         }
 
@@ -326,14 +380,15 @@ app.factory('taskService', function () {
     }
 
     // return void
-    function addTask(id, favor, desc, css, csstext, notes, parent) {
+    function addTask(id, desc, notes, parent)
+    {
         var taskObj = {
             taskID: id,
-            favor: favor,
+            favor: false,
             description: desc,
             tristate: {
-                css: css,
-                text: csstext,
+                css: 'hidden',
+                text: 'מצב',
             },
             taskparent: parent,
             notes: notes,
@@ -344,7 +399,7 @@ app.factory('taskService', function () {
         return taskObj;
     }
 
-    init();
+    init_040916();
 
     return { catLinearArray: _catLinearArray, catObjectArray: _catObjectArray };
 
