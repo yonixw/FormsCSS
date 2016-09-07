@@ -40,90 +40,7 @@
             </table>
 
 
-            <script>
-            // This script open and closes the side navigation menu.
-            (function () {
-
-                "use strict";
-
-                //var toggles = document.querySelectorAll(".c-hamburger");
-                //
-                //for (var i = toggles.length - 1; i >= 0; i--) {
-                //    var toggle = toggles[i];
-                //    toggleHandler(toggle);
-                //};
-                //
-                //function toggleHandler(toggle) {
-                //    toggle.addEventListener("click", function (e) {
-                //        e.preventDefault();
-                //        (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
-                //        $('nav').toggleClass('active');
-                //    });
-                //}
-
-            })();
-            </script>
-            <!-- Tasks hierarchy navigator -->
-            <nav>
-                <div style="overflow-y: scroll; height: 100%">
-                    <ul class="menu">
-                        <li><a href="#">Home</a></li>
-                        <ul>
-                            <li>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <li><a href="#">Works</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <ul>
-                            <li>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <a href="#">Home</a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <a href="#">Home</a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <a href="#">Home</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">Home</a>
-                                                        <a href="#">Home</a>
-                                                        <a href="#">Home</a>
-                                                        <a href="#">Home</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </ul>
-                </div>
-            </nav>
+          
         </div>
     </div>
     <div id="page-body">
@@ -245,19 +162,11 @@
             <h2 class="md-toolbar-tools" >נווט בקטגוריות</h2>
         </md-toolbar>
         <md-content ng-controller="RightCtrl" layout-padding>
-
-            <script type="text/ng-template" id="field_renderer.html">
-                <span ng-click="goCat(cat.catid);">{{cat.catname}}</span>
-                <ul ng-if="cat.cats">
-                    <li ng-repeat="cat in cat.cats" 
-                        ng-include="'field_renderer.html'">
-                    </li>
-                </ul>
-            </script>
-
-            
+           
                 <ul style="font-size:3em">
-                    <li ng-repeat="cat in catTree" ng-include="'field_renderer.html'"></li>
+                    <li ng-repeat="cat in catTree" >
+                        <span ng-click="goCat(cat.catid);">{{cat.catname}}</span>
+                    </li>
                 </ul>
             
 

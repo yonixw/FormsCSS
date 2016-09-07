@@ -487,7 +487,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             locals: {
                 selectedTask: $scope.selectedTask
             },
-            templateUrl: './js/views/tasknotes.html',
+            templateUrl: './js/views/task_notes.html',
             parent: document.querySelector("#tasks-view"),
             targetEvent: event,
             clickOutsideToClose: true,

@@ -10,7 +10,7 @@ var app = angular.module('tankforms', ['ngRoute', 'ngMaterial'])
         .when('/tasks',
         {
             controller: 'tasks',
-            templateUrl: './js/views/tasks.html',
+            templateUrl: './js/views/task_view.html',
         })
         .otherwise(
         {
