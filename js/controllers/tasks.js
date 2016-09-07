@@ -267,8 +267,6 @@ app.factory('taskService', function () {
             }
         }
 
-
-
         if (origincat.cats) {
             for (var j = 0; j < (origincat.cats.length) ; j++) {
                 subcat = origincat.cats[j];
@@ -323,11 +321,11 @@ app.factory('taskService', function () {
         }
 
         // anyway add to linear array:
-        if (_catLinearArray) {
-            _catLinearArray.push(catObj);
-        } else {
-            _catLinearArray = [catObj];
-        }
+        //if (_catLinearArray) {
+        //    _catLinearArray.push(catObj);
+        //} else {
+        //    _catLinearArray = [catObj];
+        //}
 
         return catObj;
     }
@@ -368,7 +366,7 @@ app.factory('taskService', function () {
 
     init();
 
-    return { catLinearArray: _catLinearArray, catObjectArray: _catObjectArray };
+    return { /*catLinearArray: _catLinearArray,*/ catObjectArray: _catObjectArray };
 
 });
 
@@ -576,8 +574,8 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
           Category Array
   ***************************************/
     // Load subcats into view
-    $scope.openCat = function (id) {
-
+    $scope.openCat = function (cat) {
+        $scope.linearArrayFromCat(cat, false);
     }
 
     // Scroll to cat, sopposed  o be only subcat.
@@ -613,6 +611,25 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         return null;
     }
 
+    $scope.linearArrayFromCat = function (cat, recursive) {
+        if (!cat) return;
+
+        if (!recursive) { // Init sub cat array.
+            $scope.taskArray = [cat];
+        }
+
+        if (cat.cats) {
+            for (var i = 0; i < cat.cats.length; i++) {
+                cat_i = cat.cats[i];
+
+                if (cat) {
+                    $scope.taskArray.push(cat_i);
+                    $scope.linearArrayFromCat(cat_i, true);
+                }
+            }
+        }
+    }
+
     // Get count of finished taks in a category object; return int.
     $scope.getTasksWithStateCount = function (cat) {
         var i = 0;
@@ -624,7 +641,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         return i;
     }
 
-    $scope.taskArray = taskService.catLinearArray;
+    $scope.taskArray = [];// taskService.catLinearArray;
 
     /**************************************
           Filters
