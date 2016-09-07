@@ -263,7 +263,7 @@ app.factory('taskService', function () {
         if (origincat.tasks) {
             for (var i = 0; i < (origincat.tasks.length) ; i++) {
                 task = origincat.tasks[i];
-                addTask(task.taskID, task.favor, task.description, task.tristate.css, task.tristate.text, task.notes, targetcat);
+                addTask(task,targetcat);
             }
         }
 
@@ -293,10 +293,22 @@ app.factory('taskService', function () {
     var _catLinearArray = [];
     var _catObjectArray = [];
 
+    function getCatSchema() {
+        return {
+            catid: 0,
+            catname: '',
+            catparent: null,
+            cats: [], // sub cats - may be empty.
+            tasks: [], // tasks - may be empty.
+        };
+    }
 
     // return cat object
     function addCat(id, name, parent) {
-        var catObj = { catid: id, catname: name, catparent: parent, cats: [], tasks: [] };
+        var catObj = getCatSchema();
+        catObj.catid = id;
+        catObj.catname = name;
+        catObj.catparent = parent;
 
         // Add to parent or root
         if (parent) {
@@ -320,19 +332,34 @@ app.factory('taskService', function () {
         return catObj;
     }
 
-    // return void
-    function addTask(id, favor, desc, css, csstext, notes, parent) {
-        var taskObj = {
-            taskID: id,
-            favor: favor,
-            description: desc,
-            tristate: {
-                css: css,
-                text: csstext,
-            },
-            taskparent: parent,
-            notes: notes,
+    function getTaskSchema() {
+        return {
+            taskID: 0,           // id of the task in db.
+            favor: false,        // did someone make it favor?
+            description: '',     // the html view of the task
+            tristate: {          // object for handling the status of task
+                css: '',         //
+                text: '',        //
+            },                   //
+            taskparent: null,    // task cat parent
+            notes: [],           // notes of the task
+            rank: 0,             // rank of the task (4 level of broken effect)
+            extrainfo: '',       // Extra info about this task like broken cretiria etc...
         };
+    }
+
+    // return void
+    function addTask(task, parent) {
+
+        var taskObj = getTaskSchema();
+        taskObj.taskID          = task.taskID       ; 
+        taskObj.favor           = task.favor        ; 
+        taskObj.description     = task.description  ; 
+        taskObj.tristate        = task.tristate     ; 
+        taskObj.taskparent      = parent               ; 
+        taskObj.notes           = task.notes        ; 
+        taskObj.rank            = task.rank         ; 
+        taskObj.extrainfo       = task.extrainfo    ;
 
         parent.tasks.push(taskObj);
 
@@ -392,24 +419,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     /**************************************
             Scrollign and breadcrumbs
     ***************************************/
-    //$scope.i = 5;
-    //$('#tab-content')[0].onscroll = function () {
-    //    var catelem = $("#catid", $("*[sticky-state='active']")[0]);
-    //    if (catelem) {
-    //        console.log(catelem.val());
-    //    }
-    //}
-
-    $scope.breads = [];
-
-    $scope.breadCrumbs = function (task) {
-        cat = task.taskparent;
-        $scope.breads = [cat];
-        while (cat.catparent) {
-            cat = cat.catparent;
-            $scope.breads.push(cat);
-        }
-    }
+  
 
     /**************************************
             TRI STATE CHECKBOX
@@ -565,9 +575,12 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     /**************************************
           Category Array
   ***************************************/
+    // Load subcats into view
+    $scope.openCat = function (id) {
 
+    }
 
-
+    // Scroll to cat, sopposed  o be only subcat.
     $scope.goCat = function (id) {
         scrollToCat(id);
     }
@@ -703,6 +716,8 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     }
 });
 
+
+// Filter tasks using settings
 app.filter('taskfilter', function () {
 
     var filterTask = function (task, filters) {
@@ -740,6 +755,7 @@ app.filter('taskfilter', function () {
     }
 });
 
+// The sub controller for right menu of categories
 app.controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log, taskService) {
 
     $scope.goCat = function (id) {

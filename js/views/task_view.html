@@ -9,12 +9,7 @@
             <table style="width:100%;" class="cat-table">
                 <tr>
                     <td width="100%">
-                        <!-- Bread-crums menu-->
-                        <ul id="breadcrumbs-four">
-                            <li ng-repeat="bread in breads" ng-class="$last?'selected':''">
-                                <a ng-click="goCat(bread.catid);">{{bread.catname}}</a>
-                            </li>
-                        </ul>
+                       
                     </td>
                     <td>
                         <md-button class="md-primary md-raised" ng-click="toggleFavs();"
@@ -99,7 +94,7 @@
                                  </div>
 
                                  <span>
-                                     {{cat.catname}} ({{getTasksWithStateCount(cat)}}/{{cat.tasks.length}})
+                                     {{cat.catname}}
                                  </span>
                                  
                              </md-subheader>
