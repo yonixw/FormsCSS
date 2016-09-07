@@ -576,11 +576,21 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     // Load subcats into view
     $scope.openCat = function (cat) {
         $scope.linearArrayFromCat(cat, false);
+        $mdSidenav('rightmenu').close();
     }
 
     // Scroll to cat, sopposed  o be only subcat.
     $scope.goCat = function (id) {
         scrollToCat(id);
+    }
+
+    $scope.fullCatName = function (cat) {
+        var name = ' ';
+        while (cat && cat.catname) {
+            name = cat.catname + '> ' + name;
+            cat = cat.catparent;
+        }
+        return name;
     }
 
     /**************************************
