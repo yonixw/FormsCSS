@@ -11,9 +11,13 @@
                 </md-button>
             </div>
         </md-toolbar>
-
+        <style>
+            .filtertable td {
+                border-bottom: 1px solid lightblue;
+            }
+        </style>
         <md-dialog-content>
-            <table>
+            <table class="filtertable">
                 <tr>
                     <td>
 
@@ -22,8 +26,8 @@
                                          class="md-primary" style="margin: 16px; float:right">
                                 מכיל טקסט:
                             </md-checkbox>
-
-                            <md-input-container md-no-float  ng-disabled="!filterArray[3].filter">
+                            
+                            <md-input-container >
                                 <input ng-model="filterArray[1].content.value" placeholder="טקסט לחיפוש">
                             </md-input-container>
                             
@@ -75,6 +79,30 @@
                             <md-checkbox ng-model="filterArray[3].hidden.show"
                                          class="md-primary" style="margin: 16px; float:right">
                                 ללא מצב
+                            </md-checkbox>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <div>
+                            <md-checkbox ng-model="filterArray[4].r0.show"
+                                         class="md-primary" style="margin: 16px; float:right">
+                                {{rankDict[0]}}
+                            </md-checkbox>
+                            <md-checkbox ng-model="filterArray[4].r1.show"
+                                         class="md-primary" style="margin: 16px; float:right">
+                                {{rankDict[1]}}
+                            </md-checkbox>
+                            <md-checkbox ng-model="filterArray[4].r2.show"
+                                         class="md-primary" style="margin: 16px; float:right">
+                                {{rankDict[2]}}
+                            </md-checkbox>
+                            <md-checkbox ng-model="filterArray[4].r3.show"
+                                         class="md-primary" style="margin: 16px; float:right">
+                                {{rankDict[3]}}
                             </md-checkbox>
                         </div>
 

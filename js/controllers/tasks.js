@@ -12,7 +12,7 @@ function scrollToCat(id) {
     }, 1000);
 }
 
-
+// Factory for gettign tasks per each category.
 app.factory('taskService', function () {
     var _taskArray = [
         {
@@ -39,7 +39,8 @@ app.factory('taskService', function () {
                              noteText: 'הכל סבבה2'
                          },
                      ],
-                     extrainfo: '<b>פה יהיה מידע אחזקתי</b>'
+                     extrainfo: '<b>פה יהיה מידע אחזקתי</b>',
+                     rank: 3,
                  },
                 {
                     taskID: 1,
@@ -371,6 +372,7 @@ app.factory('taskService', function () {
 
 });
 
+// Sub Controller for task note dialog
 app.controller('noteDialog', function ($scope, $mdDialog, $mdMedia, selectedTask) {
     $scope.selectedTask = selectedTask;
 
@@ -385,8 +387,30 @@ app.controller('noteDialog', function ($scope, $mdDialog, $mdMedia, selectedTask
     $scope.answer = function (answer) {
         $mdDialog.hide(answer);
     };
+
+    $scope.rankDict = [
+        'ליקוי קל',
+        'ליקוי חמור',
+        'ליקוי לא משבית',
+        'משבית מלחמה',
+        'לא מוכר',
+    ];
+
+    $scope.ranktext = function (rank) {
+        // Default result
+        var result = $scope.rankDict[$scope.rankDict.length - 1];
+
+        // If in array
+        if (rank && rank < $scope.rankDict.length && rank > -1){
+                result = $scope.rankDict[rank];
+        }
+
+        // Return:
+        return result;
+    }
 });
 
+// Sub Controller fof filter dialog
 app.controller('task-filter-dialog', function ($scope, $mdDialog, $mdMedia, filterarray) {
     $scope.filterArray = filterarray;
 
@@ -398,8 +422,18 @@ app.controller('task-filter-dialog', function ($scope, $mdDialog, $mdMedia, filt
         $mdDialog.cancel();
     };
 
+    $scope.rankDict = [
+        'ליקוי קל',
+        'ליקוי חמור',
+        'ליקוי לא משבית',
+        'משבית מלחמה',
+        'לא מוכר',
+    ];
+
+
 });
 
+// Main task view controller
 app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     $anchorScroll, $mdSidenav, $log, taskService) {
 
@@ -577,7 +611,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     $scope.taskArray = [];// taskService.catLinearArray;
 
     /**************************************
-          Filters
+          Filters and Process
   ***************************************/
 
     // Each filter get 
@@ -622,8 +656,28 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
                 show: false, value: 'unchecked', f: function (task, value)
                 { return (task.tristate.css == value); }
             },
+        },
+         /*groupRank: */
+        {
+            r0: {
+                show: false, value: '', f: function (task, value)
+                { return (task.rank && task.rank == 0); }
+            },
+            r1: {
+                show: false, value: '', f: function (task, value)
+                { return (task.rank && task.rank == 1); }
+            },
+            r2: {
+                show: false, value: '', f: function (task, value)
+                { return (task.rank && task.rank == 2); }
+            },
+            r3: {
+                show: false, value: '', f: function (task, value)
+                { return (task.rank && task.rank == 3); }
+            },
         }
 
+        /* Dont add ',' at the end! it will create null in an array!*/
     ]
 
  
@@ -664,6 +718,8 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             $scope.filters[0].favor.show = true;
         }
     }
+
+    
 });
 
 
@@ -681,7 +737,7 @@ app.filter('taskfilter', function () {
             for (key in currentFilterGroup) {
                 var currentFilter = currentFilterGroup[key];
 
-                // Each on the group is enough
+                // Each on the group is enough to show, none selected ==> show all
                 if (currentFilter.show) {
                     foundFilter = true;
                     groupResult = groupResult || currentFilter.f(task, currentFilter.value);
