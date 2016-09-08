@@ -11,25 +11,26 @@
                     <td width="100%">
                        
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         <md-button class="md-primary md-raised" ng-click="toggleFavs();"
                                    style="float: left; vertical-align:middle; font-size: 3em;">
                             <i class="material-icons" style="font-size: 1.0em; color:yellow">{{favIcon}}</i>
                         </md-button>
+                        מועדפים
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         <md-button class="md-primary md-raised" ng-click="filterDialog();" 
                                    style="float: left; vertical-align:middle; font-size: 3em;">
                             <i class="material-icons" style="font-size: 1.0em">&#xE8B6;</i>
                         </md-button>
+                        סינון
                     </td>
-                    <td>
-                        <!-- htx rot htla htra -->
-                        <button class="c-hamburger c-hamburger--htx"
-                                style="transform: scale(0.5); z-index: 20; float: left;"
-                                ng-click="openSideMenu();">
-                            <span>toggle menu</span>
-                        </button>
+                    <td style="text-align:center">
+                        <md-button class="md-primary md-raised" ng-click="openSideMenu();"
+                                   style="float: left; vertical-align:middle; font-size: 3em;">
+                            <i class="material-icons" style="font-size: 1.0em">menu</i>
+                        </md-button>
+                        תפריט
                     </td>
                 </tr>
             </table>
@@ -37,7 +38,8 @@
 
           
         </div>
-    </div>
+    </div>    
+
     <div id="page-body">
         <div style="overflow-y: hidden">
             <!-- Table adjust to content, restrict through divs! -->
@@ -47,6 +49,10 @@
                  style="width:100%; height: 76vh; overflow-y: scroll ; display: block; margin: 5px auto 5px auto;"
                   >
 
+                <div ng-if="taskArray.length == 0"
+                     style="text-align: center;font-size: 2em;">
+                    אין מטלות להציג, אנא בחרו מהתפריט.
+                </div>
 
                 <section ng-repeat="cat in taskArray">
                     

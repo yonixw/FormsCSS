@@ -38,7 +38,8 @@ app.factory('taskService', function () {
                              noteOwner: '2מקשחר',
                              noteText: 'הכל סבבה2'
                          },
-                     ]
+                     ],
+                     extrainfo: '<b>פה יהיה מידע אחזקתי</b>'
                  },
                 {
                     taskID: 1,
@@ -456,35 +457,6 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
     $scope.selectedTask = { taskID: -1, notes: [] }; // The task of the notes.
 
-    // Set dialog values:
-    function _setNoteDialog(taskID, noteID, owner, text) {
-        $("#input_note_taskid").val(taskID);
-        $("#input_note_noteid").val(noteID);
-        $("#input_note_owner").val(owner);
-        $("#input_note_text").val(text);
-    }
-
-    // Get dialog values:
-    function _getNoteDialog() {
-        return {
-            taskid: $("#input_note_taskid").val(),
-            noteid: $("#input_note_noteid").val(),
-            owner: $("#input_note_owner").val(),
-            text: $("#input_note_text").val(),
-        };
-    }
-
-    function _getNoteByID(task, noteid) {
-        for (var i = 0; i < task.notes.length; i++) {
-            if (task.notes[i].noteID == noteid)
-                return task.notes[i];
-        }
-
-        // If we got here, no id is present:
-        console.log("tasks::_getNoteByID(task,noteid) cant find note with id:" + noteid);
-        return null;
-    }
-
     // Show notes list for specific task:
     $scope.ShowNotes = function (taskID, event) {
         t = _getTaskByID(taskID);
@@ -513,61 +485,12 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
     }
 
-    // Add note to task:
-    $scope.AddNote = function (taskid) {
-        // Set note id to -1 because new:
-        _setNoteDialog(taskid, -1, "", "");
-
-        // Open dialog:
-        $("#note-dialog").dialog("open");
-    }
-
-    // Edit existing note
-    $scope.editNote = function (taskid, noteid) {
-        var task = _getTaskByID(taskid);
-        if (!task) return;
-
-        var note = _getNoteByID(task, noteid);
-        if (!note) return;
-
-        // Set note id to -1 because new:
-        _setNoteDialog(taskid, noteid, note.noteOwner, note.noteText);
-
-        // Open dialog:
-        $("#note-dialog").dialog("open");
-    }
-
+  
     // Save note either from adding or editing.
     $scope.saveNote = function () {
-        var note = _getNoteDialog();
-        var task = _getTaskByID(note.taskid);
-        if (!task) return;
-
-        if (note.noteid == -1) {
-            // Check if no notes
-            if (task.notes) {
-                task.notes.push({
-                    noteID: 0, // value from db
-                    noteOwner: note.owner,
-                    noteText: note.text
-                });
-            }
-            else {
-                task.notes = [{
-                    noteID: 0, // value from db
-                    noteOwner: note.owner,
-                    noteText: note.text
-                }];
-            }
-
-        }
-        else {
-            var noteObj = _getNoteByID(task, note.noteid);
-            if (!noteObj) return;
-
-            noteObj.noteOwner = note.owner;
-            noteObj.noteText = note.text;
-        }
+        //noteID: 0, // value from db
+        //noteOwner: note.owner,
+        //noteText: note.text
     }
 
     /**************************************
@@ -579,7 +502,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         $mdSidenav('rightmenu').close();
     }
 
-    // Scroll to cat, sopposed  o be only subcat.
+    // Scroll to cat, sopposed  to be only subcat.
     $scope.goCat = function (id) {
         scrollToCat(id);
     }

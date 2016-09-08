@@ -1,32 +1,41 @@
 ﻿
 
-<md-dialog aria-label="Mango (Fruit)" >
+<md-dialog aria-label="הערות למטלה" >
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>מאפייני מטלה</h2>
                 <span flex></span>
-                <md-button class="md-primary md-raised" ng-click="toggleFavs();"
+                <md-button class="md-primary md-raised" notengclick="toggleFavs();"
                            style="float: left; font-size: 2em;vertical-align:bottom;">
                     <i class="material-icons" style="font-size: 1.0em; color:yellow">{{getFavIcon();}}</i>
                 </md-button>
             </div>
         </md-toolbar>
-        <md-dialog-content>
-           
-            <div id="notes-dialog" style="width: 75vw;">
-               
+        <md-dialog-content  style="width: 75vw;">
+            <md-tabs md-dynamic-height md-border-bottom>
 
-                <ul>
-                    <li class="tasknote" ng-repeat="note in selectedTask.notes">
-                        <h4 style="display: inline;">{{note.noteOwner}}:</h4>
-                        <input ng-model="note.noteText" />
-                    </li>
-                </ul>
+                <md-tab label="הערות">
+                    <md-content class="md-padding">
+                        <ul>
+                            <li class="tasknote" ng-repeat="note in selectedTask.notes">
+                                <u>{{note.noteOwner}}:</u> {{note.noteText}}
+                            </li>
+                        </ul>
+                    </md-content>
+                </md-tab>
 
-            </div>
 
+                <md-tab label="מידע אחזקתי">
+                    <md-content class="md-padding">
+                        <div ng-bind-html="selectedTask.extrainfo | trusthtml"></div>
+                    </md-content>
+                </md-tab>
+
+
+            </md-tabs>
         </md-dialog-content>
+        
         <md-dialog-actions layout="row">
             <md-button ng-click="answer('close')" style="margin-right:20px;">
                 OK
