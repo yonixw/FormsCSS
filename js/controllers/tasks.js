@@ -18,6 +18,7 @@ app.factory('taskService', function () {
         {
             catid: 0,
             catname: 'א. מפקום-דלת',
+            tasksCompleted: 1,
             tasks: [
                  {
                      taskID: 0,
@@ -41,6 +42,7 @@ app.factory('taskService', function () {
                      ],
                      extrainfo: '<b>פה יהיה מידע אחזקתי</b>',
                      rank: 3,
+                    
                  },
                 {
                     taskID: 1,
@@ -272,7 +274,7 @@ app.factory('taskService', function () {
         if (origincat.cats) {
             for (var j = 0; j < (origincat.cats.length) ; j++) {
                 subcat = origincat.cats[j];
-                var newObjSubCat = addCat(subcat.catid, subcat.catname, targetcat);
+                var newObjSubCat = addCat(subcat, targetcat);
 
                 // Recursive:
                 recCat(subcat, newObjSubCat);
@@ -283,7 +285,7 @@ app.factory('taskService', function () {
     function init() {
         for (var i = 0; i < _taskArray.length; i++) {
             cat = _taskArray[i];
-            var neCatObj = addCat(cat.catid, cat.catname, null);
+            var neCatObj = addCat(cat, null);
             recCat(cat, neCatObj);
         }
 
@@ -298,17 +300,21 @@ app.factory('taskService', function () {
             catid: 0,
             catname: '',
             catparent: null,
+            tasksCompleted: 0,
+            catsCompleted: 0,
             cats: [], // sub cats - may be empty.
             tasks: [], // tasks - may be empty.
         };
     }
 
     // return cat object
-    function addCat(id, name, parent) {
+    function addCat(cat, parent) {
         var catObj = getCatSchema();
-        catObj.catid = id;
-        catObj.catname = name;
-        catObj.catparent = parent;
+        catObj.catid = cat.catid;
+        catObj.catname = cat.catname;
+        catObj.catparent = cat.catparent;
+        catObj.tasksCompleted = cat.tasksCompleted;
+        catObj.catsCompleted = cat.catsCompleted;
 
         // Add to parent or root
         if (parent) {
@@ -464,9 +470,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         { text: "מצב", css: "hidden", next: 0 }
     ]
 
-    function _clickTri(id) {
-        // Get task by id on the list:
-        var task = _getTaskByID(id);
+    function _clickTri(task) {
         if (!task) return;
 
         for (var i = 0; i < TriStateFSM.length; i++) {
@@ -481,8 +485,9 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         }
     }
 
-    $scope.OnTriClick = function (id) {
-        _clickTri(id);
+    $scope.OnTriClick = function (task) {
+        $scope.addFillTask(task); // must be first beacuse using css before change
+        _clickTri(task);
     }
 
     /**************************************
@@ -548,6 +553,45 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             cat = cat.catparent;
         }
         return name;
+    }
+
+    // Update cat up to root that a task was completed.
+    $scope.addFillTask = function (task) {
+        cat = task.taskparent;
+
+        if (task.tristate.css == 'hidden') { // Hidden is not cheked
+            if (!cat.tasksCompleted)
+                cat.tasksCompleted = 1;
+            else
+                cat.tasksCompleted++;
+        
+        // Update father recursive.
+            $scope.addFillCat(cat.catparent);
+        }
+    }
+
+    $scope.catCompleted = function (cat) {
+        if (!cat) return;
+        if (!cat.tasksCompleted) cat.tasksCompleted = 0;
+        if (!cat.catsCompleted) cat.catsCompleted = 0;
+        var completed = true;
+        completed = completed && (!cat.tasks || cat.tasksCompleted == cat.tasks.length);
+        completed = completed && (!cat.cats || cat.catsCompleted == cat.cats.length);
+        return completed;
+    }
+
+    $scope.addFillCat = function (cat) {
+        if (!cat) return;
+
+        if (!cat.catsCompleted)
+            cat.catsCompleted = 1;
+        else
+            cat.catsCompleted++;
+
+        // Update father recursive.
+        if ($scope.catCompleted(cat)) {
+            $scope.addFillCat(cat.catparent);
+        }
     }
 
     /**************************************
