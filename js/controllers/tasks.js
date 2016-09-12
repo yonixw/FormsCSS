@@ -312,7 +312,7 @@ app.factory('taskService', function () {
         var catObj = getCatSchema();
         catObj.catid = cat.catid;
         catObj.catname = cat.catname;
-        catObj.catparent = cat.catparent;
+        catObj.catparent = parent;
         catObj.tasksCompleted = cat.tasksCompleted;
         catObj.catsCompleted = cat.catsCompleted;
 
