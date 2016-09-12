@@ -725,7 +725,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         return i;
     }
 
-    $scope.taskArray = [];// taskService.catLinearArray;
+    $scope.taskArray = [];// Will fill when user click top cat from side menu
 
     /**************************************
           Filters and Process
@@ -797,7 +797,6 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         /* Dont add ',' at the end! it will create null in an array!*/
     ]
 
- 
     $scope.filterDialog = function () {
 
         $mdDialog.show({
@@ -823,19 +822,40 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
 
     }
 
-    $scope.favIcon = 'star_border';
-    $scope.toggleFavs = function () {
-        if ($scope.favIcon == 'star') { // no filter
-            $scope.favIcon = 'star_border';
+    $scope.favorQuickView = function () {
+        if ($scope.filters[0].favor.show) {
             $scope.filters[0].favor.show = false;
-        }
-        else
-        {
-            $scope.favIcon = 'star';
+
+            // Reset selected category
+            $scope.taskArray = [];
+            $scope.nextCat = null;
+            $scope.prevCat = null;
+
+        } else {
+            if ($scope.catTree && $scope.catTree.length == 0) return;
+
+            $scope.nextCat = null;
+            $scope.prevCat = null;
+
+            $scope.taskArray = [$scope.catTree[0]];
+            for (var i = 1; i < $scope.catTree.length; i++) {
+                $scope.taskArray.push($scope.catTree[i]);
+                $scope.linearArrayFromCat($scope.catTree[i], true);
+            }
+
+            //Enable favors:
+            $scope.filters[0].nonfavor.show = false;
             $scope.filters[0].favor.show = true;
         }
     }
 
+    $scope.faorButtonIcon = function () {
+        if ($scope.filters[0].favor.show) {
+            return "star";
+        } else {
+            return "star_border"
+        }
+    }
     
 });
 
