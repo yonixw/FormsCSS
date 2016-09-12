@@ -173,9 +173,8 @@
            
                 <ul style="font-size:3em">
                     <li ng-repeat="cat in catTree" >
-                        <md-checkbox ng-checked="catCompleted(cat)" aria-label="Done" md-primary>
-                        </md-checkbox>
-                        <span ng-click="openCat(cat);">{{cat.catname}}</span>
+                        <i class="material-icons">{{getCatStatString(catCompletedState(cat));}}</i>
+                            <span ng-click="openCat(cat);">{{cat.catname}}</span>
                     </li>
                 </ul>
             

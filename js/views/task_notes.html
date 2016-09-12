@@ -18,6 +18,12 @@
             </div>
             <md-tabs  md-border-bottom>
 
+                <md-tab label="מידע אחזקתי">
+                    <md-content class="md-padding">
+                        <div ng-bind-html="selectedTask.extrainfo | trusthtml"></div>
+                    </md-content>
+                </md-tab>
+
                 <md-tab label="הערות">
                     <md-content class="md-padding">
                         <ul>
@@ -29,11 +35,7 @@
                 </md-tab>
 
 
-                <md-tab label="מידע אחזקתי">
-                    <md-content class="md-padding">
-                        <div ng-bind-html="selectedTask.extrainfo | trusthtml"></div>
-                    </md-content>
-                </md-tab>
+              
 
 
             </md-tabs>

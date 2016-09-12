@@ -565,21 +565,43 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             else
                 cat.tasksCompleted++;
         
-        // Update father recursive.
+            // Update father recursive.
             $scope.addFillCat(cat.catparent);
         }
     }
 
-    $scope.catCompleted = function (cat) {
+    // Did the user (almost) finished all tasks under cat tree?
+    $scope.catCompletedState = function (cat) {
         if (!cat) return;
         if (!cat.tasksCompleted) cat.tasksCompleted = 0;
         if (!cat.catsCompleted) cat.catsCompleted = 0;
-        var completed = true;
-        completed = completed && (!cat.tasks || cat.tasksCompleted == cat.tasks.length);
-        completed = completed && (!cat.cats || cat.catsCompleted == cat.cats.length);
-        return completed;
+
+        var completed = false;
+        var started = false;
+
+        if (cat.tasks && cat.tasks.length > 0) {
+            completed = completed || cat.tasksCompleted == cat.tasks.length;
+            started = started || cat.tasksCompleted > 0;
+        }
+        if (cat.cats && cat.cats.length > 0) {
+            completed = completed || cat.catsCompleted == cat.cats.length;
+            started = started || cat.catsCompleted > 0;
+        }
+
+        return { completed: completed , started: started};
     }
 
+    $scope.getCatStatString = function (stat) {
+        if (stat.completed) {
+            return "lens";
+        }
+        else if (stat.started) {
+            return "timelapse";
+        }
+        return "panorama_fish_eye";
+    }
+
+    // Recursive update when user did some task
     $scope.addFillCat = function (cat) {
         if (!cat) return;
 
