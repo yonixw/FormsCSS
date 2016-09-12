@@ -72,8 +72,9 @@
                                  <div id="navigate">
 
                                      
-
-                                     <div ng-hide="$parent.$parent.$last" style="float:left" ng-click="goCat(taskArray[$parent.$parent.$index+1].catid);">
+                                     <!-- NG click because a anchor exist even if cat not showing, so still will work -->
+                                     <div ng-hide="$parent.$parent.$last" style="float:left" 
+                                          ng-click="goCat(taskArray[$parent.$parent.$index+1].catid);">
                                          <div id="chunky-buttons">
                                              <div class="chunky chunky12">
                                                  <a>
@@ -84,7 +85,8 @@
                                      </div>
 
 
-                                     <div ng-hide="$parent.$parent.$first" style="float:left;" ng-click="goCat(taskArray[$parent.$parent.$index-1].catid);">
+                                     <div ng-hide="$parent.$parent.$first" style="float:left;" 
+                                          ng-click="goCat(taskArray[$parent.$parent.$index-1].catid);">
                                          <div id="chunky-buttons">
                                              <div class="chunky chunky12">
                                                  <a>
@@ -116,7 +118,7 @@
                             <tr class="task-content">
                                 <td colspan="2">
                                     <span style="float: right;margin: 0px 15px;background-color: whitesmoke;
-                                                 border: 2px solid black;border-radius: 10px;padding: 7px;">(-5)</span>
+                                                 border: 2px solid black;border-radius: 10px;padding: 7px;">({{task.index}})</span>
 
                                     <div id="chunky-buttons" style="float:left; margin-right: 10px;" ng-click="ShowNotes(task.taskID,$event);">
                                         <div class="chunky chunky26">
@@ -127,7 +129,7 @@
                                     </div>
 
                                     <div id="chunky-buttons" style="float:left; border-radius: 10px;" ng-click="OnTriClick(task);">
-                                        <div class="chunky chunky16">
+                                        <div class="chunky chunky0">
                                             <a>
                                                 <div class="tristate narrow-tristate">
                                                     <div class="tri-sta-che md {{task.tristate.css}}">
@@ -136,7 +138,7 @@
                                                         <span class="tsc-b tsc-b-t"></span>
                                                         <span class="tsc-b tsc-b-l"></span>
                                                     </div>
-                                                    <div class="tristatedesc">
+                                                    <div class="tristatedesc" style="color: #000;">
                                                         {{task.tristate.text}}
                                                     </div>
                                                 </div>

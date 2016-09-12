@@ -19,6 +19,7 @@ app.factory('taskService', function () {
             catid: 0,
             catname: 'א. מפקום-דלת',
             tasksCompleted: 1,
+            fillStarted: true,
             tasks: [
                  {
                      taskID: 0,
@@ -72,60 +73,7 @@ app.factory('taskService', function () {
             ]
         },
 
-         {
-             catid: 1,
-             catname: 'ב. מפקום-דלת',
-             tasks: [
-                  {
-                      taskID: 60,
-                      favor: false,
-                      description: '<b>Hello</b>',
-                      tristate: {
-                          css: 'checked',
-                          text: ''
-                      },
-                      notes: [
-                          {
-                              noteID: 0,
-                              noteOwner: 'מקשחר',
-                              noteText: 'הכל סבבה'
-                          },
-                          {
-                              noteID: 1,
-                              noteOwner: '2מקשחר',
-                              noteText: 'הכל סבבה2'
-                          },
-                      ]
-                  },
-                 {
-                     taskID: 61,
-                     favor: false,
-                     description: '<b>Hello From the <u>pther</u> side</b>',
-                     tristate: {
-                         css: 'hidden',
-                         text: 'מצב'
-                     },
-                     notes: [
-                         {
-                             noteID: 2,
-                             noteOwner: 'מקש222חר',
-                             noteText: 'הכל סב<u>sss</u>בה'
-                         },
-                     ]
-                 },
-                 {
-                     taskID: 610,
-                     favor: false,
-                     description: 'Hello From the <u>pther</u><br /> side',
-                     tristate: {
-                         css: 'hidden',
-                         text: 'מצב'
-                     },
-                 },
-             ]
-         },
-
-
+        
         {
             catid: 2,
             catname: 'ג. קטגוריה שניה',
@@ -135,9 +83,34 @@ app.factory('taskService', function () {
                     catname: '1. תת קטגוריה',
                     tasks: [
                         {
-                            taskID: 99,
+                            taskID: 999,
                             favor: true,
-                            description: 'Helllo from under',
+                            description: 'Zelllo from under',
+                            tristate: {
+                                css: 'hidden',
+                                text: 'מצב',
+                            },
+                        },
+                        {
+                            taskID: 991,
+                            favor: true,
+                            description: 'Zelsllo from under',
+                            tristate: {
+                                css: 'hidden',
+                                text: 'מצב',
+                            },
+                        },
+                    ]
+
+                },
+                {
+                    catid: 107,
+                    catname: '2. תת קטגוריה',
+                    tasks: [
+                        {
+                            taskID: 993,
+                            favor: true,
+                            description: 'Helllo from zunder',
                             tristate: {
                                 css: 'hidden',
                                 text: 'מצב',
@@ -151,7 +124,7 @@ app.factory('taskService', function () {
                 {
                     taskID: 100,
                     favor: false,
-                    description: 'Hello From the <u>pther</u><br /> side',
+                    description: 'zHello From the <u>pther</u><br /> side',
                     tristate: {
                         css: 'hidden',
                         text: 'מצב'
@@ -267,6 +240,7 @@ app.factory('taskService', function () {
         if (origincat.tasks) {
             for (var i = 0; i < (origincat.tasks.length) ; i++) {
                 task = origincat.tasks[i];
+                task.index = (i+1);
                 addTask(task,targetcat);
             }
         }
@@ -302,6 +276,7 @@ app.factory('taskService', function () {
             catparent: null,
             tasksCompleted: 0,
             catsCompleted: 0,
+            fillStarted: false, // for partial monitoring
             cats: [], // sub cats - may be empty.
             tasks: [], // tasks - may be empty.
         };
@@ -315,6 +290,7 @@ app.factory('taskService', function () {
         catObj.catparent = parent;
         catObj.tasksCompleted = cat.tasksCompleted;
         catObj.catsCompleted = cat.catsCompleted;
+        catObj.fillStarted = cat.fillStarted;
 
         // Add to parent or root
         if (parent) {
@@ -341,6 +317,7 @@ app.factory('taskService', function () {
     function getTaskSchema() {
         return {
             taskID: 0,           // id of the task in db.
+            index: 0,            // Index of task in category, we want it hardcoded
             favor: false,        // did someone make it favor?
             description: '',     // the html view of the task
             tristate: {          // object for handling the status of task
@@ -365,7 +342,8 @@ app.factory('taskService', function () {
         taskObj.taskparent      = parent               ; 
         taskObj.notes           = task.notes        ; 
         taskObj.rank            = task.rank         ; 
-        taskObj.extrainfo       = task.extrainfo    ;
+        taskObj.extrainfo = task.extrainfo;
+        taskObj.index = task.index;
 
         parent.tasks.push(taskObj);
 
@@ -565,8 +543,20 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             else
                 cat.tasksCompleted++;
         
-            // Update father recursive.
-            $scope.addFillCat(cat.catparent);
+            // For partial:
+            $scope.fillStarted(cat);
+
+            // Update father recursive if done.
+            if (cat.tasksCompleted == cat.tasks.length)
+                $scope.addFillCat(cat.catparent);
+        }
+    }
+
+    // Update partial filling up the tree
+    $scope.fillStarted = function(cat) {
+        while (cat) {
+            cat.fillStarted = true;
+            cat = cat.catparent;
         }
     }
 
@@ -576,19 +566,16 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         if (!cat.tasksCompleted) cat.tasksCompleted = 0;
         if (!cat.catsCompleted) cat.catsCompleted = 0;
 
-        var completed = false;
-        var started = false;
+        var completed = true;
 
         if (cat.tasks && cat.tasks.length > 0) {
-            completed = completed || cat.tasksCompleted == cat.tasks.length;
-            started = started || cat.tasksCompleted > 0;
+            completed = completed && cat.tasksCompleted == cat.tasks.length;
         }
         if (cat.cats && cat.cats.length > 0) {
-            completed = completed || cat.catsCompleted == cat.cats.length;
-            started = started || cat.catsCompleted > 0;
+            completed = completed && cat.catsCompleted == cat.cats.length;
         }
 
-        return { completed: completed , started: started};
+        return { completed: completed, started: cat.fillStarted };
     }
 
     $scope.getCatStatString = function (stat) {
@@ -611,7 +598,8 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
             cat.catsCompleted++;
 
         // Update father recursive.
-        if ($scope.catCompleted(cat)) {
+        var state = $scope.catCompletedState(cat)
+        if (state.completed) {
             $scope.addFillCat(cat.catparent);
         }
     }
