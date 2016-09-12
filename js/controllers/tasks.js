@@ -73,6 +73,63 @@ app.factory('taskService', function () {
             ]
         },
 
+        {
+            catid: 70,
+            catname: 'ב. שירה-דלת',
+            tasksCompleted: 1,
+            fillStarted: true,
+            tasks: [
+                 {
+                     taskID: 710,
+                     favor: false,
+                     description: '<b>Hello</b>',
+                     tristate: {
+                         css: 'checked',
+                         text: ''
+                     },
+                     notes: [
+                         {
+                             noteID: 0,
+                             noteOwner: 'מקשחר',
+                             noteText: 'הכל סבבה'
+                         },
+                         {
+                             noteID: 1,
+                             noteOwner: '2מקשחר',
+                             noteText: 'הכל סבבה2'
+                         },
+                     ],
+                     extrainfo: '<b>פה יהיה מידע אחזקתי</b>',
+                     rank: 3,
+
+                 },
+                {
+                    taskID: 721,
+                    favor: false,
+                    description: '<b>Hello From the <u>pther</u> side</b>',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                    notes: [
+                        {
+                            noteID: 2,
+                            noteOwner: 'מקש222חר',
+                            noteText: 'הכל סב<u>sss</u>בה'
+                        },
+                    ]
+                },
+                {
+                    taskID: 7810,
+                    favor: false,
+                    description: 'Hello From the <u>pther</u><br /> side',
+                    tristate: {
+                        css: 'hidden',
+                        text: 'מצב'
+                    },
+                },
+            ]
+        },
         
         {
             catid: 2,
@@ -432,12 +489,6 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         //$("#sig-dialog").dialog('destroy').remove()
     });
 
-
-    /**************************************
-            Scrollign and breadcrumbs
-    ***************************************/
-  
-
     /**************************************
             TRI STATE CHECKBOX
     ***************************************/
@@ -513,8 +564,17 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
     /**************************************
           Category Array
   ***************************************/
+    $scope.catTree = taskService.catObjectArray;
+    $scope.prevCat = null;
+    $scope.nextCat = null;
+    $scope.currentIndex = -1;
+
     // Load subcats into view
-    $scope.openCat = function (cat) {
+    $scope.openCat = function (cat, index) {
+        $scope.prevCat = (index > 0) ? $scope.catTree[index - 1] : null;
+        $scope.nextCat = (index < $scope.catTree.length) ? $scope.catTree[index + 1] : null;
+        $scope.currentIndex = index;
+
         $scope.linearArrayFromCat(cat, false);
         $mdSidenav('rightmenu').close();
     }
@@ -524,6 +584,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         scrollToCat(id);
     }
 
+    // Get full name of cat going up the tree
     $scope.fullCatName = function (cat) {
         var name = ' ';
         while (cat && cat.catname) {
@@ -578,6 +639,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
         return { completed: completed, started: cat.fillStarted };
     }
 
+    // ICON for filling tasks state
     $scope.getCatStatString = function (stat) {
         if (stat.completed) {
             return "lens";
@@ -619,6 +681,7 @@ app.controller('tasks', function ($scope, $mdDialog, $mdMedia,
            TASK ARRAY
    ***************************************/
 
+   
     function _getTaskByID(id) {
         for (var i = 0; i < $scope.taskArray.length; i++) {
             for (var j = 0; j < $scope.taskArray[i].tasks.length ; j++) {

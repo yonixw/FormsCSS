@@ -58,7 +58,19 @@
 
                 <div ng-if="taskArray.length == 0"
                      style="text-align: center;font-size: 2em;">
-                    אין מטלות להציג, אנא בחרו מהתפריט.
+                    אין מטלות להציג, אנא בחרו קטגוריה מהתפריט.
+                </div>
+
+                <div ng-if="prevCat != null"
+                     style="text-align: center;width: 100%;margin-bottom: 20px;margin-top: 20px;font-size: 1.5em;"
+                     ng-click="openCat(prevCat,currentIndex-1);">
+                    <div id="chunky-buttons">
+                        <div class="chunky chunky13">
+                            <a>
+                                חזור אל: <u>{{prevCat.catname}}</u>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <section ng-repeat="cat in taskArray">
@@ -84,7 +96,7 @@
                                          </div>
                                      </div>
 
-
+                                     <!-- NG click because a anchor exist even if cat not showing, so still will work -->
                                      <div ng-hide="$parent.$parent.$first" style="float:left;" 
                                           ng-click="goCat(taskArray[$parent.$parent.$index-1].catid);">
                                          <div id="chunky-buttons">
@@ -158,6 +170,20 @@
 
                 </section>
 
+                
+                <div ng-if="nextCat != null" 
+                        style="text-align: center;width: 100%;margin-bottom: 20px;margin-top: 20px;font-size: 1.5em;"
+                        ng-click="openCat(nextCat,currentIndex+1);">
+                    <div id="chunky-buttons">
+                        <div class="chunky chunky13">
+                            <a>
+                                המשך הלאה אל: <u>{{nextCat.catname}}</u>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+
 
             </md-content>
 
@@ -176,7 +202,7 @@
                 <ul style="font-size:3em">
                     <li ng-repeat="cat in catTree" >
                         <i class="material-icons">{{getCatStatString(catCompletedState(cat));}}</i>
-                            <span ng-click="openCat(cat);">{{cat.catname}}</span>
+                            <span ng-click="openCat(cat,$index);">{{cat.catname}}</span>
                     </li>
                 </ul>
             
